@@ -1,10 +1,19 @@
 # Work Accounting
-Ruby program for tracking working hours manually and save them in a file or
-database. The stored data can be queried for different options such as
+Ruby program for tracking working hours or other tasks and storing the on your
+device. The stored data shall be queried for different options such as
 monthly or weekly working hours.
 
+## Development steps
+* Reading and storing tasks and persons in a file (actual)
+* Terminal menu to read/write data and some queries for the data
+* Formatted terminal output for the queries
+* Formatted pdf output using latex
+* Reading, storing and querying tasks and persons in a database (e.g. sqlite)
+* Deleting existing persons and tasks and freeing their blocked ids
+* Extension of query capabilities
+
 ## Usage & Help
-todo
+follows with the main script
 
 ## Used version
 Written with Ruby 2.2.2
@@ -18,6 +27,6 @@ Written with Ruby 2.2.2
 * none
 
 ## License
-todo
+see LICENSE
 
 created by: Benjamin Held
