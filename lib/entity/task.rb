@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-21 13:00:30
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-06 16:27:34
+# @Last Modified time: 2015-09-09 10:57:27
 
 module Task
 
@@ -54,20 +54,40 @@ module Task
 
     # singleton method to create a {Task} from a list
     # @param [Array] list list of string attributes to create a person
+    def self.create_from_attribute_list(list)
+      check_list_size(list)
+
+      start_time = create_time_object(list, 1)
+      end_time = create_time_object(list, 8)
+      self.new(list[0].to_i, start_time, end_time, list[15])
+    end
+
+    private
+
+    # singleton method to check for the correct list size
+    # @param [Array] list with attributes
     # @raise [ArgumentError] if the size of the list does not fit the number of
     #   required attributes
-    def self.create_from_attribute_list(list)
+    def self.check_list_size(list)
       if (list.size != 16)
         raise ArgumentError,
         " Error: list contains the false number of arguments to create a task."
       end
-      start_time = Time.new(list[1].to_i,list[2].to_i,list[3].to_i,
-                            list[4].to_i,list[5].to_i,list[6].to_i,
-                            list[7])
-      end_time = Time.new(list[8].to_i,list[9].to_i,list[10].to_i,
-                            list[11].to_i,list[12].to_i,list[13].to_i,
-                            list[14])
-      self.new(list[0].to_i, start_time, end_time, list[15])
+    end
+
+    # singleton method to create a {Time} object from the list starting at
+    # the provided index
+    # @param [Array] list list from which the object should be created
+    # @param [Integer] start_index start array index
+    # @return [Time] the desired time object
+    def self.create_time_object(list, start_index)
+      Time.new(list[start_index].to_i,
+               list[start_index + 1].to_i,
+               list[start_index + 2].to_i,
+               list[start_index + 3].to_i,
+               list[start_index + 4].to_i,
+               list[start_index + 5].to_i,
+               list[start_index + 6])
     end
 
   end
