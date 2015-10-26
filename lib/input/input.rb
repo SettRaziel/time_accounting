@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-10-10 17:47:47
+# @Last Modified time: 2015-10-26 17:00:54
 
 require_relative '../handler/data_handler'
 
@@ -102,3 +102,5 @@ module Input
   end
 
 end
+
+require_relative 'person_option'
