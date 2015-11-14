@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-10-26 17:00:54
+# @Last Modified time: 2015-11-14 18:35:48
 
 require_relative '../handler/data_handler'
 
@@ -72,6 +72,7 @@ module Input
       filename = initialize_database("Create a new database.")
       Input.initialize_datahandler(DataHandler.new(filename))
       puts "Database #{filename} created."
+      DatabaseOption.database_menu
     end
 
     # method to load an existing database. The user is asked to provide the
@@ -80,6 +81,7 @@ module Input
       filename = initialize_database("Load an existing database.")
       Input.initialize_datahandler(DataHandler.load_database(filename))
       puts "Database #{filename} created."
+      DatabaseOption.database_menu
     end
 
     # method to display the provided message and read the filename of the
@@ -103,4 +105,5 @@ module Input
 
 end
 
+require_relative 'database_option'
 require_relative 'person_option'
