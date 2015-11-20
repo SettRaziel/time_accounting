@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-11-14 18:35:48
+# @Last Modified time: 2015-11-20 19:40:15
 
 require_relative '../handler/data_handler'
 
@@ -69,17 +69,23 @@ module Input
     # method to start the creation of the new database. The user is asked to
     # provide a name for the database or file
     def self.create_database
-      filename = initialize_database("Create a new database.")
+      filename = get_database_name("Create a new database.")
       Input.initialize_datahandler(DataHandler.new(filename))
-      puts "Database #{filename} created."
-      DatabaseOption.database_menu
+      finish_database_initialization(filename)
     end
 
     # method to load an existing database. The user is asked to provide the
     # path to the database
     def self.load_database
-      filename = initialize_database("Load an existing database.")
+      filename = get_database_name("Load an existing database.")
       Input.initialize_datahandler(DataHandler.load_database(filename))
+      finish_database_initialization(filename)
+    end
+
+    # method to finalize the database initialization and the call of the
+    # next menu
+    # @param [String] filename the provided filename
+    def self.finish_database_initialization(filename)
       puts "Database #{filename} created."
       DatabaseOption.database_menu
     end
@@ -88,7 +94,7 @@ module Input
     # database
     # @param [String] message the output message
     # @return [String] the provided filename
-    def self.initialize_database(message)
+    def self.get_database_name(message)
       puts message
       get_entry("Input a name for the database: ")
     end
