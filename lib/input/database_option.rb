@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-11-14 18:36:20
+# @Last Modified time: 2015-12-18 09:21:37
 
 module Input
 
@@ -14,23 +14,23 @@ module Input
     # @param [DataHandler] data_handler the data handler created by the
     #  commands of the main menu
     def self.database_menu
-        Query.initialize_repository(Input.data_handler.repository)
-        while (true)
-          begin
-            print_menu
-            input = get_entry("Input (1-7): ").to_i
+      Query.initialize_repository(Input.data_handler.repository)
+      while (true)
+        begin
+          print_menu
+          input = get_entry("Input (1-7): ").to_i
 
-            case input
-              when 1 then add_person
-              when 2 then add_task
-              when 3 then query_person
-              when 4 then query_task
-              when 5 then query_tasks_to_person
-              when 6 then save_and_exit
-              when 7 then Input.exit_script
-            else
-              puts "Error: #{input} ist not valid."
-            end
+          case input
+            when 1 then add_person
+            when 2 then add_task
+            when 3 then query_person
+            when 4 then query_task
+            when 5 then query_tasks_to_person
+            when 6 then save_and_exit
+            when 7 then Input.exit_script
+          else
+            puts "Error: #{input} ist not valid."
+          end
         rescue StandardError => e
           puts "Error in DatabaseOption: ".concat(e.message)
         end
