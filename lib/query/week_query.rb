@@ -1,34 +1,12 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-08-26 16:32:52
+# @Last Modified time: 2015-12-23 22:34:24
 
 module Query
 
-  class WeekQuery
-
-    def self.get_data(id, year, calendar_week)
-      start_time = get_monday_of_calendar_week(year, calendar_week)
-      puts start_time
-      end_time = get_next_monday(start_time)
-      start_time = Time.new(start_time.year, start_time.month, start_time.day)
-      puts "#{start_time} , #{end_time}"
-
-      all_task = Query.data.get_tasks_to_person(id)
-      tasks = {
-        :during => get_tasks_during(year, calendar_week, all_task),
-        :over => get_tasks_over(year, calendar_week, all_task),
-        :into => get_tasks_into(year, calendar_week, all_task),
-        :beyond => get_tasks_beyond(year, calendar_week, all_task)
-      }
-
-      puts "tasks.during: #{tasks[:during].inspect}"
-      puts "tasks.over: #{tasks[:over].inspect}"
-      puts "tasks.into: #{tasks[:into].inspect}"
-      puts "tasks.beyond: #{tasks[:beyond].inspect}"
-
-      return tasks
-    end
+  # statistic class to calculate to work time for a given week of the year
+  class WeekQuery < Base
 
     def self.get_weekly_worktime(id, year, calendar_week)
       tasks = get_data(id, year, calendar_week)
@@ -37,8 +15,10 @@ module Query
       puts "Worktime: #{7 * 24}"
       else
         puts "tasks.during: #{get_hours_during(tasks[:during])} h"
-        puts "tasks.into: #{get_hours_into(tasks[:into], year, calendar_week)} h"
-        puts "tasks.beyond: #{get_hours_beyond(tasks[:beyond], year, calendar_week)} h"
+        puts "tasks.into: " \
+             "#{get_hours_into(tasks[:into], year, calendar_week)} h"
+        puts "tasks.beyond: "\
+             "#{get_hours_beyond(tasks[:beyond], year, calendar_week)} h"
       end
     end
 

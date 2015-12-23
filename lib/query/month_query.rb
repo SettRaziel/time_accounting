@@ -1,31 +1,14 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 13:15:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-08-26 16:26:03
+# @Last Modified time: 2015-12-23 22:33:28
 
 require_relative '../entity/time'
 
 module Query
 
-  class MonthQuery
-
-    def self.get_data(id, year, month)
-      all_task = Query.data.get_tasks_to_person(id)
-      check_date = Time.new(year, month)
-      tasks = {
-        :during => get_tasks_during(year, month, all_task),
-        :over => get_tasks_over(year, month, all_task),
-        :into => get_tasks_into(year, month, all_task),
-        :beyond => get_tasks_beyond(year, month, all_task)
-      }
-
-      puts "tasks.during: #{tasks[:during].inspect}"
-      puts "tasks.over: #{tasks[:over].inspect}"
-      puts "tasks.into: #{tasks[:into].inspect}"
-      puts "tasks.beyond: #{tasks[:beyond].inspect}"
-
-      return tasks
-    end
+  # statistic class to calculate to work time for a given month and year
+  class MonthQuery < Base
 
     def self.get_monthly_worktime(id, year, month)
       tasks = get_data(id, year, month)
