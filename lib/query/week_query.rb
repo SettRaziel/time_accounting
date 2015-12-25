@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-23 22:34:24
+# @Last Modified time: 2015-12-25 11:58:32
 
 module Query
 
@@ -9,17 +9,7 @@ module Query
   class WeekQuery < Base
 
     def self.get_weekly_worktime(id, year, calendar_week)
-      tasks = get_data(id, year, calendar_week)
-
-      if (tasks[:over].size > 0)
-      puts "Worktime: #{7 * 24}"
-      else
-        puts "tasks.during: #{get_hours_during(tasks[:during])} h"
-        puts "tasks.into: " \
-             "#{get_hours_into(tasks[:into], year, calendar_week)} h"
-        puts "tasks.beyond: "\
-             "#{get_hours_beyond(tasks[:beyond], year, calendar_week)} h"
-      end
+      get_interval_worktime(id, year, calendar_week, (7*24))
     end
 
     private

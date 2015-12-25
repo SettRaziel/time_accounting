@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 13:15:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-23 22:33:28
+# @Last Modified time: 2015-12-25 11:58:19
 
 require_relative '../entity/time'
 
@@ -11,16 +11,8 @@ module Query
   class MonthQuery < Base
 
     def self.get_monthly_worktime(id, year, month)
-      tasks = get_data(id, year, month)
-
-      if (tasks[:over].size > 0)
-      puts "Worktime: #{Time.days_in_month(year,month) * 24}"
-      else
-        puts "tasks.during: #{get_hours_during(tasks[:during])} h"
-        puts "tasks.into: #{get_hours_into(tasks[:into], year, month)} h"
-        puts "tasks.beyond: #{get_hours_beyond(tasks[:beyond], year, month)} h"
-      end
-
+      get_interval_worktime(id, year, month,
+                           (Time.days_in_month(year,month) * 24))
     end
 
     private

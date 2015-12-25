@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-23 22:33:19
+# @Last Modified time: 2015-12-25 11:57:54
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -36,6 +36,20 @@ module Query
       puts "tasks.beyond: #{tasks[:beyond].inspect}"
 
       return tasks
+    end
+
+    def self.get_interval_worktime(id, year, interval, time_frame)
+      tasks = get_data(id, year, interval)
+
+      if (tasks[:over].size > 0)
+        puts "Worktime: #{time_frame}"
+      else
+        puts "tasks.during: #{get_hours_during(tasks[:during])} h"
+        puts "tasks.into: #{get_hours_into(tasks[:into], year, interval)} h"
+        puts "tasks.beyond: " \
+             "#{get_hours_beyond(tasks[:beyond], year, interval)} h"
+      end
+
     end
 
   end
