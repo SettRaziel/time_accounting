@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-18 09:21:37
+# @Last Modified time: 2015-12-29 09:25:17
 
 module Input
 
@@ -20,17 +20,7 @@ module Input
           print_menu
           input = get_entry("Input (1-7): ").to_i
 
-          case input
-            when 1 then add_person
-            when 2 then add_task
-            when 3 then query_person
-            when 4 then query_task
-            when 5 then query_tasks_to_person
-            when 6 then save_and_exit
-            when 7 then Input.exit_script
-          else
-            puts "Error: #{input} ist not valid."
-          end
+          process_input(input)
         rescue StandardError => e
           puts "Error in DatabaseOption: ".concat(e.message)
         end
@@ -49,6 +39,22 @@ module Input
       puts " (5) Query tasks to person."
       puts " (6) Save and exit."
       puts " (7) Abort and exit."
+    end
+
+    # method to process the provided input
+    # @param [Integer] input the provided input
+    def self.process_input(input)
+      case input
+        when 1 then add_person
+        when 2 then add_task
+        when 3 then query_person
+        when 4 then query_task
+        when 5 then query_tasks_to_person
+        when 6 then save_and_exit
+        when 7 then Input.exit_script
+      else
+        puts "Error: #{input} ist not valid."
+      end
     end
 
     # method to start the addition of a person by the {PersonOption}
