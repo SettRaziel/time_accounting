@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-25 11:57:54
+# @Last Modified time: 2015-12-30 08:32:34
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -50,6 +50,15 @@ module Query
              "#{get_hours_beyond(tasks[:beyond], year, interval)} h"
       end
 
+    end
+
+    def self.get_hours_during(tasks)
+      total = 0
+      tasks.each { |task|
+        total += task.end_time - task.start_time
+      }
+
+      total = (total / 3600).round(2)
     end
 
   end

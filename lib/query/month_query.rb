@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 13:15:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-25 11:58:19
+# @Last Modified time: 2015-12-30 08:33:16
 
 require_relative '../entity/time'
 
@@ -49,15 +49,6 @@ module Query
         task.start_time < check_date.next_month &&
         task.end_time > check_date.next_month
       }
-    end
-
-    def self.get_hours_during(tasks)
-      total = 0
-      tasks.each { |task|
-        total += task.end_time - task.start_time
-      }
-
-      total = (total / 3600).round(2)
     end
 
     def self.get_hours_into(tasks, year, month)

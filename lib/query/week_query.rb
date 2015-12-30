@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-25 11:58:32
+# @Last Modified time: 2015-12-30 08:33:03
 
 module Query
 
@@ -63,15 +63,6 @@ module Query
         task.start_time < days[1] &&
         task.end_time > days[1]
       }
-    end
-
-    def self.get_hours_during(tasks)
-      total = 0
-      tasks.each { |task|
-        total += task.end_time - task.start_time
-      }
-
-      total = (total / 3600).round(2)
     end
 
     def self.get_hours_into(tasks, year, calendar_week)
