@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-01 09:57:21
+# @Last Modified time: 2016-01-03 08:47:37
 
 module Query
 
@@ -71,13 +71,8 @@ module Query
     end
 
     def self.get_hours_beyond(tasks, year, calendar_week)
-      total = 0
       next_calendar_week = calculate_start_and_end_day(year, calendar_week)[1]
-      tasks.each { |task|
-        total += next_calendar_week - task.start_time
-      }
-
-      total = (total / 3600).round(2)
+      get_beyond_value(tasks, next_calendar_week)
     end
 
   end
