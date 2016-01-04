@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 13:15:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-03 08:48:25
+# @Last Modified time: 2016-01-04 13:03:57
 
 require_relative '../entity/time'
 
@@ -17,13 +17,14 @@ module Query
 
     private
 
-    def self.get_tasks_during(year, month, all_task)
+    def self.calculate_month_and_next_month(year, month)
       check_date = Time.new(year, month)
-      puts check_date.next_month
-      all_task.select { |task|
-        task.start_time >= check_date &&
-        task.end_time <= check_date.next_month
-      }
+      {:actual => check_date, :next => check_date.next_month}
+    end
+
+    def self.get_tasks_during(year, month, all_task)
+      months = calculate_month_and_next_month(year, month)
+      collect_tasks_during(months, all_task)
     end
 
     def self.get_tasks_over(year, month, all_task)
