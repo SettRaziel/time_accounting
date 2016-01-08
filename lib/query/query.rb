@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-07 09:00:56
+# @Last Modified time: 2016-01-08 12:11:34
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -63,6 +63,14 @@ module Query
       all_task.select { |task|
         task.start_time < date_values[:actual] &&
         task.end_time > date_values[:next]
+      }
+    end
+
+    def self.collect_tasks_into(date_values, all_task)
+      all_task.select { |task|
+        task.start_time < date_values[:actual] &&
+        task.end_time > date_values[:actual] &&
+        task.end_time < date_values[:next]
       }
     end
 

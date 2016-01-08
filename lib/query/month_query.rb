@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 13:15:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-07 09:01:53
+# @Last Modified time: 2016-01-08 12:12:16
 
 require_relative '../entity/time'
 
@@ -33,12 +33,8 @@ module Query
     end
 
     def self.get_tasks_into(year, month, all_task)
-      check_date = Time.new(year, month)
-      all_task.select { |task|
-        task.start_time < check_date &&
-        task.end_time > check_date &&
-        task.end_time < check_date.next_month
-      }
+      months = calculate_month_and_next_month(year, month)
+      collect_tasks_into(months, all_task)
     end
 
     def self.get_tasks_beyond(year, month, all_task)
