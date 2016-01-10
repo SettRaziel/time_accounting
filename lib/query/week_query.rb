@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-08 12:12:31
+# @Last Modified time: 2016-01-10 09:17:41
 
 module Query
 
@@ -50,11 +50,7 @@ module Query
 
     def self.get_tasks_beyond(year, calendar_week, all_task)
       days = calculate_start_and_end_day(year, calendar_week)
-      all_task.select { |task|
-        task.start_time > days[:actual] &&
-        task.start_time < days[:next] &&
-        task.end_time > days[:next]
-      }
+      collect_tasks_beyond(days, all_task)
     end
 
     def self.get_hours_into(tasks, year, calendar_week)
