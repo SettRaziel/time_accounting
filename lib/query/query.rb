@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-11 08:59:37
+# @Last Modified time: 2016-01-17 18:05:38
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -176,6 +176,14 @@ module Query
     MonthQuery.get_data(id, year, month)
   end
 
+  # singleton method to query to data for a person for a given week
+  # @param [Integer] id the id of the queried person
+  # @param [Integer] year the requested year
+  # @param [Integer] month the requested week
+  # @return [Hash] the hash containing the different data informations
+  def self.get_weekly_data_for(id, year, week)
+    WeekQuery.get_data(id, year, week)
+  end
 end
 
 require_relative 'month_query'
