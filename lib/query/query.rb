@@ -1,10 +1,12 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-17 18:05:38
+# @Last Modified time: 2016-01-24 21:17:04
 
 # this module holds the classes and methods for queries regarding the data
 module Query
+
+  require_relative '../entity/time'
 
   # dummy class to get access to the data from methods within the module
   class << self

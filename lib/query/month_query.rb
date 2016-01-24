@@ -1,9 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 13:15:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-13 08:56:26
-
-require_relative '../entity/time'
+# @Last Modified time: 2016-01-24 21:16:51
 
 module Query
 
