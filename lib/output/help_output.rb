@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-18 14:29:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-21 16:43:35
+# @Last Modified time: 2016-01-26 20:23:52
 
 require_relative 'string'
 
@@ -14,7 +14,7 @@ class HelpOutput
   def self.print_help_for(parameter)
     initialize_output if (@parameters == nil)
     if (@parameters[parameter])
-      puts 'WorkAccounting help:'.yellow + "\n#{@parameters[parameter]}"
+      puts 'WorkAccounting help:'.light_yellow + "\n#{@parameters[parameter]}"
     elsif (parameter)
       print_help
     else
@@ -35,25 +35,32 @@ class HelpOutput
 
   # method to specify and add the help entries with help text only
   def self.add_single_help_entries
-    add_simple_text(:help, ' -h, --help     show help text')
+    add_simple_text(:help, ' -h, --help     ', 'show help text')
     add_simple_text(:version,
-                    ' -v, --version  prints the current version of the project')
+                    ' -v, --version  ',
+                    'prints the current version of the project')
   end
-
 
   # method to add a (key, value) pair to the parameter hash
   # @param [Symbol] symbol the key
   # @param [String] text the value containing a formatted string
-  def self.add_simple_text(symbol, text)
+  def self.add_text(symbol, text)
     @parameters[symbol] = text
   end
 
+  # method to add a (key, value) pair where the value contains the help text
+  # @param [Symbol] symbol the key
+  # @param [String] argument the string part containing the argument
+  # @param [String] text the string part containing the description text
+  def self.add_simple_text(symbol, argument, text)
+    add_text(symbol, argument.light_blue.concat(text))
+  end
 
   # method to print the default help text
   def self.print_help
     puts 'script usage:'.red + " ruby <script> "
     puts 'help usage :'.green + "  ruby <script> (-h | --help)"
-    puts "\nWorkAccounting help:".yellow
+    puts "\nWorkAccounting help:".light_yellow
 
     @parameters.each_value { |value|
       puts value
