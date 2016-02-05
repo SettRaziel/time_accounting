@@ -1,7 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-30 18:00:04
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-31 14:32:20
+# @Last Modified time: 2016-02-05 12:38:40
+
+require_relative '../output/string'
 
 # Parameter repository storing the valid parameter of the script.
 # {#initialize} gets the provided parameters and fills a hash which
@@ -55,7 +57,7 @@ class ParameterRepository
         @parameters[arg_key] = arg
       end
     else
-      raise ArgumentError, ' Error: invalid combination of parameters.'
+      raise ArgumentError, ' Error: invalid combination of parameters.'.red
     end
   end
 
@@ -77,7 +79,7 @@ class ParameterRepository
   # @raise [ArgumentError] if parameter combination not valid
   def check_parameter_handling(size)
     if (size > 0 && !(@parameters[:help] || @parameters[:version]))
-        raise ArgumentError, ' Error: invalid combination of parameters.'
+        raise ArgumentError, ' Error: invalid combination of parameters.'.red
     end
   end
 
@@ -85,7 +87,7 @@ class ParameterRepository
   # @param [String] arg invalid parameter string
   # @raise [ArgumentError] if an invalid argument is provided
   def raise_invalid_parameter(arg)
-    raise ArgumentError, " Error: invalid argument: #{arg}"
+    raise ArgumentError, " Error: invalid argument: #{arg}".red
   end
 
 end

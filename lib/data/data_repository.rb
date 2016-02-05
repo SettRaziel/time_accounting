@@ -1,10 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-07 11:52:54
+# @Last Modified time: 2016-02-05 12:42:57
 
 require_relative '../entity/person/person'
 require_relative '../entity/task'
+require_relative '../output/string'
 
 # This class serves as a data repository mapping {Person} => {Task}. A {Person}
 # can be the parent class {Person} or any of its children. To ensure the
@@ -34,7 +35,7 @@ class DataRepository
       repository[person] = Array.new()
     else
       raise IndexError, " Error: duplicated id found: #{person.id}, " \
-                        " #{person.name} cannot be added."
+                        " #{person.name} cannot be added.".red
     end
   end
 
@@ -47,7 +48,7 @@ class DataRepository
     if (person != nil)
       repository[person] << task
     else
-      raise ArgumentError, " Error: id #{person_id} was not found."
+      raise ArgumentError, " Error: id #{person_id} was not found.".red
     end
   end
 
@@ -79,12 +80,12 @@ class DataRepository
     if (ids[0] > 0)
       @max_person_id = ids[0]
     else
-      raise ArgumentError, "Error: given person id #{max_person_id} <= 0"
+      raise ArgumentError, "Error: given person id #{max_person_id} <= 0".red
     end
     if (ids[1] > 0)
       @max_task_id = ids[1]
     else
-      raise ArgumentError, "Error: given person id #{max_task_id} <= 0"
+      raise ArgumentError, "Error: given person id #{max_task_id} <= 0".red
     end
   end
 

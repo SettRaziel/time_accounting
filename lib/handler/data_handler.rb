@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 11:42:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-29 10:21:00
+# @Last Modified time: 2016-02-02 21:59:34
 
 require_relative '../data/data_repository'
 require_relative '../entity/person/person'
@@ -44,8 +44,12 @@ class DataHandler
   # @return [DataHandler] a new instance of the data handler initializes with
   #   the content of the file
   def self.load_database(filename)
-    repo = FileReader.read_file(filename)
-    DataHandler.new(filename, repo)
+    begin
+      repo = FileReader.read_file(filename)
+      DataHandler.new(filename, repo)
+    rescue Exception => e
+      raise IOError, " Error: File #{filename} does not exist."
+    end
   end
 
 end

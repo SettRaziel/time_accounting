@@ -1,9 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-21 13:00:30
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-09 10:57:27
+# @Last Modified time: 2016-02-05 12:44:48
 
 module Task
+
+  require_relative '../output/string'
 
   # This class represents a work task. A task gets a unique id from its
   # {TaskIDGenerator}. Similar to the {Person}, the task holds a method
@@ -71,7 +73,7 @@ module Task
     def self.check_list_size(list)
       if (list.size != 16)
         raise ArgumentError,
-        " Error: list contains the false number of arguments to create a task."
+        ' Error: list contains wrong number of arguments to create a task.'.red
       end
     end
 

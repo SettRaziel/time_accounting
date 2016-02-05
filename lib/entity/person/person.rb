@@ -1,11 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:28:16
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-05 09:35:56
+# @Last Modified time: 2016-02-05 12:45:41
 
 # This module holds the classes describing a Person or a special form of
 # person with additional attributs to the basic name and id of a {Person}.
 module Person
+
+  require_relative '../../output/string'
 
   # This class provides the basis for describing a person entity. When providing
   # an {#id} it is uses as the identification number. If no value is provided
@@ -49,7 +51,7 @@ module Person
     def self.create_from_attribute_list(list)
       if (list.size != 2)
         raise ArgumentError,
-        "Error: list contains the false number of arguments to create a person."
+        'Error: list contains wrong number of arguments to create a person.'.red
       end
       id = list[1].to_i
       self.new(list[0], id)
