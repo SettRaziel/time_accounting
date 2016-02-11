@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:48:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-10-26 17:00:29
+# @Last Modified time: 2016-02-11 12:33:25
 
 module Input
 
@@ -22,7 +22,7 @@ module Input
         when 2 then add_student
         when 3 then return
       else
-        puts "Error: #{input} ist not valid."
+        puts "Error: #{input} ist not valid.".red
       end
     end
 
@@ -35,7 +35,7 @@ module Input
 
       p = Person::Person.new(name)
       Input.data_handler.repository.add_person(p)
-      puts "Person with id #{p.id} added successfully."
+      puts "Person with id #{p.id} added successfully.".green
     end
 
     # method to create and add a student
@@ -45,13 +45,13 @@ module Input
 
       s = Person::Student.new(name, mat_nr)
       Input.data_handler.repository.add_person(s)
-      puts "Student with id #{s.id} added successfully."
+      puts "Student with id #{s.id} added successfully.".green
     end
 
     # method the get the input to a given console output
     # @param [String] message the console output
     def self.get_entry(message)
-      print message
+      print message.blue.bright
       gets.chomp
     end
 

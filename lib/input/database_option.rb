@@ -1,13 +1,15 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-12-29 09:25:17
+# @Last Modified time: 2016-02-11 12:35:20
 
 module Input
 
   # This class holds the menu for query options regarding person and task query
   # and the addition of people or tasks
   class DatabaseOption
+
+    require_relative '../query/query'
 
     # main entry point, this method gets the {DataHandler} from the {MainMenu}
     # to work on the repository and to initiate the save operation
@@ -22,7 +24,7 @@ module Input
 
           process_input(input)
         rescue StandardError => e
-          puts "Error in DatabaseOption: ".concat(e.message)
+          puts "Error in DatabaseOption: ".concat(e.message).red
         end
       end
     end
@@ -53,7 +55,7 @@ module Input
         when 6 then save_and_exit
         when 7 then Input.exit_script
       else
-        puts "Error: #{input} ist not valid."
+        puts "Error: #{input} ist not valid.".red
       end
     end
 
@@ -66,11 +68,11 @@ module Input
     def self.add_task
       t = create_task_from_input
 
-      puts "Task with id #{t.id} created successfully."
+      puts "Task with id #{t.id} created successfully.".green
       person_id =
           get_entry("Enter id of the person who should take the task: ").to_i
       Input.data_handler.repository.add_task_to_person(person_id, t)
-      puts "Task with id #{t.id} added to person with id #{person_id}."
+      puts "Task with id #{t.id} added to person with id #{person_id}.".green
     end
 
     # method to create a task from the provided input
@@ -101,7 +103,7 @@ module Input
         p = Input.data_handler.repository.find_person_by_id(id)
         puts "Result: #{p.to_string}"
       rescue NoMethodError => e
-        raise e.class, "Could not found person with id #{id}."
+        raise e.class, "Could not found person with id #{id}.".red
       end
     end
 
@@ -116,7 +118,7 @@ module Input
         }
       }
 
-      puts "#{result.keys.size} tasks found."
+      puts "#{result.keys.size} tasks found.".yellow
         result.each_pair { |key, value|
           puts "  Found task: #{key.to_string} for\n  #{value.to_string}"
         }
@@ -127,12 +129,12 @@ module Input
       begin
         id = get_entry("Enter id: ").to_i
         t = Input.data_handler.repository.get_tasks_to_person(id)
-        puts "#{t.size} tasks found"
+        puts "#{t.size} tasks found".yellow
         t.each { |task|
           puts task.to_string
         }
       rescue NoMethodError => e
-        raise e.class, "Could not found person with id #{id}. #{e.message}"
+        raise e.class, "Could not found person with id #{id}. #{e.message}".red
       end
     end
 
@@ -142,7 +144,7 @@ module Input
         Input.data_handler.save_repository
         Input.exit_script
       rescue IOError => e
-        raise IOError, "Error while saving data: " + e.message
+        raise IOError, "Error while saving data: ".concat(e.message).red
       end
     end
 
@@ -150,7 +152,7 @@ module Input
     # @param [String] message output message
     # @return [String] the input from the terminal
     def self.get_entry(message)
-      print message
+      print message.blue.bright
       gets.chomp
     end
 

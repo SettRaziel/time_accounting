@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 11:42:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-02 21:59:34
+# @Last Modified time: 2016-02-11 12:36:52
 
 require_relative '../data/data_repository'
 require_relative '../entity/person/person'
@@ -48,7 +48,7 @@ class DataHandler
       repo = FileReader.read_file(filename)
       DataHandler.new(filename, repo)
     rescue Exception => e
-      raise IOError, " Error: File #{filename} does not exist."
+      raise IOError, " Error: File #{filename} does not exist.".red
     end
   end
 

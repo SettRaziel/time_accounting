@@ -1,13 +1,15 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-11-20 19:40:15
+# @Last Modified time: 2016-02-11 12:36:17
 
-require_relative '../handler/data_handler'
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
 module Input
+
+  require_relative '../handler/data_handler'
+  require_relative '../output/string'
 
   class << self
     attr_reader :data_handler
@@ -21,7 +23,7 @@ module Input
 
   # method to end the script without saving any data
   def self.exit_script
-    puts "Shutting down..."
+    puts "Shutting down...".yellow
     exit(0)
   end
 
@@ -42,7 +44,7 @@ module Input
           process_input(get_entry("Input (1-3): ").to_i)
         end
       rescue SignalException => e
-        puts "\nReceived SignalException, exiting..."
+        puts "\nReceived SignalException, exiting...".yellow
       end
     end
 
@@ -51,7 +53,7 @@ module Input
     # method to print an error message
     # @param [String] message the error message that should be printed
     def self.print_error(message)
-      puts message
+      puts message.red
     end
 
     # method to check the input and proceed depending on its value
@@ -78,7 +80,12 @@ module Input
     # path to the database
     def self.load_database
       filename = get_database_name("Load an existing database.")
-      Input.initialize_datahandler(DataHandler.load_database(filename))
+      begin
+        Input.initialize_datahandler(DataHandler.load_database(filename))
+      rescue IOError => e
+        puts e.message.red
+        return
+      end
       finish_database_initialization(filename)
     end
 
@@ -86,7 +93,7 @@ module Input
     # next menu
     # @param [String] filename the provided filename
     def self.finish_database_initialization(filename)
-      puts "Database #{filename} created."
+      puts "Database #{filename} created.".green
       DatabaseOption.database_menu
     end
 
@@ -103,7 +110,7 @@ module Input
     # @param [String] message prompt message
     # @return [String] the provided input
     def self.get_entry(message)
-      print message
+      print message.blue.bright
       gets.chomp
     end
 
