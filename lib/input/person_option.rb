@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:48:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-11 12:33:25
+# @Last Modified time: 2016-02-14 13:45:29
 
 module Input
 
@@ -22,7 +22,7 @@ module Input
         when 2 then add_student
         when 3 then return
       else
-        puts "Error: #{input} ist not valid.".red
+        puts " Error: #{input} ist not valid.".red
       end
     end
 

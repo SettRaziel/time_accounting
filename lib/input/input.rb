@@ -1,8 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-11 12:36:17
-
+# @Last Modified time: 2016-02-14 13:44:06
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
@@ -64,7 +63,7 @@ module Input
         when 2 then load_database
         when 3 then Input.exit_script
       else
-        print_error("Error: Input is not valid.")
+        print_error(' Error: Input is not valid.')
       end
     end
 

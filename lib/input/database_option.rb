@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-11 12:35:20
+# @Last Modified time: 2016-02-14 13:43:18
 
 module Input
 
@@ -13,8 +13,6 @@ module Input
 
     # main entry point, this method gets the {DataHandler} from the {MainMenu}
     # to work on the repository and to initiate the save operation
-    # @param [DataHandler] data_handler the data handler created by the
-    #  commands of the main menu
     def self.database_menu
       Query.initialize_repository(Input.data_handler.repository)
       while (true)

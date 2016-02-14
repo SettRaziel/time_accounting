@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-30 19:26:43
+# @Last Modified time: 2016-02-14 13:45:01
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -181,7 +181,7 @@ module Query
   # singleton method to query to data for a person for a given week
   # @param [Integer] id the id of the queried person
   # @param [Integer] year the requested year
-  # @param [Integer] month the requested week
+  # @param [Integer] week the requested week
   # @return [Hash] the hash containing the different data informations
   def self.get_weekly_data_for(id, year, week)
     days = WeekQuery.calculate_start_and_end_day(year, week)
@@ -191,11 +191,11 @@ module Query
   # singleton method to query to data for a person for a given time
   # interval
   # @param [Integer] id the id of the queried person
-  # @param [Integer] year the requested year
-  # @param [Integer] month the requested week
+    # @param [Time] start_time the start time of the interval
+    # @param [Time] end_time the end time of the interval
   # @return [Hash] the hash containing the different data informations
-  def self.get_time_data_for(id, year, week)
-    days = TimeQuery.calculate_start_and_end_time(year, week)
+  def self.get_time_data_for(id, start_time, end_time)
+    days = TimeQuery.calculate_start_and_end_time(start_time, end_time)
     TimeQuery.get_data(id, days)
   end
 

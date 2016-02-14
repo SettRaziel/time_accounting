@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-18 14:29:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-05 12:32:36
+# @Last Modified time: 2016-02-14 13:46:06
 
 require_relative 'string'
 
@@ -18,7 +18,8 @@ class HelpOutput
     elsif (parameter)
       print_help
     else
-      raise ArgumentError, "help entry for #{parameter} does not exist".red
+      raise ArgumentError,
+            " Error: help entry for #{parameter} does not exist".red
     end
   end
 
