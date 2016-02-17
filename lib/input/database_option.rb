@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-14 13:43:18
+# @Last Modified time: 2016-02-17 17:39:14
 
 module Input
 
@@ -18,7 +18,7 @@ module Input
       while (true)
         begin
           print_menu
-          input = get_entry("Input (1-7): ").to_i
+          input = get_entry("Input (1-5): ").to_i
 
           process_input(input)
         rescue StandardError => e
@@ -34,11 +34,9 @@ module Input
       puts "\nDatabase options"
       puts " (1) Add person."
       puts " (2) Add task."
-      puts " (3) Query person."
-      puts " (4) Query task."
-      puts " (5) Query tasks to person."
-      puts " (6) Save and exit."
-      puts " (7) Abort and exit."
+      puts ' (3) Entity Queries'
+      puts " (4) Save and exit."
+      puts " (5) Abort and exit."
     end
 
     # method to process the provided input
@@ -47,11 +45,9 @@ module Input
       case input
         when 1 then add_person
         when 2 then add_task
-        when 3 then query_person
-        when 4 then query_task
-        when 5 then query_tasks_to_person
-        when 6 then save_and_exit
-        when 7 then Input.exit_script
+        when 3 then EntityQueries.entity_query_menu
+        when 4 then save_and_exit
+        when 5 then Input.exit_script
       else
         puts "Error: #{input} ist not valid.".red
       end
@@ -91,49 +87,6 @@ module Input
     def self.parse_date(string)
       time = string.split("-")
       Time.new(time[0], time[1], time[2],time[3],time[4])
-    end
-
-    # method to query a person from the database by id
-    # @raise [NoMethodError] if no person can be found by the given id
-    def self.query_person
-      begin
-        id = get_entry("Enter id: ").to_i
-        p = Input.data_handler.repository.find_person_by_id(id)
-        puts "Result: #{p.to_string}"
-      rescue NoMethodError => e
-        raise e.class, "Could not found person with id #{id}.".red
-      end
-    end
-
-    # method to query a task from the database by its id
-    def self.query_task
-      result = Hash.new()
-      id = get_entry("Enter id: ").to_i
-      tasks = Input.data_handler.repository.repository
-      tasks.each_pair { |key, task_list|
-        task_list.each { |task|
-          result[task] = key if (task.id == id)
-        }
-      }
-
-      puts "#{result.keys.size} tasks found.".yellow
-        result.each_pair { |key, value|
-          puts "  Found task: #{key.to_string} for\n  #{value.to_string}"
-        }
-    end
-
-    # method to query all tasks belonging to a specified person
-    def self.query_tasks_to_person
-      begin
-        id = get_entry("Enter id: ").to_i
-        t = Input.data_handler.repository.get_tasks_to_person(id)
-        puts "#{t.size} tasks found".yellow
-        t.each { |task|
-          puts task.to_string
-        }
-      rescue NoMethodError => e
-        raise e.class, "Could not found person with id #{id}. #{e.message}".red
-      end
     end
 
     # method to save the current repository and exit the script

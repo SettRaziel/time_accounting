@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-14 13:44:06
+# @Last Modified time: 2016-02-17 17:41:32
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
@@ -119,3 +119,4 @@ end
 
 require_relative 'database_option'
 require_relative 'person_option'
+require_relative 'entity_queries'
