@@ -1,10 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-17 17:58:19
+# @Last Modified time: 2016-02-25 17:09:06
 
 module Input
 
+  # singleton class to process the queries of {Person}s and {Task}s
   class EntityQueries
 
     # main entry point to start a query on a person or task

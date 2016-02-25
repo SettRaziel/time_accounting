@@ -1,10 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-18 18:25:33
+# @Last Modified time: 2016-02-25 17:09:36
 
 module Input
 
+  # singleton class to process the addition of {Person}s and {Task}s
   class EntityAddition
 
     # main entry point to start the addition of a person or task

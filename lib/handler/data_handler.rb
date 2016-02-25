@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 11:42:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-11 12:36:52
+# @Last Modified time: 2016-02-24 18:25:10
 
 require_relative '../data/data_repository'
 require_relative '../entity/person/person'
@@ -16,7 +16,7 @@ require_relative '../data/file_storage/file_writer'
 class DataHandler
   # @return [DataRepository] the repository
   attr_reader :repository
-  # @return [String ] the file name
+  # @return [String] the file name
   attr_reader :filename
 
   # initialization
