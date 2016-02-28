@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-27 15:21:58
+# @Last Modified time: 2016-02-28 15:20:56
 
 module Input
 
@@ -68,20 +68,13 @@ module Input
 
     # method to get the worktime for a given {Person} and interval
     def self.custom_worktime
-      id = get_entry('Worktime for which ID? ')
-      start_time = parse_date(
+      id = get_entry('Worktime for which ID? ').to_i
+      start_time = Input.parse_date(
                 get_entry("Enter start date (format: YYYY-MM-DD-hh:mm): "))
-      end_time = parse_date(
+      end_time = Input.parse_date(
                 get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
+      puts start_time.inspect
       Query::TimeQuery.get_time_worktime(id, start_time, end_time)
-    end
-
-    # method to parse a date from a given string
-    # @param [String] string the string with the data
-    # @return [Time] the newly created tme object
-    def self.parse_date(string)
-      time = string.split("-")
-      Time.new(time[0], time[1], time[2],time[3],time[4])
     end
 
     # method to print a given message and read the provided input

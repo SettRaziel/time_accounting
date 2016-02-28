@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-25 17:09:36
+# @Last Modified time: 2016-02-28 15:11:38
 
 module Input
 
@@ -62,21 +62,13 @@ module Input
     # method to create a task from the provided input
     # @return [Task] the new task based on the input
     def self.create_task_from_input
-      start_time = parse_date(
+      start_time = Input.parse_date(
                 get_entry("Enter start date (format: YYYY-MM-DD-hh:mm): "))
-      end_time = parse_date(
+      end_time = Input.parse_date(
                 get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
       description = get_entry("Enter description: ")
 
       Task::Task.new(start_time, end_time, description)
-    end
-
-    # method to parse a date from a given string
-    # @param [String] string the string with the data
-    # @return [Time] the newly created tme object
-    def self.parse_date(string)
-      time = string.split("-")
-      Time.new(time[0], time[1], time[2],time[3],time[4])
     end
 
     # method to print a given message and read the provided input
