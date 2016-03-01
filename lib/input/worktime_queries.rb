@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-28 15:20:56
+# @Last Modified time: 2016-03-01 15:47:53
 
 module Input
 
@@ -52,18 +52,16 @@ module Input
 
     # method to get the weekly worktime for a given {Person}, week and year
     def self.weekly_worktime
-      id = get_entry('Worktime for which ID? ').to_i
-      year = get_entry('Specify year: ').to_i
-      week = get_entry('Specify week of year: ').to_i
-      Query::WeekQuery.get_weekly_worktime(id, year, week)
+      values = get_input_values('Specify week of year: ')
+      Query::WeekQuery.get_weekly_worktime(values[:id], values[:year],
+                                           values[:time_frame])
     end
 
     # method to get the monthly worktime for a given {Person}, month and year
     def self.monthly_worktime
-      id = get_entry('Worktime for which ID? ').to_i
-      year = get_entry('Specify year: ').to_i
-      month = get_entry('Specify month of year: ').to_i
-      Query::MonthQuery.get_monthly_worktime(id, year, month)
+      values = get_input_values('Specify month of year: ')
+      Query::MonthQuery.get_monthly_worktime(values[:id], values[:year],
+                                             values[:time_frame])
     end
 
     # method to get the worktime for a given {Person} and interval
@@ -73,8 +71,18 @@ module Input
                 get_entry("Enter start date (format: YYYY-MM-DD-hh:mm): "))
       end_time = Input.parse_date(
                 get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
-      puts start_time.inspect
       Query::TimeQuery.get_time_worktime(id, start_time, end_time)
+    end
+
+    # method to retrieve the required input values
+    # @param [String] time_string the string for the prompt collecting the
+    #   time value
+    def self.get_input_values(time_string)
+      values = Hash.new()
+      values[:id] = get_entry('Worktime for which ID? ').to_i
+      values[:year] = get_entry('Specify year: ').to_i
+      values[:time_frame] = get_entry(time_string).to_i
+      return values
     end
 
     # method to print a given message and read the provided input
