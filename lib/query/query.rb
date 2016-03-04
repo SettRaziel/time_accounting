@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-20 18:44:48
+# @Last Modified time: 2016-03-04 09:42:16
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -70,8 +70,8 @@ module Query
     # @return [Hash] all tasks taking place during the given time frame
     def self.collect_tasks_during(date_values, all_task)
       all_task.select { |task|
-        task.start_time >= date_values[:actual] &&
-        task.end_time <= date_values[:next]
+        !task_starts_before?(task, date_values[:actual]) &&
+        !task_ends_after?(task, date_values[:next])
       }
     end
 
@@ -84,8 +84,8 @@ module Query
     # @return [Hash] all tasks running over the given time frame
     def self.collect_tasks_over(date_values, all_task)
       all_task.select { |task|
-        task.start_time < date_values[:actual] &&
-        task.end_time > date_values[:next]
+        task_starts_before?(task, date_values[:actual]) &&
+        task_ends_after?(task, date_values[:next])
       }
     end
 
@@ -98,8 +98,8 @@ module Query
     # @return [Hash] all tasks ending in the given time frame
     def self.collect_tasks_into(date_values, all_task)
       all_task.select { |task|
-        task.start_time < date_values[:actual] &&
-        lies_in_interval?(task.end_time, date_values)
+        task_starts_before?(task, date_values[:actual]) &&
+        time_lies_in_interval?(task.end_time, date_values)
       }
     end
 
@@ -112,8 +112,8 @@ module Query
     # @return [Hash] all tasks starting in the given time frame
     def self.collect_tasks_beyond(date_values, all_task)
       all_task.select { |task|
-        lies_in_interval?(task.start_time, date_values) &&
-        task.end_time > date_values[:next]
+        time_lies_in_interval?(task.start_time, date_values) &&
+        task_ends_after?(task, date_values[:next])
       }
     end
 
@@ -122,8 +122,26 @@ module Query
     # @param [Time] time the given point in time
     # @param [Hash] date_values two points in time creating a time interval
     # @return [Boolean] true: if time lies within the interval, false: if not
-    def self.lies_in_interval?(time, date_values)
+    def self.time_lies_in_interval?(time, date_values)
       time > date_values[:actual] && time < date_values[:next]
+    end
+
+    # method to check if a given task starts before the specified date
+    # @param [Task] task the given task
+    # @param [Time] date_value the considered point in time
+    # @return [Boolean] true: if the task starts before the given point in time
+    #   false: if not
+    def self.task_starts_before?(task, date_value)
+      task.start_time < date_value
+    end
+
+    # method to check if a given task ends after the specified date
+    # @param [Task] task the given task
+    # @param [Time] date_value the considered point in time
+    # @return [Boolean] true: if the task ends after the given point in time
+    #   false: if not
+    def self.task_ends_after?(task, date_value)
+      task.end_time > date_value
     end
 
     # method to calculate the working hours of tasks occurring during the
