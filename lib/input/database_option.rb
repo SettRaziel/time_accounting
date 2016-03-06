@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-02 20:10:49
+# @Last Modified time: 2016-03-06 14:01:50
 
 module Input
 
@@ -18,7 +18,7 @@ module Input
       while (true)
         begin
           print_menu
-          input = get_entry('Input (1-4): ').to_i
+          input = get_entry('Input (1-5): ').to_i
 
           process_input(input)
         rescue StandardError => e

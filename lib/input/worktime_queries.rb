@@ -1,32 +1,22 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-01 15:47:53
+# @Last Modified time: 2016-03-06 14:01:56
 
 module Input
 
   # singleton class to process the queries of different worktime intervals
-  class WorktimeQueries
+  class WorktimeQueries < Base
 
     # main entry point to start a query on a person or task
     def self.worktime_query_menu
-      is_not_finished = true
-      while (is_not_finished)
-        begin
-          print_menu
-          input = get_entry('Input (1-4): ').to_i
-
-          is_not_finished = process_input(input)
-        rescue StandardError => e
-          puts "Error in WorktimeQuery: ".concat(e.message).red
-        end
-      end
+      print_menu('Input (1-4): ')
     end
 
     private
 
     # method to print the available menu entries
-    def self.print_menu
+    def self.print_menu_items
       puts 'Queries for tasks done in a given time interval.'
       puts ' (1) Weekly worktime.'
       puts ' (2) Monthly worktime.'
@@ -83,14 +73,6 @@ module Input
       values[:year] = get_entry('Specify year: ').to_i
       values[:time_frame] = get_entry(time_string).to_i
       return values
-    end
-
-    # method to print a given message and read the provided input
-    # @param [String] message output message
-    # @return [String] the input from the terminal
-    def self.get_entry(message)
-      print message.blue.bright
-      gets.chomp
     end
 
   end

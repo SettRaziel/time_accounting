@@ -1,32 +1,22 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-25 17:09:06
+# @Last Modified time: 2016-03-06 13:56:15
 
 module Input
 
   # singleton class to process the queries of {Person}s and {Task}s
-  class EntityQueries
+  class EntityQueries < Base
 
     # main entry point to start a query on a person or task
     def self.entity_query_menu
-      is_not_finished = true
-      while (is_not_finished)
-        begin
-          print_menu
-          input = get_entry("Input (1-4): ").to_i
-
-          is_not_finished = process_input(input)
-        rescue StandardError => e
-          puts "Error in EntityQuery: ".concat(e.message).red
-        end
-      end
+      print_menu('Input (1-4): ')
     end
 
     private
 
     # method to print the available menu entries
-    def self.print_menu
+    def self.print_menu_items
       puts 'Person and Task Queries'
       puts ' (1) Query person.'
       puts ' (2) Query task.'
@@ -93,14 +83,6 @@ module Input
       rescue NoMethodError => e
         puts "Could not found person with id #{id}.".red
       end
-    end
-
-    # method to print a given message and read the provided input
-    # @param [String] message output message
-    # @return [String] the input from the terminal
-    def self.get_entry(message)
-      print message.blue.bright
-      gets.chomp
     end
 
   end
