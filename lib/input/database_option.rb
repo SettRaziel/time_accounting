@@ -1,13 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-06 14:01:50
+# @Last Modified time: 2016-03-07 11:44:34
 
 module Input
 
   # This class holds the menu for query options regarding person and task query
   # and the addition of people or tasks
-  class DatabaseOption
+  class DatabaseOption < Base
 
     require_relative '../query/query'
 
@@ -15,22 +15,13 @@ module Input
     # to work on the repository and to initiate the save operation
     def self.database_menu
       Query.initialize_repository(Input.data_handler.repository)
-      while (true)
-        begin
-          print_menu
-          input = get_entry('Input (1-5): ').to_i
-
-          process_input(input)
-        rescue StandardError => e
-          puts "Error in DatabaseOption: ".concat(e.message).red
-        end
-      end
+      print_menu('Input (1-5): ')
     end
 
     private
 
     # method to print the available menu entries
-    def self.print_menu
+    def self.print_menu_items
       puts "\nDatabase options"
       puts ' (1) Add entity.'
       puts ' (2) Query entities.'
@@ -51,6 +42,7 @@ module Input
       else
         puts "Error: #{input} ist not valid.".red
       end
+      return true
     end
 
     # method to save the current repository and exit the script

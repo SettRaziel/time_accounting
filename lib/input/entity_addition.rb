@@ -1,32 +1,27 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-28 15:11:38
+# @Last Modified time: 2016-03-07 11:41:43
 
 module Input
 
   # singleton class to process the addition of {Person}s and {Task}s
-  class EntityAddition
+  class EntityAddition < Base
 
     # main entry point to start the addition of a person or task
     def self.entity_addition_menu
-      is_not_finished = true
-      while (is_not_finished)
-        begin
-          puts 'Person and Task Addition'
-          puts ' (1) Add person.'
-          puts ' (2) Add task.'
-          puts ' (3) Return to previous menu.'
-          input = get_entry("Input (1-4): ").to_i
-
-          is_not_finished = process_input(input)
-        rescue StandardError => e
-          puts "Error in EntityAddition: ".concat(e.message).red
-        end
-      end
+      print_menu('Input (1-3): ')
     end
 
     private
+
+    # method to print the available menu entries
+    def self.print_menu_items
+      puts 'Person and Task Addition'
+      puts ' (1) Add person.'
+      puts ' (2) Add task.'
+      puts ' (3) Return to previous menu.'
+    end
 
     # method to process the provided input
     # @param [Integer] input the provided input
