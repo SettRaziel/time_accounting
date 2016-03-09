@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-06 13:56:15
+# @Last Modified time: 2016-03-09 19:27:13
 
 module Input
 
@@ -21,7 +21,8 @@ module Input
       puts ' (1) Query person.'
       puts ' (2) Query task.'
       puts ' (3) Query tasks to person.'
-      puts ' (4) Return to previous menu.'
+      puts ' (4) Query persons,'
+      puts ' (5) Return to previous menu.'
     end
 
     # method to process the provided input
@@ -33,7 +34,8 @@ module Input
         when 1 then query_person
         when 2 then query_task
         when 3 then query_tasks_to_person
-        when 4 then return false
+        when 4 then query_all_persons
+        when 5 then return false
       else
         puts "Error: #{input} ist not valid.".red
       end
@@ -50,6 +52,14 @@ module Input
       rescue NoMethodError => e
         puts "Could not found person with id #{id}.".red
       end
+    end
+
+    # method to query all persons of the database
+    def self.query_all_persons
+      persons = Input.data_handler.repository.get_persons
+      persons.each { |person|
+        puts person.to_string
+      }
     end
 
     # method to query a task from the database by its id

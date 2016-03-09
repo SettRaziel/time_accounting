@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-05 12:42:57
+# @Last Modified time: 2016-03-09 12:20:32
 
 require_relative '../entity/person/person'
 require_relative '../entity/task'
@@ -61,6 +61,12 @@ class DataRepository
     }
 
     return nil
+  end
+
+  # query to return all persons stored in the repository
+  # @return [Array] an array with all the persons of the repository
+  def get_persons
+    @repository.keys
   end
 
   # query to find all tasks to a person specified by its id
