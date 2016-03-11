@@ -1,32 +1,42 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:48:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-14 13:45:29
+# @Last Modified time: 2016-03-11 14:37:27
 
 module Input
 
   # singleton class to process the add option for persons
-  class PersonOption
+  class PersonOption < Base
 
     # singleton entry point to print the menu and execute to chosen option
     def self.add_person
+      print_menu('Input (1-3): ')
+    end
+
+    private
+
+    # method to print the available menu entries
+    def self.print_menu_items
       puts "Adds a new Person. Select Type:"
       puts " (1) Person"
       puts " (2) Student"
       puts " (3) Cancel"
-      print "Input (1-3): "
-      input = gets.chomp.to_i
+    end
 
+    # method to process the provided input
+    # @param [Integer] input the provided input
+    # @return [Boolean] true: if the a query type was used,
+    #    false: if the script should return to the previous menu
+    def self.process_input(input)
       case input
         when 1 then add_simple_person
         when 2 then add_student
-        when 3 then return
+        when 3 then return false
       else
         puts " Error: #{input} ist not valid.".red
       end
+      return true
     end
-
-    private
 
     # method to create and add a simple person
     def self.add_simple_person
