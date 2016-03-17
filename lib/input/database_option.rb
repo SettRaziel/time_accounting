@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-07 11:44:34
+# @Last Modified time: 2016-03-17 19:40:44
 
 module Input
 
@@ -53,14 +53,6 @@ module Input
       rescue IOError => e
         raise IOError, 'Error while saving data: '.concat(e.message).red
       end
-    end
-
-    # method to print a given message and read the provided input
-    # @param [String] message output message
-    # @return [String] the input from the terminal
-    def self.get_entry(message)
-      print message.blue.bright
-      gets.chomp
     end
 
   end

@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-07 11:41:43
+# @Last Modified time: 2016-03-17 19:40:25
 
 module Input
 
@@ -64,14 +64,6 @@ module Input
       description = get_entry("Enter description: ")
 
       Task::Task.new(start_time, end_time, description)
-    end
-
-    # method to print a given message and read the provided input
-    # @param [String] message output message
-    # @return [String] the input from the terminal
-    def self.get_entry(message)
-      print message.blue.bright
-      gets.chomp
     end
 
   end

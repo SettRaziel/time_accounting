@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:48:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-15 22:33:10
+# @Last Modified time: 2016-03-17 19:40:53
 
 module Input
 
@@ -55,13 +55,6 @@ module Input
       s = Person::Student.new(name, mat_nr)
       Input.data_handler.repository.add_person(s)
       puts "Student with id #{s.id} added successfully.".green
-    end
-
-    # method the get the input to a given console output
-    # @param [String] message the console output
-    def self.get_entry(message)
-      print message.blue.bright
-      gets.chomp
     end
 
   end

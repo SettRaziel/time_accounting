@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-09 19:27:13
+# @Last Modified time: 2016-03-17 19:37:16
 
 module Input
 
@@ -21,7 +21,7 @@ module Input
       puts ' (1) Query person.'
       puts ' (2) Query task.'
       puts ' (3) Query tasks to person.'
-      puts ' (4) Query persons,'
+      puts ' (4) Query persons.'
       puts ' (5) Return to previous menu.'
     end
 
