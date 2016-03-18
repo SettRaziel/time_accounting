@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-17 19:40:44
+# @Last Modified time: 2016-03-18 17:33:26
 
 module Input
 
@@ -32,6 +32,7 @@ module Input
 
     # method to process the provided input
     # @param [Integer] input the provided input
+    # @return [Boolean] true to signalize that the input was processed
     def self.process_input(input)
       case input
         when 1 then EntityAddition.entity_addition_menu
