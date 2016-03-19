@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-17 19:40:25
+# @Last Modified time: 2016-03-19 16:16:59
 
 module Input
 
@@ -20,7 +20,7 @@ module Input
       puts 'Person and Task Addition'
       puts ' (1) Add person.'
       puts ' (2) Add task.'
-      puts ' (3) Return to previous menu.'
+      puts ' (3) Cancel and return to previous menu.'
     end
 
     # method to process the provided input

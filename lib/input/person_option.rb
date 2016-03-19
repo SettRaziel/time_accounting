@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:48:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-17 19:40:53
+# @Last Modified time: 2016-03-19 16:24:56
 
 module Input
 
@@ -20,7 +20,7 @@ module Input
       puts 'Adds a new Person. Select Type:'
       puts ' (1) Person.'
       puts ' (2) Student.'
-      puts ' (3) Cancel.'
+      puts ' (3) Cancel and return to previous menu.'
     end
 
     # method to process the provided input

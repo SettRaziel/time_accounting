@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-17 19:37:16
+# @Last Modified time: 2016-03-19 16:16:45
 
 module Input
 
@@ -22,7 +22,7 @@ module Input
       puts ' (2) Query task.'
       puts ' (3) Query tasks to person.'
       puts ' (4) Query persons.'
-      puts ' (5) Return to previous menu.'
+      puts ' (5) Cancel and return to previous menu.'
     end
 
     # method to process the provided input

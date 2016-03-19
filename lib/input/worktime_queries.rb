@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-06 14:01:56
+# @Last Modified time: 2016-03-19 16:18:03
 
 module Input
 
@@ -21,7 +21,7 @@ module Input
       puts ' (1) Weekly worktime.'
       puts ' (2) Monthly worktime.'
       puts ' (3) Custom worktime interval.'
-      puts ' (4) Return to previous menu.'
+      puts ' (4) Cancel and return to previous menu.'
     end
 
     # method to process the provided input
