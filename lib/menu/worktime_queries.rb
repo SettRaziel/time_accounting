@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-19 16:18:03
+# @Last Modified time: 2016-03-20 14:06:47
 
-module Input
+module Menu
 
   # singleton class to process the queries of different worktime intervals
   class WorktimeQueries < Base
@@ -57,9 +57,9 @@ module Input
     # method to get the worktime for a given {Person} and interval
     def self.custom_worktime
       id = get_entry('Worktime for which ID? ').to_i
-      start_time = Input.parse_date(
+      start_time = Menu.parse_date(
                 get_entry("Enter start date (format: YYYY-MM-DD-hh:mm): "))
-      end_time = Input.parse_date(
+      end_time = Menu.parse_date(
                 get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
       Query::TimeQuery.get_time_worktime(id, start_time, end_time)
     end

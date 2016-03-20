@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-28 15:08:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-28 15:12:23
+# @Last Modified time: 2016-03-20 14:05:41
 
-module Input
+module Menu
 
   # This class creates the main menu for the script and holds methods to
   # load existing data or to create a new database. After that it delegates the
@@ -40,7 +40,7 @@ module Input
       case input
         when 1 then create_database
         when 2 then load_database
-        when 3 then Input.exit_script
+        when 3 then Menu.exit_script
       else
         print_error(' Error: Input is not valid.')
       end
@@ -50,7 +50,7 @@ module Input
     # provide a name for the database or file
     def self.create_database
       filename = get_database_name("Create a new database.")
-      Input.initialize_datahandler(DataHandler.new(filename))
+      Menu.initialize_datahandler(DataHandler.new(filename))
       finish_database_initialization(filename)
     end
 
@@ -59,7 +59,7 @@ module Input
     def self.load_database
       filename = get_database_name("Load an existing database.")
       begin
-        Input.initialize_datahandler(DataHandler.load_database(filename))
+        Menu.initialize_datahandler(DataHandler.load_database(filename))
       rescue IOError => e
         puts e.message.red
         return

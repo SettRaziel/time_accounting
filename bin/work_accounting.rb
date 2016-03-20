@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-30 17:36:19
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-02 17:49:50
+# @Last Modified time: 2016-03-20 14:03:45
 
-require_relative '../lib/input/input'
+require_relative '../lib/menu/menu'
 require_relative '../lib/parameter/parameter_repository'
 require_relative '../lib/output/help_output'
 
@@ -22,5 +22,5 @@ if (ARGV.size > 0)
     print_version
   end
 else
-  Input::MainMenu.print_menu
+  Menu::MainMenu.print_menu
 end

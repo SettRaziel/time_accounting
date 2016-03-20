@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-18 17:33:26
+# @Last Modified time: 2016-03-20 14:04:23
 
-module Input
+module Menu
 
   # This class holds the menu for query options regarding person and task query
   # and the addition of people or tasks
@@ -14,7 +14,7 @@ module Input
     # main entry point, this method gets the {DataHandler} from the {MainMenu}
     # to work on the repository and to initiate the save operation
     def self.database_menu
-      Query.initialize_repository(Input.data_handler.repository)
+      Query.initialize_repository(Menu.data_handler.repository)
       print_menu('Input (1-5): ')
     end
 
@@ -39,7 +39,7 @@ module Input
         when 2 then EntityQueries.entity_query_menu
         when 3 then WorktimeQueries.worktime_query_menu
         when 4 then save_and_exit
-        when 5 then Input.exit_script
+        when 5 then Menu.exit_script
       else
         puts "Error: #{input} ist not valid.".red
       end
@@ -49,8 +49,8 @@ module Input
     # method to save the current repository and exit the script
     def self.save_and_exit
       begin
-        Input.data_handler.save_repository
-        Input.exit_script
+        Menu.data_handler.save_repository
+        Menu.exit_script
       rescue IOError => e
         raise IOError, 'Error while saving data: '.concat(e.message).red
       end

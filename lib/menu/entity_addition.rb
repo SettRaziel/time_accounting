@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-19 16:16:59
+# @Last Modified time: 2016-03-20 14:04:46
 
-module Input
+module Menu
 
   # singleton class to process the addition of {Person}s and {Task}s
   class EntityAddition < Base
@@ -50,16 +50,16 @@ module Input
       puts "Task with id #{t.id} created successfully.".green
       person_id =
           get_entry("Enter id of the person who should take the task: ").to_i
-      Input.data_handler.repository.add_task_to_person(person_id, t)
+      Menu.data_handler.repository.add_task_to_person(person_id, t)
       puts "Task with id #{t.id} added to person with id #{person_id}.".green
     end
 
     # method to create a task from the provided input
     # @return [Task] the new task based on the input
     def self.create_task_from_input
-      start_time = Input.parse_date(
+      start_time = Menu.parse_date(
                 get_entry("Enter start date (format: YYYY-MM-DD-hh:mm): "))
-      end_time = Input.parse_date(
+      end_time = Menu.parse_date(
                 get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
       description = get_entry("Enter description: ")
 

@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-19 16:16:45
+# @Last Modified time: 2016-03-20 14:05:13
 
-module Input
+module Menu
 
   # singleton class to process the queries of {Person}s and {Task}s
   class EntityQueries < Base
@@ -47,7 +47,7 @@ module Input
     def self.query_person
       begin
         id = get_entry("Enter id: ").to_i
-        p = Input.data_handler.repository.find_person_by_id(id)
+        p = Menu.data_handler.repository.find_person_by_id(id)
         puts "Result: #{p.to_string}\n\n"
       rescue NoMethodError => e
         puts "Could not found person with id #{id}.".red
@@ -56,7 +56,7 @@ module Input
 
     # method to query all persons of the database
     def self.query_all_persons
-      persons = Input.data_handler.repository.get_persons
+      persons = Menu.data_handler.repository.get_persons
       persons.each { |person|
         puts person.to_string
       }
@@ -66,7 +66,7 @@ module Input
     def self.query_task
       result = Hash.new()
       id = get_entry("Enter id: ").to_i
-      tasks = Input.data_handler.repository.repository
+      tasks = Menu.data_handler.repository.repository
       tasks.each_pair { |key, task_list|
         task_list.each { |task|
           result[task] = key if (task.id == id)
@@ -84,7 +84,7 @@ module Input
     def self.query_tasks_to_person
       begin
         id = get_entry("Enter id: ").to_i
-        t = Input.data_handler.repository.get_tasks_to_person(id)
+        t = Menu.data_handler.repository.get_tasks_to_person(id)
         puts "#{t.size} tasks found".yellow
         t.each { |task|
           puts task.to_string
