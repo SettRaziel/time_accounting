@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-20 14:01:12
+# @Last Modified time: 2016-03-24 14:19:43
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
@@ -83,4 +83,4 @@ require_relative 'main_menu'
 require_relative 'person_option'
 require_relative 'entity_addition'
 require_relative 'entity_queries'
-require_relative 'worktime_queries'
+require_relative './worktime/worktime_queries'
