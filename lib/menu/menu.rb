@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-25 12:24:18
+# @Last Modified time: 2016-03-25 12:39:44
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
@@ -19,6 +19,7 @@ module Menu
   # class does not implement this method {Input::Base} raises a
   # {NotImplementedError}.
   class Base
+
     private
 
     # method to print the menu corresponding to the child class
@@ -32,6 +33,9 @@ module Menu
           input = get_entry(input_string).to_i
 
           is_not_finished = process_input(input)
+        rescue NotImplementedError => e
+          puts e.message
+          Menu::exit_script
         rescue StandardError => e
           puts "Error in #{self.name.split('::').last}: ".concat(e.message).red
         end
@@ -40,10 +44,10 @@ module Menu
 
     # @abstract subclasses need to implement this method
     # @raise [NotImplementedError] if the subclass does not have this method
-    def print_menu_items
-      fail NotImplementedError, " Error: the subclass #{self.class} " \
-        "needs to implement the method: print_menu_items " \
-        "from its base class".red
+    def self.print_menu_items
+      fail NotImplementedError, " Error: the subclass "
+        "#{self.name.split('::').last} needs to implement the method: " \
+        "print_menu_items from its base class".red
     end
 
     # method to print a given message and read the provided input
