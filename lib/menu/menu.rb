@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-24 14:19:43
+# @Last Modified time: 2016-03-25 12:24:18
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
@@ -42,7 +42,7 @@ module Menu
     # @raise [NotImplementedError] if the subclass does not have this method
     def print_menu_items
       fail NotImplementedError, " Error: the subclass #{self.class} " \
-        "needs to implement the method: create_output_string_for " \
+        "needs to implement the method: print_menu_items " \
         "from its base class".red
     end
 
