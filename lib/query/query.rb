@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-04 09:42:16
+# @Last Modified time: 2016-03-27 11:50:30
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -47,17 +47,24 @@ module Query
     # @param [Integer] time_frame the time of the interval in hours
     def self.get_interval_worktime(id, boundaries, time_frame)
       tasks = get_data(id, boundaries)
+      times = {
+        :during => get_hours_during(tasks[:during]),
+        :over => (tasks[:over].size > 0 ? time_frame : 0),
+        :into => get_hours_into(tasks[:into], boundaries[:actual]),
+        :beyond => get_hours_beyond(tasks[:beyond], boundaries[:next])
+      }
 
+      puts "printing new worktime"
       if (tasks[:over].size > 0)
-        puts "Worktime: #{time_frame}"
+        puts "Worktime: #{time_frame} h"
       else
-        puts "tasks.during: #{get_hours_during(tasks[:during])} h"
-        puts "tasks.into: " \
-             "#{get_hours_into(tasks[:into], boundaries[:actual])} h"
-        puts "tasks.beyond: " \
-             "#{get_hours_beyond(tasks[:beyond], boundaries[:next])} h"
+        puts "tasks.over: 0.0 h"
+        puts "tasks.during: #{times[:during]} h"
+        puts "tasks.into: #{times[:into]} h"
+        puts "tasks.beyond: #{times[:beyond]} h"
       end
 
+      return times
     end
 
     private
