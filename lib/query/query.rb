@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-27 11:50:30
+# @Last Modified time: 2016-03-28 10:00:18
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -32,11 +32,6 @@ module Query
         :beyond => collect_tasks_beyond(boundaries, all_task)
       }
 
-      puts "tasks.during: #{tasks[:during].inspect}"
-      puts "tasks.over: #{tasks[:over].inspect}"
-      puts "tasks.into: #{tasks[:into].inspect}"
-      puts "tasks.beyond: #{tasks[:beyond].inspect}"
-
       return tasks
     end
 
@@ -45,6 +40,8 @@ module Query
     # @param [Hash] boundaries a hash containing the start and end time of the
     #   requested time interval
     # @param [Integer] time_frame the time of the interval in hours
+    # @return [Hash] a hash containing all time values for the considered
+    #   intervals
     def self.get_interval_worktime(id, boundaries, time_frame)
       tasks = get_data(id, boundaries)
       times = {
