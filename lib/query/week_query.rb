@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-27 14:38:12
+# @Last Modified time: 2016-03-31 09:21:09
 
 module Query
 
@@ -25,7 +25,7 @@ module Query
       start_time = get_monday_of_calendar_week(year, calendar_week)
       end_time = get_next_monday(start_time)
       {:actual => Time.new(start_time.year, start_time.month, start_time.day),
-       :next => end_time}
+       :next => Time.new(end_time.year, end_time.month, end_time.day)}
     end
 
     private
