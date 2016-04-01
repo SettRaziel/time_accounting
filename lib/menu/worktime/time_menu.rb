@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-30 09:46:22
+# @Last Modified time: 2016-04-01 21:05:12
 
 module Menu
 
@@ -13,6 +13,7 @@ module Menu
 
       private
       attr :time_string
+      attr :values
 
       # method to retrieve the required input values
       # @param [String] time_string the string for the prompt collecting the
@@ -27,9 +28,9 @@ module Menu
 
       # method to print the available menu entries
       def self.print_menu_items
-        check_time_string
+        check_attributes
         puts "Queries for tasks done in the given #{@time_string}."
-        puts ' (1) All task to a person.'
+        puts " (1) All task to a person in the #{@time_string}."
         puts ' (2) Worktime of a person in that interval.'
         puts ' (3) All tasks running during the interval.'
         puts ' (4) Cancel and return to previous menu.'
@@ -44,7 +45,9 @@ module Menu
           when 1 then print_all_tasks
           when 2 then calculate_worktime
           when 3 then print_tasks_in_interval
-          when 4 then return false
+          when 4
+            @values = nil
+            return false
         else
           puts "Error: #{input} ist not valid.".red
         end
@@ -61,6 +64,14 @@ module Menu
         fail NotImplementedError, " Error: the subclass "
         "#{self.name.split('::').last} needs to implement the method: " \
         "retrieve_worktime from its parent class".red
+      end
+
+      def self.check_attributes
+        if (@values == nil)
+          puts "Specify necessary informations: "
+          @values = (get_input_values("Specify #{@time_string} of year: "))
+        end
+        check_time_string
       end
 
       def self.check_time_string
@@ -98,3 +109,5 @@ module Menu
   end
 
 end
+
+require_relative 'weektime_menu'
