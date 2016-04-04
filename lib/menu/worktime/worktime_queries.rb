@@ -1,9 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-24 14:19:58
+# @Last Modified time: 2016-04-04 14:35:44
 
 module Menu
+
+  require_relative 'time_menu'
 
   # singleton class to process the queries of different worktime intervals
   class WorktimeQueries < Base
@@ -30,7 +32,7 @@ module Menu
     #    false: if the script should return to the previous menu
     def self.process_input(input)
       case input
-        when 1 then weekly_worktime
+        when 1 then TimeMenu::WeektimeMenu::worktime_query_menu
         when 2 then monthly_worktime
         when 3 then custom_worktime
         when 4 then return false
@@ -38,13 +40,6 @@ module Menu
         puts "Error: #{input} ist not valid.".red
       end
       return true
-    end
-
-    # method to get the weekly worktime for a given {Person}, week and year
-    def self.weekly_worktime
-      values = get_input_values('Specify week of year: ')
-      Query::WeekQuery.get_weekly_worktime(values[:id], values[:year],
-                                           values[:time_frame])
     end
 
     # method to get the monthly worktime for a given {Person}, month and year
