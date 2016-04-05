@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-01 21:05:12
+# @Last Modified time: 2016-04-05 17:38:55
 
 module Menu
 
@@ -111,3 +111,4 @@ module Menu
 end
 
 require_relative 'weektime_menu'
+require_relative 'monthtime_menu'
