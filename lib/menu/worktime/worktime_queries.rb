@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-04 14:35:44
+# @Last Modified time: 2016-04-07 16:28:40
 
 module Menu
 
@@ -33,20 +33,13 @@ module Menu
     def self.process_input(input)
       case input
         when 1 then TimeMenu::WeektimeMenu::worktime_query_menu
-        when 2 then monthly_worktime
+        when 2 then TimeMenu::MonthtimeMenu::worktime_query_menu
         when 3 then custom_worktime
         when 4 then return false
       else
         puts "Error: #{input} ist not valid.".red
       end
       return true
-    end
-
-    # method to get the monthly worktime for a given {Person}, month and year
-    def self.monthly_worktime
-      values = get_input_values('Specify month of year: ')
-      Query::MonthQuery.get_monthly_worktime(values[:id], values[:year],
-                                             values[:time_frame])
     end
 
     # method to get the worktime for a given {Person} and interval
@@ -57,17 +50,6 @@ module Menu
       end_time = Menu.parse_date(
                 get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
       Query::TimeQuery.get_time_worktime(id, start_time, end_time)
-    end
-
-    # method to retrieve the required input values
-    # @param [String] time_string the string for the prompt collecting the
-    #   time value
-    def self.get_input_values(time_string)
-      values = Hash.new()
-      values[:id] = get_entry('Worktime for which ID? ').to_i
-      values[:year] = get_entry('Specify year: ').to_i
-      values[:time_frame] = get_entry(time_string).to_i
-      return values
     end
 
   end
