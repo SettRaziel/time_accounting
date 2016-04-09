@@ -1,4 +1,5 @@
 # Work Accounting
+<a href="https://codeclimate.com/github/SettRaziel/time_accounting"><img src="https://codeclimate.com/github/SettRaziel/time_accounting/badges/gpa.svg" /></a>
 Ruby program for tracking working hours or other tasks and storing the on your
 device. The stored data shall be queried for different options such as
 monthly or weekly working hours.
@@ -13,7 +14,14 @@ monthly or weekly working hours.
 * Extension of query capabilities
 
 ## Usage & Help
-follows with the main script
+```
+script usage: ruby <script>
+help usage :  ruby <script> (-h | --help)
+
+WorkAccounting help:
+ -h, --help     show help text
+ -v, --version  prints the current version of the project
+```
 
 ## Used version
 Written with Ruby 2.2.2
