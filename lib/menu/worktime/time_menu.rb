@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-13 17:32:19
+# @Last Modified time: 2016-04-17 14:06:42
 
 module Menu
 
@@ -9,10 +9,15 @@ module Menu
 
     require_relative '../../query/query'
 
+    # menu class that serves as a base class for menus used to query information
+    # for a given time interval
     class TimeMenu < Base
 
       private
+      # @return [String] the string describing the given time interval
       attr :time_string
+      # @return [Hash] a hash containing the requested input values to reuse
+      # them as long as this menu is active
       attr :values
 
       # method to retrieve the required input values
@@ -100,7 +105,7 @@ module Menu
       end
 
       # method to print all tasks collected to a specific key
-      # @param [Array] an array containing all tasks of a given key
+      # @param [Array] tasks an array containing all tasks of a given key
       def self.print_tasks_to_key(tasks)
         tasks.each { |task|
           puts task.to_string
