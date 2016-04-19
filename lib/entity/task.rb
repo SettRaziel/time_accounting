@@ -1,8 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-21 13:00:30
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-05 12:44:48
+# @Last Modified time: 2016-04-19 15:13:17
 
+# This module holds the classes that are use for creating a {Task}.
 module Task
 
   require_relative '../output/string'
@@ -37,16 +38,17 @@ module Task
     end
 
     # creates an output string with the attributes
+    # timeformat: http://ruby-doc.org/core-2.2.0/Time.html#method-i-subsec
     # @return [String] output string for this task
     def to_string
-      # todo time format http://ruby-doc.org/core-2.2.0/Time.html#method-i-subsec
-      "Task: #{@description} \n with ID: #{@id} started " \
-      "#{@start_time.strftime("%F %R")} and was finished " \
-      "#{@end_time.strftime("%F %R")}"
+      "Task: #{@description} \n with ID: #{@id} started at" \
+      "#{@start_time.strftime("%F %R")} and was finished at" \
+      "#{@end_time.strftime("%F %R")}."
     end
 
     # creates an output string for the storage in a file. The format servers the
     # output format of the output file
+    # @return [String] a string coding all information of the task for storage
     # @see FileWriter informations of output format
     def to_file
       start_str = @start_time.strftime("%Y;%m;%d;%H;%M;%S;%:z")
@@ -56,6 +58,7 @@ module Task
 
     # singleton method to create a {Task} from a list
     # @param [Array] list list of string attributes to create a person
+    # @return [Task] a task initialized with the content of the given list
     def self.create_from_attribute_list(list)
       check_list_size(list)
 
