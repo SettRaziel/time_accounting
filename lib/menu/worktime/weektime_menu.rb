@@ -1,12 +1,14 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:13:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-01 16:07:26
+# @Last Modified time: 2016-04-20 21:16:45
 
 module Menu
 
   module TimeMenu
 
+    # singleton class to present the available query options for a given week
+    # and for a given entity, identified by its id
     class WeektimeMenu < TimeMenu
 
       # main entry point to start a query on a person or task
@@ -17,11 +19,15 @@ module Menu
 
       private
 
+      # method to retrieve all task that started, ended or took place within
+      # the given week for the provided id
       def self.retrieve_tasks
         Query.get_weekly_data_for(@values[:id], @values[:year],
                                   @values[:time_frame])
       end
 
+      # method to retrieve the overall worktime for an entity with the given id
+      # for the given week
       def self.retrieve_worktime
         Query::WeekQuery.get_weekly_worktime(@values[:id], @values[:year],
                                              @values[:time_frame])
