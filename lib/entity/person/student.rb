@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-21 12:39:13
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-05 09:35:39
+# @Last Modified time: 2016-04-21 14:33:52
 
 module Person
 
@@ -32,7 +32,8 @@ module Person
 
     # overwrites the method {Person#to_file} to create an output string
     # for the output file with all its attributes
-    # @return [String] output string for this student
+    # @return [String] a string coding all information of the student
+    #   for storage
     def to_file
       super.concat(";#{@mat_nr}")
     end

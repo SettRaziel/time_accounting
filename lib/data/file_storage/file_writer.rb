@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-23 14:18:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-14 18:03:05
+# @Last Modified time: 2016-04-21 14:34:23
 
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
@@ -27,7 +27,7 @@ require_relative '../data_repository'
 #   }
 #   >
 class FileWriter
-  # @return the filename of the output file
+  # @return [String] the filename of the output file
   attr_reader :filename
 
   # initialization

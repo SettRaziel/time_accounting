@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:28:16
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-14 13:42:03
+# @Last Modified time: 2016-04-21 14:33:25
 
 # This module holds the classes describing a Person or a special form of
 # person with additional attributs to the basic name and id of a {Person}.
@@ -39,6 +39,7 @@ module Person
 
     # creates an output string for the storage in a file. The format serves the
     # output format of the output file
+    # @return [String] a string coding all information of the person for storage
     # @see FileWriter informations of output format
     def to_file
       "#{@name};#{@id}"

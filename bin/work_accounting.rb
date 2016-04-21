@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-30 17:36:19
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-20 14:03:45
+# @Last Modified time: 2016-04-21 14:31:11
 
 require_relative '../lib/menu/menu'
 require_relative '../lib/parameter/parameter_repository'
@@ -13,7 +13,10 @@ def print_version
   puts 'Created by Benjamin Held (September 2015)'
 end
 
-# script
+#-------------------------------------------------------------------------------
+# Work Accounting Script
+# Version 0.1.0
+# created by Benjamin Held, September 2015
 if (ARGV.size > 0)
   parameters = ParameterRepository.new(ARGV)
   if (parameters.parameters[:help])
