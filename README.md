@@ -3,18 +3,20 @@
 
 Ruby program for tracking working hours or other tasks and storing the on your
 device. The stored data shall be queried for different options such as
-monthly or weekly working hours.
+monthly, weekly working hours or self defined time intervals. A terminal menu
+guides trough the different options.
 
 ## Development steps
 * Reading and storing tasks and persons in a file (actual)
-* Terminal menu to read/write data and some queries for the data (in progress)
+* Terminal menu to read/write data and some queries for the data (actual)
 * Formatted terminal output for the queries (in progress)
-* Formatted pdf output using latex
+* Formatted pdf output using latex, formatted csv output
 * Reading, storing and querying tasks and persons in a database (e.g. sqlite)
 * Deleting existing persons and tasks and freeing their blocked ids
 * Extension of query capabilities
 
 ## Usage & Help
+The menus explain themselves. The basic script calls are:
 ```
 access to main menu: ruby <script>
 help usage :  ruby <script> (-h | --help)
@@ -23,6 +25,10 @@ WorkAccounting help:
  -h, --help     show help text
  -v, --version  prints the current version of the project
 ```
+## Documentation
+Documentation is written in yard and can be created by running the shell-script
+`create_yard.sh`. Yard needs to be installed on the system in order to do that.
+The documentation can also be found online [here](https://bheld.eu/doc/accounting_doc/frames.html).
 
 ## Used version
 Written with Ruby >= 2.2.2
