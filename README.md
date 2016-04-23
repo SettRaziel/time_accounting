@@ -25,6 +25,7 @@ WorkAccounting help:
  -h, --help     show help text
  -v, --version  prints the current version of the project
 ```
+
 ## Documentation
 Documentation is written in yard and can be created by running the shell-script
 `create_yard.sh`. Yard needs to be installed on the system in order to do that.
