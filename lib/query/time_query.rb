@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-23 20:07:29
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-01-29 21:05:06
+# @Last Modified time: 2016-04-25 17:43:02
 
 module Query
 
@@ -12,7 +12,7 @@ module Query
     # interval
     def self.get_time_worktime(id, start_time, end_time)
       times = calculate_start_and_end_time(start_time, end_time)
-      get_interval_worktime(id, times, (end_time - start_time) / 60 / 60 / 24.0)
+      get_interval_worktime(id, times, (end_time - start_time) / 60 / 60)
     end
 
     # method to calculate the time boundaries for the given interval
