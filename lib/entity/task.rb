@@ -1,12 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-21 13:00:30
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-19 15:13:17
+# @Last Modified time: 2016-04-28 15:29:42
 
 # This module holds the classes that are use for creating a {Task}.
 module Task
 
   require_relative '../output/string'
+  require 'time'
 
   # This class represents a work task. A task gets a unique id from its
   # {TaskIDGenerator}. Similar to the {Person}, the task holds a method
@@ -41,8 +42,8 @@ module Task
     # timeformat: http://ruby-doc.org/core-2.2.0/Time.html#method-i-subsec
     # @return [String] output string for this task
     def to_string
-      "Task: #{@description} \n with ID: #{@id} started at" \
-      "#{@start_time.strftime("%F %R")} and was finished at" \
+      "Task: #{@description} \n with ID: #{@id} started at " \
+      "#{@start_time.strftime("%F %R")} and was finished at " \
       "#{@end_time.strftime("%F %R")}."
     end
 
@@ -51,9 +52,9 @@ module Task
     # @return [String] a string coding all information of the task for storage
     # @see FileWriter informations of output format
     def to_file
-      start_str = @start_time.strftime("%Y;%m;%d;%H;%M;%S;%:z")
-      end_str = @end_time.strftime("%Y;%m;%d;%H;%M;%S;%:z")
-      "#{@id};#{start_str};#{end_str};#{@description}"
+      start_str = @start_time.iso8601
+      end_str = @end_time.iso8601
+      "#{@id};#{@description};#{start_str};#{end_str}"
     end
 
     # singleton method to create a {Task} from a list
@@ -62,9 +63,9 @@ module Task
     def self.create_from_attribute_list(list)
       check_list_size(list)
 
-      start_time = create_time_object(list, 1)
-      end_time = create_time_object(list, 8)
-      self.new(list[0].to_i, start_time, end_time, list[15])
+      start_time = Time.strptime(list[2], "%FT%T%z")
+      end_time = Time.strptime(list[3], "%FT%T%z")
+      self.new(list[0].to_i, start_time, end_time, list[1])
     end
 
     private
@@ -74,25 +75,10 @@ module Task
     # @raise [ArgumentError] if the size of the list does not fit the number of
     #   required attributes
     def self.check_list_size(list)
-      if (list.size != 16)
+      if (list.size != 4)
         raise ArgumentError,
         ' Error: list contains wrong number of arguments to create a task.'.red
       end
-    end
-
-    # singleton method to create a {Time} object from the list starting at
-    # the provided index
-    # @param [Array] list list from which the object should be created
-    # @param [Integer] start_index start array index
-    # @return [Time] the desired time object
-    def self.create_time_object(list, start_index)
-      Time.new(list[start_index].to_i,
-               list[start_index + 1].to_i,
-               list[start_index + 2].to_i,
-               list[start_index + 3].to_i,
-               list[start_index + 4].to_i,
-               list[start_index + 5].to_i,
-               list[start_index + 6])
     end
 
   end
