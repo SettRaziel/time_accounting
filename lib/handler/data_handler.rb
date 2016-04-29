@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 11:42:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-02-24 18:25:10
+# @Last Modified time: 2016-04-29 20:21:16
 
 require_relative '../data/data_repository'
 require_relative '../entity/person/person'
@@ -43,12 +43,14 @@ class DataHandler
   #   or to where the data should be saved
   # @return [DataHandler] a new instance of the data handler initializes with
   #   the content of the file
+  # @raise [IOError] if an error occurs during the loading process
   def self.load_database(filename)
     begin
       repo = FileReader.read_file(filename)
       DataHandler.new(filename, repo)
     rescue Exception => e
-      raise IOError, " Error: File #{filename} does not exist.".red
+      raise IOError,
+            " An Error occurred while loading the database: #{e.message}".red
     end
   end
 

@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-28 15:08:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-20 14:05:41
+# @Last Modified time: 2016-04-29 20:20:09
 
 module Menu
 
@@ -71,7 +71,7 @@ module Menu
     # next menu
     # @param [String] filename the provided filename
     def self.finish_database_initialization(filename)
-      puts "Database #{filename} created.".green
+      puts "Database created from: #{filename}.".green
       DatabaseOption.database_menu
     end
 
