@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-28 10:00:18
+# @Last Modified time: 2016-05-12 16:18:17
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -50,16 +50,6 @@ module Query
         :into => get_hours_into(tasks[:into], boundaries[:actual]),
         :beyond => get_hours_beyond(tasks[:beyond], boundaries[:next])
       }
-
-      puts "printing new worktime"
-      if (tasks[:over].size > 0)
-        puts "Worktime: #{time_frame} h"
-      else
-        puts "tasks.over: 0.0 h"
-        puts "tasks.during: #{times[:during]} h"
-        puts "tasks.into: #{times[:into]} h"
-        puts "tasks.beyond: #{times[:beyond]} h"
-      end
 
       return times
     end
