@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:13:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-21 14:37:42
+# @Last Modified time: 2016-05-14 11:08:26
 
 module Menu
 
@@ -9,12 +9,12 @@ module Menu
 
     # singleton class to present the available query options for a given week
     # and for a given entity, identified by its id
-    class WeektimeMenu < TimeMenu
+    class WeektimeMenu < IntervaltimeMenu
 
       # main entry point to start a query on a person or task
       def self.worktime_query_menu
         @time_string = 'week'
-        print_menu('Input (1-4): ')
+        print_menu('Input (1-5): ')
       end
 
       private
@@ -30,6 +30,7 @@ module Menu
 
       # method to retrieve the overall worktime for an entity with the given id
       # for the given week
+      # @return [Hash] a hash with the hours for each type of task
       def self.retrieve_worktime
         Query::WeekQuery.get_weekly_worktime(@values[:id], @values[:year],
                                              @values[:time_frame])

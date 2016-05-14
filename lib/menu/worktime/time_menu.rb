@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-12 16:22:30
+# @Last Modified time: 2016-05-14 11:10:03
 
 module Menu
 
@@ -20,17 +20,17 @@ module Menu
       # @return [Hash] a hash containing the requested input values to reuse
       # them as long as this menu is active
       attr :values
+      # @return [Array] an array with specific additions for the output
       attr :additions
 
-      # method to retrieve the required input values
+      # abstract method to retrieve the required input values
+      # @abstract subclasses need to implement this method
       # @param [String] time_string the string for the prompt collecting the
       #   time value
       def self.get_input_values(time_string)
-        values = Hash.new()
-        values[:id] = get_entry('Worktime for which ID? ').to_i
-        values[:year] = get_entry('Specify year: ').to_i
-        values[:time_frame] = get_entry(time_string).to_i
-        return values
+        fail NotImplementedError, " Error: the subclass "
+        "#{self.name.split('::').last} needs to implement the method: " \
+        "get_input_values from its parent class".red
       end
 
       # method to print the available menu entries
@@ -99,7 +99,7 @@ module Menu
       def self.check_attributes
         if (@values == nil)
           puts "Specify necessary informations: "
-          @values = (get_input_values("Specify #{@time_string} of year: "))
+          get_input_values
           @additions = Array.new()
         end
         check_time_string
@@ -167,5 +167,4 @@ module Menu
 
 end
 
-require_relative 'weektime_menu'
-require_relative 'monthtime_menu'
+require_relative 'intervaltime_menu'
