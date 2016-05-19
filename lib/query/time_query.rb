@@ -1,12 +1,21 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-23 20:07:29
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-25 17:43:02
+# @Last Modified time: 2016-05-19 15:09:48
 
 module Query
 
   # statistic class to calculate to work time for a given month and year
   class TimeQuery < Base
+
+    # method to retrieve all task that started, ended or took place within
+    # the given time interval for the provided id
+    # @return [Hash] a hash mapping {task_type => Array} holding the queried
+    #   tasks
+    def self.retrieve_tasks(id, start_time, end_time)
+      times = calculate_start_and_end_time(start_time, end_time)
+      get_data(id, times)
+    end
 
     # method to retrieve the worktime for a person for the given time
     # interval
