@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-14 11:10:03
+# @Last Modified time: 2016-05-20 16:04:46
 
 module Menu
 
@@ -168,3 +168,4 @@ module Menu
 end
 
 require_relative 'intervaltime_menu'
+require_relative 'customtime_menu'

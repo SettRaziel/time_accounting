@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-07 16:28:40
+# @Last Modified time: 2016-05-20 16:05:50
 
 module Menu
 
@@ -34,22 +34,12 @@ module Menu
       case input
         when 1 then TimeMenu::WeektimeMenu::worktime_query_menu
         when 2 then TimeMenu::MonthtimeMenu::worktime_query_menu
-        when 3 then custom_worktime
+        when 3 then TimeMenu::CustomtimeMenu::worktime_query_menu
         when 4 then return false
       else
         puts "Error: #{input} ist not valid.".red
       end
       return true
-    end
-
-    # method to get the worktime for a given {Person} and interval
-    def self.custom_worktime
-      id = get_entry('Worktime for which ID? ').to_i
-      start_time = Menu.parse_date(
-                get_entry("Enter start date (format: YYYY-MM-DD-hh:mm): "))
-      end_time = Menu.parse_date(
-                get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
-      Query::TimeQuery.get_time_worktime(id, start_time, end_time)
     end
 
   end
