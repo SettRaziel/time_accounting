@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-20 16:04:46
+# @Last Modified time: 2016-05-21 10:59:21
 
 module Menu
 
@@ -63,6 +63,7 @@ module Menu
         return true
       end
 
+      # method to print the worktime hours of the retrieved tasks
       def self.retrieve_and_print_worktime
         times = retrieve_worktime
 
@@ -140,6 +141,7 @@ module Menu
         print_tasks_to_key(tasks[:during])
       end
 
+      # method to write the results into a csv formatted file
       def self.output_to_csv
         if (@values[:result] != nil)
           @additions << calculate_worktime
@@ -151,6 +153,8 @@ module Menu
         end
       end
 
+      # method to calculate the overall worktime an return it
+      # @return [String] a formatted string containing the calculated worktime
       def self.calculate_worktime
         times = retrieve_worktime
         if (times[:over] > 0)
