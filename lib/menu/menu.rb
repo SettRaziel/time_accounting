@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-25 12:39:44
+# @Last Modified time: 2016-05-22 15:31:48
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
@@ -15,9 +15,9 @@ module Menu
   end
 
   # This class provides the common methods of the different query menus
-  # The children need to define the method {#print_menu_items}. If the child
-  # class does not implement this method {Input::Base} raises a
-  # {NotImplementedError}.
+  # The children need to define the method {Menu::Base.print_menu_items}. If
+  # the child class does not implement this method {Menu::Base} raises a
+  # NotImplementedError
   class Base
 
     private

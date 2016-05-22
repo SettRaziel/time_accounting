@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:13:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-14 11:08:26
+# @Last Modified time: 2016-05-22 15:26:20
 
 module Menu
 
@@ -21,7 +21,7 @@ module Menu
 
       # method to retrieve all task that started, ended or took place within
       # the given week for the provided id
-      # @return [Hash] a hash mapping {task_type => Array} holding the queried
+      # @return [Hash] a hash mapping [task_type => Array] holding the queried
       #   tasks
       def self.retrieve_tasks
         Query.get_weekly_data_for(@values[:id], @values[:year],

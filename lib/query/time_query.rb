@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-23 20:07:29
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-19 15:09:48
+# @Last Modified time: 2016-05-22 15:26:43
 
 module Query
 
@@ -10,7 +10,7 @@ module Query
 
     # method to retrieve all task that started, ended or took place within
     # the given time interval for the provided id
-    # @return [Hash] a hash mapping {task_type => Array} holding the queried
+    # @return [Hash] a hash mapping [task_type => Array] holding the queried
     #   tasks
     def self.retrieve_tasks(id, start_time, end_time)
       times = calculate_start_and_end_time(start_time, end_time)
