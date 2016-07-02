@@ -1,19 +1,19 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-09 12:20:32
+# @Last Modified time: 2016-07-02 15:20:50
 
 require_relative '../entity/person/person'
 require_relative '../entity/task'
 require_relative '../output/string'
 
-# This class serves as a data repository mapping {Person} => {Task}. A {Person}
-# can be the parent class {Person} or any of its children. To ensure the
-# correct addition of a {Person} they should be add via {#add_person}.
+# This class serves as a data repository mapping ({Person} => {Task}). A
+# {Person} can be the parent class {Person} or any of its children. To ensure
+# the correct addition of a {Person} they should be add via {#add_person}.
 # Persons can be looked up with the object in the hash or by its person id.
 # The {Task} of a {Person} can be found by {#get_tasks_to_person} with an id.
 class DataRepository
-  # @return [Hash] the repository mapping {Person} => {Task}
+  # @return [Hash] the repository mapping ({Person} => {Task})
   attr :repository
   # @return [Integer] the highest person id from {#set_max_ids}
   attr_reader :max_person_id
