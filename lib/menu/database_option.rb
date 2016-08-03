@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-20 14:04:23
+# @Last Modified time: 2016-08-03 17:17:39
 
 module Menu
 
@@ -11,43 +11,48 @@ module Menu
 
     require_relative '../query/query'
 
+    # initialization
+    def initialize
+      super
+      @menu_description = "\nDatabase options"
+    end
+
     # main entry point, this method gets the {DataHandler} from the {MainMenu}
     # to work on the repository and to initiate the save operation
-    def self.database_menu
+    def database_menu
       Query.initialize_repository(Menu.data_handler.repository)
-      print_menu('Input (1-5): ')
+      print_menu
     end
 
     private
 
-    # method to print the available menu entries
-    def self.print_menu_items
-      puts "\nDatabase options"
-      puts ' (1) Add entity.'
-      puts ' (2) Query entities.'
-      puts ' (3) Query worktime.'
-      puts ' (4) Save and exit.'
-      puts ' (5) Abort and exit.'
+    # method to define all printable menu items
+    def define_menu_items
+      add_menu_item('Add entity.', 1)
+      add_menu_item('Query entities.', 2)
+      add_menu_item('Query worktime.', 3)
+      add_menu_item('Save and exit.', 4)
+      add_menu_item('Abort and exit.', 5)
     end
 
     # method to process the provided input
     # @param [Integer] input the provided input
     # @return [Boolean] true to signalize that the input was processed
-    def self.process_input(input)
-      case input
-        when 1 then EntityAddition.entity_addition_menu
-        when 2 then EntityQueries.entity_query_menu
-        when 3 then WorktimeQueries.worktime_query_menu
+    def determine_action(input)
+      case (input.to_i)
+        when 1 then EntityAddition.new.print_menu
+        when 2 then EntityQueries.new.print_menu
+        when 3 then WorktimeQueries.new.print_menu
         when 4 then save_and_exit
         when 5 then Menu.exit_script
       else
-        puts "Error: #{input} ist not valid.".red
+        handle_wrong_option
       end
       return true
     end
 
     # method to save the current repository and exit the script
-    def self.save_and_exit
+    def save_and_exit
       begin
         Menu.data_handler.save_repository
         Menu.exit_script
