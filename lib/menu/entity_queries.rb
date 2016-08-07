@@ -1,50 +1,50 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-20 14:05:13
+# @Last Modified time: 2016-08-07 08:32:09
 
 module Menu
 
   # singleton class to process the queries of {Person}s and {Task}s
   class EntityQueries < Base
 
-    # main entry point to start a query on a person or task
-    def self.entity_query_menu
-      print_menu('Input (1-4): ')
+    # initialization
+    def initialize
+      super
+      @menu_description = 'Person and Task Queries'
     end
 
     private
 
-    # method to print the available menu entries
-    def self.print_menu_items
-      puts 'Person and Task Queries'
-      puts ' (1) Query person.'
-      puts ' (2) Query task.'
-      puts ' (3) Query tasks to person.'
-      puts ' (4) Query persons.'
-      puts ' (5) Cancel and return to previous menu.'
+    # method to define all printable menu items
+    def define_menu_items
+      add_menu_item('Query person.', 1)
+      add_menu_item('Query task.', 2)
+      add_menu_item('Query tasks to person.', 3)
+      add_menu_item('Query persons.', 4)
+      add_menu_item('Cancel and return to previous menu.', 5)
     end
 
     # method to process the provided input
-    # @param [Integer] input the provided input
+    # @param [String] input the provided input
     # @return [Boolean] true: if the a query type was used,
     #    false: if the script should return to the previous menu
-    def self.process_input(input)
-      case input
+    def determine_action(input)
+      case (input.to_i)
         when 1 then query_person
         when 2 then query_task
         when 3 then query_tasks_to_person
         when 4 then query_all_persons
         when 5 then return false
       else
-        puts "Error: #{input} ist not valid.".red
+        handle_wrong_option
       end
       return true
     end
 
     # method to query a person from the database by id
     # @raise [NoMethodError] if no person can be found by the given id
-    def self.query_person
+    def query_person
       begin
         id = get_entry("Enter id: ").to_i
         p = Menu.data_handler.repository.find_person_by_id(id)
@@ -55,7 +55,7 @@ module Menu
     end
 
     # method to query all persons of the database
-    def self.query_all_persons
+    def query_all_persons
       persons = Menu.data_handler.repository.get_persons
       persons.each { |person|
         puts person.to_string
@@ -63,7 +63,7 @@ module Menu
     end
 
     # method to query a task from the database by its id
-    def self.query_task
+    def query_task
       result = Hash.new()
       id = get_entry("Enter id: ").to_i
       tasks = Menu.data_handler.repository.repository
@@ -81,7 +81,7 @@ module Menu
     end
 
     # method to query all tasks belonging to a specified person
-    def self.query_tasks_to_person
+    def query_tasks_to_person
       begin
         id = get_entry("Enter id: ").to_i
         t = Menu.data_handler.repository.get_tasks_to_person(id)
