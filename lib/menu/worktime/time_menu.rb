@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-21 10:59:21
+# @Last Modified time: 2016-08-08 11:12:06
 
 module Menu
 
@@ -13,6 +13,13 @@ module Menu
     # menu class that serves as a base class for menus used to query information
     # for a given time interval
     class TimeMenu < Base
+
+      # initialization
+      def initialize(time_string)
+        @time_string = time_string
+        @menu_description = "Queries for tasks done in the given #{@time_string}."
+        super
+      end
 
       private
       # @return [String] the string describing the given time interval
@@ -27,29 +34,28 @@ module Menu
       # @abstract subclasses need to implement this method
       # @param [String] time_string the string for the prompt collecting the
       #   time value
-      def self.get_input_values(time_string)
-        fail NotImplementedError, " Error: the subclass "
+      def get_input_values(time_string)
+        fail NotImplementedError, " Error: the subclass " \
         "#{self.name.split('::').last} needs to implement the method: " \
         "get_input_values from its parent class".red
       end
 
-      # method to print the available menu entries
-      def self.print_menu_items
+      # method to define all printable menu items
+      def define_menu_items
         check_attributes
-        puts "Queries for tasks done in the given #{@time_string}."
-        puts " (1) All task to a person in the #{@time_string}."
-        puts ' (2) Worktime of a person in that interval.'
-        puts ' (3) All tasks running during the interval.'
-        puts ' (4) Write Query result to csv-file.'
-        puts ' (5) Cancel and return to previous menu.'
+        add_menu_item("All tasks to a person in the given #{time_string}.", 1)
+        add_menu_item("Worktime of a person in that #{time_string}.", 2)
+        add_menu_item('All tasks running during the interval.', 3)
+        add_menu_item('Write Query result to csv-file.', 4)
+        add_menu_item('Cancel and return to previous menu.', 5)
       end
 
       # method to process the provided input
       # @param [Integer] input the provided input
       # @return [Boolean] true: if the a query type was used,
       #    false: if the script should return to the previous menu
-      def self.process_input(input)
-        case input
+      def determine_action(input)
+        case (input.to_i)
           when 1 then print_all_tasks
           when 2 then retrieve_and_print_worktime
           when 3 then print_tasks_in_interval
@@ -58,13 +64,13 @@ module Menu
             @values = nil
             return false
         else
-          puts "Error: #{input} ist not valid.".red
+          handle_wrong_option
         end
         return true
       end
 
       # method to print the worktime hours of the retrieved tasks
-      def self.retrieve_and_print_worktime
+      def retrieve_and_print_worktime
         times = retrieve_worktime
 
         puts "printing new worktime"
@@ -81,8 +87,8 @@ module Menu
       # abstract method to retrieve the tasks for the given interval
       # @abstract subclasses need to implement this method
       # @raise [NotImplementedError] if the subclass does not have this method
-      def self.retrieve_tasks
-        fail NotImplementedError, " Error: the subclass "
+      def retrieve_tasks
+        fail NotImplementedError, " Error: the subclass " \
         "#{self.name.split('::').last} needs to implement the method: " \
         "retrieve_tasks from its parent class".red
       end
@@ -90,34 +96,34 @@ module Menu
       # abstract method to retrieve the worktime for the given interval
       # @abstract subclasses need to implement this method
       # @raise [NotImplementedError] if the subclass does not have this method
-      def self.retrieve_worktime
-        fail NotImplementedError, " Error: the subclass "
+      def retrieve_worktime
+        fail NotImplementedError, " Error: the subclass " \
         "#{self.name.split('::').last} needs to implement the method: " \
         "retrieve_worktime from its parent class".red
       end
 
       # method to check if the necessary input was already collected
-      def self.check_attributes
+      def check_attributes
         if (@values == nil)
           puts "Specify necessary informations: "
           get_input_values
           @additions = Array.new()
         end
-        check_time_string
+        #check_time_string
       end
 
       # method check, if the subclass has set a value for the class attribute
       # @raise [NotImplementedError] if the subclass does not have set the value
-      def self.check_time_string
+      def check_time_string
         if @time_string.eql?(nil)
-          fail NotImplementedError, " Error: the subclass "
+          fail NotImplementedError, " Error: the subclass " \
           "#{self.name.split('::').last} does not present a string for " \
           "its attribute time_string".red
         end
       end
 
       # method to print all the collected tasks
-      def self.print_all_tasks
+      def print_all_tasks
         tasks = retrieve_tasks
         @values[:result] = Array.new()
         tasks.each_key { |key|
@@ -127,7 +133,7 @@ module Menu
 
       # method to print all tasks collected to a specific key
       # @param [Array] tasks an array containing all tasks of a given key
-      def self.print_tasks_to_key(tasks)
+      def print_tasks_to_key(tasks)
         tasks.each { |task|
           puts task.to_string
           @values[:result] << task
@@ -135,14 +141,14 @@ module Menu
       end
 
       # method to print all tasks in the given time interval
-      def self.print_tasks_in_interval
+      def print_tasks_in_interval
         tasks = retrieve_tasks
         @values[:result] = Array.new()
         print_tasks_to_key(tasks[:during])
       end
 
       # method to write the results into a csv formatted file
-      def self.output_to_csv
+      def output_to_csv
         if (@values[:result] != nil)
           @additions << calculate_worktime
           filename = input = get_entry("Specify output file: ")
@@ -155,7 +161,7 @@ module Menu
 
       # method to calculate the overall worktime an return it
       # @return [String] a formatted string containing the calculated worktime
-      def self.calculate_worktime
+      def calculate_worktime
         times = retrieve_worktime
         if (times[:over] > 0)
           time = times[:over]
