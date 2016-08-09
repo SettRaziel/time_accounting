@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-05-13 09:09:11
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-14 11:10:51
+# @Last Modified time: 2016-08-09 09:30:59
 
 module Menu
 
@@ -13,7 +13,7 @@ module Menu
       private
 
       # method to retrieve the required input values
-      def self.get_input_values
+      def get_input_values
         @values = Hash.new()
         @values[:id] = get_entry('Worktime for which ID? ').to_i
         @values[:year] = get_entry('Specify year: ').to_i
