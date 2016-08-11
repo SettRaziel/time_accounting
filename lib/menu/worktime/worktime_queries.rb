@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-20 16:05:50
+# @Last Modified time: 2016-08-11 14:13:10
 
 module Menu
 
@@ -10,34 +10,34 @@ module Menu
   # singleton class to process the queries of different worktime intervals
   class WorktimeQueries < Base
 
-    # main entry point to start a query on a person or task
-    def self.worktime_query_menu
-      print_menu('Input (1-4): ')
+    # initialization
+    def initialize
+      super
+      @menu_description = 'Queries for tasks done in a given time interval.'
     end
 
     private
 
-    # method to print the available menu entries
-    def self.print_menu_items
-      puts 'Queries for tasks done in a given time interval.'
-      puts ' (1) Weekly worktime.'
-      puts ' (2) Monthly worktime.'
-      puts ' (3) Custom worktime interval.'
-      puts ' (4) Cancel and return to previous menu.'
+    # method to define all printable menu items
+    def define_menu_items
+      add_menu_item('Weekly worktime.', 1)
+      add_menu_item('Monthly worktime.', 2)
+      add_menu_item('Custom worktime interval.', 3)
+      add_menu_item('Cancel and return to previous menu.', 4)
     end
 
     # method to process the provided input
     # @param [Integer] input the provided input
     # @return [Boolean] true: if the a query type was used,
     #    false: if the script should return to the previous menu
-    def self.process_input(input)
-      case input
-        when 1 then TimeMenu::WeektimeMenu::worktime_query_menu
-        when 2 then TimeMenu::MonthtimeMenu::worktime_query_menu
-        when 3 then TimeMenu::CustomtimeMenu::worktime_query_menu
+    def determine_action(input)
+      case (input.to_i)
+        when 1 then TimeMenu::WeektimeMenu.new.print_menu
+        when 2 then TimeMenu::MonthtimeMenu.new.print_menu
+        when 3 then TimeMenu::CustomtimeMenu.new.print_menu
         when 4 then return false
       else
-        puts "Error: #{input} ist not valid.".red
+        handle_wrong_option
       end
       return true
     end
