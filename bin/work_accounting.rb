@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-30 17:36:19
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-06-29 15:09:02
+# @Last Modified time: 2016-08-11 19:58:14
 
 require_relative '../lib/menu/menu'
 require_relative '../lib/parameter/parameter_repository'
@@ -9,13 +9,13 @@ require_relative '../lib/output/help_output'
 
 # call to print version number and author
 def print_version
-  puts 'work_accouting version 0.2.0'.yellow
+  puts 'work_accouting version 0.2.1'.yellow
   puts 'Created by Benjamin Held (September 2015)'.yellow
 end
 
 #-------------------------------------------------------------------------------
 # Work Accounting Script
-# Version 0.2.0
+# Version 0.2.1
 # created by Benjamin Held, September 2015
 if (ARGV.size > 0)
   parameters = ParameterRepository.new(ARGV)
@@ -25,5 +25,5 @@ if (ARGV.size > 0)
     print_version
   end
 else
-  Menu::MainMenu.print_menu
+  Menu::MainMenu.new.print_menu
 end
