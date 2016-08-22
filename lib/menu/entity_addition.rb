@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-06 09:58:50
+# @Last Modified time: 2016-08-22 21:23:16
 
 module Menu
 
@@ -24,8 +24,9 @@ module Menu
     end
 
     # method to process the provided input
-    # @param [Integer] input the provided input
-    # @return [Boolean] true to signalize that the input was processed
+    # @param [String] input the provided input
+    # @return [Boolean] true: if the program should continue,
+    #    false: if the script should return to the previous menu
     def determine_action(input)
       case (input.to_i)
         when 1 then add_person

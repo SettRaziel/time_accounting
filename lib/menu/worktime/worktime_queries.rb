@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-11 14:13:10
+# @Last Modified time: 2016-08-22 21:23:31
 
 module Menu
 
@@ -27,8 +27,8 @@ module Menu
     end
 
     # method to process the provided input
-    # @param [Integer] input the provided input
-    # @return [Boolean] true: if the a query type was used,
+    # @param [String] input the provided input
+    # @return [Boolean] true: if the program should continue,
     #    false: if the script should return to the previous menu
     def determine_action(input)
       case (input.to_i)

@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-03 17:17:39
+# @Last Modified time: 2016-08-22 21:22:28
 
 module Menu
 
@@ -36,8 +36,9 @@ module Menu
     end
 
     # method to process the provided input
-    # @param [Integer] input the provided input
-    # @return [Boolean] true to signalize that the input was processed
+    # @param [String] input the provided input
+    # @return [Boolean] true: if the program should continue,
+    #    false: if the script should exit
     def determine_action(input)
       case (input.to_i)
         when 1 then EntityAddition.new.print_menu

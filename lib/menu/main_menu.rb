@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-28 15:08:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-04 10:06:44
+# @Last Modified time: 2016-08-22 21:22:53
 
 module Menu
 
@@ -33,8 +33,8 @@ module Menu
 
     # method to process the provided input
     # @param [String] input the provided input
-    # @return [Boolean] true: if the a query type was used,
-    #    false: if the script should return to the previous menu
+    # @return [Boolean] true: if the program should continue,
+    #    false: if the script should exit
     def determine_action(input)
       case (input.to_i)
         when 1 then create_database
