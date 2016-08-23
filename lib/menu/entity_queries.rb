@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-22 21:23:23
+# @Last Modified time: 2016-08-23 20:30:43
 
 module Menu
 
@@ -49,7 +49,7 @@ module Menu
         id = get_entry("Enter id: ").to_i
         p = Menu.data_handler.repository.find_person_by_id(id)
         puts "Result: #{p.to_string}\n\n"
-      rescue NoMethodError => e
+      rescue NoMethodError
         puts "Could not found person with id #{id}.".red
       end
     end
@@ -90,7 +90,7 @@ module Menu
           puts task.to_string
         }
         puts
-      rescue NoMethodError => e
+      rescue NoMethodError
         puts "Could not found person with id #{id}.".red
       end
     end
