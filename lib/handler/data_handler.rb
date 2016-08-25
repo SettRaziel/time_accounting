@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 11:42:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-29 20:21:16
+# @Last Modified time: 2016-08-25 20:03:46
 
 require_relative '../data/data_repository'
 require_relative '../entity/person/person'
@@ -48,7 +48,7 @@ class DataHandler
     begin
       repo = FileReader.read_file(filename)
       DataHandler.new(filename, repo)
-    rescue Exception => e
+    rescue StandardError => e
       raise IOError,
             " An Error occurred while loading the database: #{e.message}".red
     end
