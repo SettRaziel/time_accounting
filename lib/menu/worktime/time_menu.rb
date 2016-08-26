@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-08 11:12:06
+# @Last Modified time: 2016-08-26 21:59:38
 
 module Menu
 
@@ -151,7 +151,7 @@ module Menu
       def output_to_csv
         if (@values[:result] != nil)
           @additions << calculate_worktime
-          filename = input = get_entry("Specify output file: ")
+          filename = get_entry("Specify output file: ")
           p = Menu.data_handler.repository.find_person_by_id(@values[:id])
           CSVWriter.output(filename, p, @values[:result], @additions)
         else
