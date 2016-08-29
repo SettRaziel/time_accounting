@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-03-31 09:21:09
+# @Last Modified time: 2016-08-29 16:28:09
 
 module Query
 
@@ -40,7 +40,7 @@ module Query
 
       # Monday of calendar week 1
       start = get_next_monday(start)
-      start += (calendar_week - 2) * 7 * 60 * 60 * 24
+      start + (calendar_week - 2) * 7 * 60 * 60 * 24
     end
 
     # method to calculate the upper time boundary for the given week
