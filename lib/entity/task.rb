@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-21 13:00:30
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-28 15:29:42
+# @Last Modified time: 2016-09-01 17:35:06
 
 # This module holds the classes that are use for creating a {Task}.
 module Task
@@ -68,13 +68,11 @@ module Task
       self.new(list[0].to_i, start_time, end_time, list[1])
     end
 
-    private
-
     # singleton method to check for the correct list size
     # @param [Array] list with attributes
     # @raise [ArgumentError] if the size of the list does not fit the number of
     #   required attributes
-    def self.check_list_size(list)
+    private_class_method def self.check_list_size(list)
       if (list.size != 4)
         raise ArgumentError,
         ' Error: list contains wrong number of arguments to create a task.'.red
