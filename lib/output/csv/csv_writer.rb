@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-04-18 15:41:13
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-02 14:36:30
+# @Last Modified time: 2016-09-06 17:03:38
 
 require 'csv'
 require_relative 'attribute_string_factory'
@@ -35,10 +35,11 @@ class CSVWriter
     write(filename, output)
   end
 
+  private_class_method
   # method to print the output into the file
   # @param [String] filename the path of the output file
   # @param [Array] output the prepared output lines
-  private_class_method def self.write(filename, output)
+  def self.write(filename, output)
     CSV.open(filename, "wb", {:col_sep => ";"}) { |csv|
       output.each { |entry|
         csv << entry.split(';')
