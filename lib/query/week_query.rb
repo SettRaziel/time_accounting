@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-26 15:03:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-04 16:22:16
+# @Last Modified time: 2016-09-07 18:31:09
 
 module Query
 
@@ -28,13 +28,13 @@ module Query
        :next => Time.new(end_time.year, end_time.month, end_time.day)}
     end
 
+    private_class_method
     # method to calculate the lower time boundary for the given week
     # (the start of the week)
     # @param [Integer] year the requested year
     # @param [Integer] calendar_week the requested week of the year
     # @return [Time] the start of the monday in the requested week
-    private_class_method def self.get_monday_of_calendar_week(year,
-                                                              calendar_week)
+    def self.get_monday_of_calendar_week(year, calendar_week)
       start = Time.new(year)
 
       # Monday of calendar week 1
@@ -42,11 +42,12 @@ module Query
       start + (calendar_week - 2) * 7 * 60 * 60 * 24
     end
 
+    private_class_method
     # method to calculate the upper time boundary for the given week
     # (the end of the week)
     # @param [Time] time the start time of the requested week
     # @return [Time] the time of the monday of the follwing week
-    private_class_method def self.get_next_monday(time)
+    def self.get_next_monday(time)
       time + (7 - time.get_int_wday) * 60 * 60 * 24
     end
 
