@@ -9,8 +9,8 @@ guides trough the different options.
 ## Development steps
 * Reading and storing tasks and persons in a file (actual)
 * Terminal menu to read/write data and some queries for the data (actual)
-* Formatted terminal output for the queries (in progress)
-* Formatted pdf output using latex, formatted csv output
+* Formatted terminal output for the queries (basic, but will be extended)
+* Formatted pdf output using latex, formatted csv output (basic csv output)
 * Reading, storing and querying tasks and persons in a database (e.g. sqlite)
 * Deleting existing persons and tasks and freeing their blocked ids
 * Extension of query capabilities
@@ -40,7 +40,8 @@ Written with Ruby >= 2.2.2
 * MAC: not tested
 
 ## Requirements
-* none
+* Ruby with a version > 2.2
+* csv (all)
 
 ## License
 see LICENSE
