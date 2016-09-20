@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-26 21:59:38
+# @Last Modified time: 2016-09-20 19:32:18
 
 module Menu
 
@@ -17,7 +17,8 @@ module Menu
       # initialization
       def initialize(time_string)
         @time_string = time_string
-        @menu_description = "Queries for tasks done in the given #{@time_string}."
+        @menu_description = "Queries for tasks done in the given " \
+                            "#{@time_string}."
         super
       end
 
@@ -43,6 +44,7 @@ module Menu
       # method to define all printable menu items
       def define_menu_items
         check_attributes
+        @menu_description.concat("\n #{set_boundaries}")
         add_menu_item("All tasks to a person in the given #{time_string}.", 1)
         add_menu_item("Worktime of a person in that #{time_string}.", 2)
         add_menu_item('All tasks running during the interval.', 3)
@@ -100,6 +102,16 @@ module Menu
         fail NotImplementedError, " Error: the subclass " \
         "#{self.name.split('::').last} needs to implement the method: " \
         "retrieve_worktime from its parent class".red
+      end
+
+      # abstract method to calculate the date boundaries of the provided
+      # user input
+      # @abstract subclasses need to implement this method
+      # @raise [NotImplementedError] if the subclass does not have this method
+      def set_boundaries
+        fail NotImplementedError, " Error: the subclass " \
+        "#{Class.name.split('::').last} needs to implement the method: " \
+        "set_boundaries from its base class".red
       end
 
       # method to check if the necessary input was already collected
