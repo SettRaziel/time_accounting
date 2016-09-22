@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-05-13 08:59:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-10 12:40:11
+# @Last Modified time: 2016-09-22 20:24:07
 
 module Menu
 
@@ -30,20 +30,25 @@ module Menu
                 get_entry("Enter end date (format: YYYY-MM-DD-hh:mm): "))
       end
 
+      # method to calculate the date boundaries of the provided user input
+      def set_boundaries
+        return "Calculated interval for week from input:" \
+               " #{@values[:start_time]} - #{@values[:end_time]}"
+      end
+
       # method to retrieve all task that started, ended or took place within
       # the custom time interval for the provided id
       # @return [Hash] a hash mapping (task_type => Array) holding the queried
       #   tasks
       def retrieve_tasks
-        Query::TimeQuery.retrieve_tasks(@values[:id], @values[:start_time],
-                                        @values[:end_time])
+        Query.get_data(@values[:id], @values[:start_time], @values[:end_time])
       end
 
       # method to retrieve the overall worktime for an entity with the given id
       # for the custom time interval
       def retrieve_worktime
-        Query::TimeQuery.get_time_worktime(@values[:id], @values[:start_time],
-                                           @values[:end_time])
+        Query.get_time_worktime(@values[:id], @values[:start_time],
+                                              @values[:end_time])
       end
 
     end
