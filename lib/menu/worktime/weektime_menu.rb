@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:13:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-09 09:30:01
+# @Last Modified time: 2016-09-23 17:31:31
 
 module Menu
 
@@ -23,16 +23,56 @@ module Menu
       # @return [Hash] a hash mapping (task_type => Array) holding the queried
       #   tasks
       def retrieve_tasks
-        Query.get_weekly_data_for(@values[:id], @values[:year],
-                                  @values[:time_frame])
+        Query.get_data(@values[:id], @values[:start_time], @values[:end_time])
       end
 
       # method to retrieve the overall worktime for an entity with the given id
       # for the given week
       # @return [Hash] a hash with the hours for each type of task
       def retrieve_worktime
-        Query::WeekQuery.get_weekly_worktime(@values[:id], @values[:year],
-                                             @values[:time_frame])
+        Query.get_weekly_worktime(@values[:id], @values[:start_time],
+                                             @values[:end_time])
+      end
+
+      # method to calculate the date boundaries of the provided user input
+      def set_boundaries
+        days = calculate_start_and_end_day(@values[:year], @values[:time_frame])
+        @values[:start_time] = days[:actual]
+        @values[:end_time] = days[:next]
+        return "Calculated interval for week from input:" \
+               " #{days[:actual]} - #{days[:next]}"
+      end
+
+      # method to calculate the time boundaries for the given week
+      # @param [Integer] year the requested year
+      # @param [Integer] calendar_week the requested week
+      # @return [Hash] a hash containing the two time boundaries
+      def calculate_start_and_end_day(year, calendar_week)
+        start_time = get_monday_of_calendar_week(year, calendar_week)
+        end_time = get_next_monday(start_time)
+        {:actual => Time.new(start_time.year, start_time.month, start_time.day),
+         :next => Time.new(end_time.year, end_time.month, end_time.day)}
+      end
+
+      # method to calculate the lower time boundary for the given week
+      # (the start of the week)
+      # @param [Integer] year the requested year
+      # @param [Integer] calendar_week the requested week of the year
+      # @return [Time] the start of the monday in the requested week
+      def get_monday_of_calendar_week(year, calendar_week)
+        start = Time.new(year)
+
+        # Monday of calendar week 1
+        start = get_next_monday(start)
+        start + (calendar_week - 2) * 7 * 60 * 60 * 24
+      end
+
+      # method to calculate the upper time boundary for the given week
+      # (the end of the week)
+      # @param [Time] time the start time of the requested week
+      # @return [Time] the time of the monday of the follwing week
+      def get_next_monday(time)
+        time + (7 - time.get_int_wday) * 60 * 60 * 24
       end
 
     end
