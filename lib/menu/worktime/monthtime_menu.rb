@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-04-05 17:36:03
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-09 09:30:12
+# @Last Modified time: 2016-09-24 13:53:46
 
 module Menu
 
@@ -25,16 +25,34 @@ module Menu
       # @return [Hash] a hash mapping (task_type => Array) holding the queried
       #   tasks
       def retrieve_tasks
-        Query.get_monthly_data_for(@values[:id], @values[:year],
-                                   @values[:time_frame])
+        Query.get_data(@values[:id], @values[:start_time], @values[:end_time])
       end
 
       # method to retrieve the overall worktime for an entity with the given id
       # for the given month
       # @return [Hash] a hash with the hours for each type of task
       def retrieve_worktime
-        Query::MonthQuery.get_monthly_worktime(@values[:id], @values[:year],
-                                               @values[:time_frame])
+        Query.get_monthly_worktime(@values[:id], @values[:start_time],
+                                   @values[:end_time])
+      end
+
+      # method to calculate the date boundaries of the provided user input
+      def set_boundaries
+        months = calculate_month_and_next_month(@values[:year],
+                                                @values[:time_frame])
+        @values[:start_time] = months[:actual]
+        @values[:end_time] = months[:next]
+        return "Calculated interval for month from input:" \
+               " #{months[:actual]} - #{months[:next]}"
+      end
+
+      # method to calculate the time boundaries for the given month
+      # @param [Integer] year the requested year
+      # @param [Integer] month the requested month
+      # @return [Hash] a hash containing the two time boundaries
+      def calculate_month_and_next_month(year, month)
+        check_date = Time.new(year, month)
+        {:actual => check_date, :next => check_date.next_month}
       end
 
     end
