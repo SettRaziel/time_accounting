@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-21 09:17:57
+# @Last Modified time: 2016-09-25 18:19:59
 
 # this module holds the classes and methods for queries regarding the data
 module Query
@@ -16,8 +16,8 @@ module Query
 
   # method to collect all tasks of a person in a given time interval
   # @param [Integer] id the id of the person
-  # @param [Hash] boundaries a hash containing the start and end time of the
-  #   requested time interval
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
   # @return [Hash] a hash with all tasks mapped on how the occur in the
   #   time interval
   def self.get_data(id, start_time, end_time)
@@ -32,18 +32,22 @@ module Query
     return tasks
   end
 
-  # method to retrieve the worktime for a person for the given year and week
+  # method to retrieve the worktime for a person for the given week
   # @param [Integer] id the id of the person
-  # @param [Integer] year the requested year
-  # @param [Integer] calendar_week the requested week of the year
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
+  # @return [Hash] a hash containing all time values for the considered
+  #   intervals
   def self.get_weekly_worktime(id, start_time, end_time)
     get_interval_worktime(id, start_time, end_time, (7*24))
   end
 
-  # method to retrieve the worktime for a person for the given year and month
+  # method to retrieve the worktime for a person for the given month
   # @param [Integer] id the id of the person
-  # @param [Integer] year the requested year
-  # @param [Integer] month the requested month
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
+  # @return [Hash] a hash containing all time values for the considered
+  #   intervals
   def self.get_monthly_worktime(id, start_time, end_time)
     days_in_month = Time.days_in_month(start_time.year,start_time.month)
     get_interval_worktime(id, start_time, end_time, (days_in_month * 24))
@@ -51,6 +55,11 @@ module Query
 
   # method to retrieve the worktime for a person for the given time
   # interval
+  # @param [Integer] id the id of the person
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
+  # @return [Hash] a hash containing all time values for the considered
+  #   intervals
   def self.get_time_worktime(id, start_time, end_time)
     get_interval_worktime(id, start_time, end_time,
                           (end_time - start_time) / 60 / 60)
@@ -65,8 +74,8 @@ module Query
   private_class_method
   # method to calculate the work time in the given time period
   # @param [Integer] id the id of the person
-  # @param [Hash] boundaries a hash containing the start and end time of the
-  #   requested time interval
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
   # @param [Integer] time_frame the time of the interval in hours
   # @return [Hash] a hash containing all time values for the considered
   #   intervals
@@ -84,8 +93,8 @@ module Query
 
   private_class_method
   # method to collect all task that occur during the time interval
-  # @param [Hash] date_values a hash containing the start time and the
-  #   end time of the requested time interval
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
   # @param [Array] all_task the task with start and/ or end within the
   #   requested time interval
   # @return [Hash] all tasks taking place during the given time frame
@@ -99,8 +108,8 @@ module Query
   private_class_method
   # method to collect all task that start before the time interval but do
   # not end in the time interval
-  # @param [Hash] date_values a hash containing the start time and the
-  #   end time of the requested time interval
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
   # @param [Array] all_task the task with start and/ or end within the
   #   requested time interval
   # @return [Hash] all tasks running over the given time frame
@@ -114,8 +123,8 @@ module Query
   private_class_method
   # method to collect all task that end in the time interval but were
   # started before the requested interval
-  # @param [Hash] date_values a hash containing the start time and the
-  #   end time of the requested time interval
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
   # @param [Array] all_task the task with start and/ or end within the
   #   requested time interval
   # @return [Hash] all tasks ending in the given time frame
@@ -129,8 +138,8 @@ module Query
   private_class_method
   # method to collect all task that start in the time interval but do not
   # end in the requested interval
-  # @param [Hash] date_values a hash containing the start time and the
-  #   end time of the requested time interval
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
   # @param [Array] all_task the task with start and/ or end within the
   #   requested time interval
   # @return [Hash] all tasks starting in the given time frame
@@ -145,7 +154,8 @@ module Query
   # method to determine if the point in time lies within the time interval
   # given by the data values
   # @param [Time] time the given point in time
-  # @param [Hash] date_values two points in time creating a time interval
+  # @param [Time] start_time the start time of the time interval
+  # @param [Time] end_time the end time of the time interval
   # @return [Boolean] true: if time lies within the interval, false: if not
   def self.time_lies_in_interval?(time, start_time, end_time)
     time > start_time && time < end_time
