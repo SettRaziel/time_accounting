@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-25 18:19:59
+# @Last Modified time: 2016-09-26 16:48:46
 
-# this module holds the classes and methods for queries regarding the data
+# This module holds the classes and methods for queries regarding the data
 module Query
 
   require_relative '../entity/time'
