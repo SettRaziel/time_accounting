@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-04-05 17:36:03
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-24 13:53:46
+# @Last Modified time: 2016-09-27 19:38:02
 
 module Menu
 
@@ -40,8 +40,7 @@ module Menu
       def set_boundaries
         months = calculate_month_and_next_month(@values[:year],
                                                 @values[:time_frame])
-        @values[:start_time] = months[:actual]
-        @values[:end_time] = months[:next]
+        set_values(months)
         return "Calculated interval for month from input:" \
                " #{months[:actual]} - #{months[:next]}"
       end

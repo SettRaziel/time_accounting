@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:13:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-23 17:31:31
+# @Last Modified time: 2016-09-27 19:38:14
 
 module Menu
 
@@ -37,8 +37,7 @@ module Menu
       # method to calculate the date boundaries of the provided user input
       def set_boundaries
         days = calculate_start_and_end_day(@values[:year], @values[:time_frame])
-        @values[:start_time] = days[:actual]
-        @values[:end_time] = days[:next]
+        set_values(days)
         return "Calculated interval for week from input:" \
                " #{days[:actual]} - #{days[:next]}"
       end
