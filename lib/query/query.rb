@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-26 16:48:46
+# @Last Modified time: 2016-09-29 16:48:11
 
 # This module holds the classes and methods for queries regarding the data
 module Query
@@ -28,7 +28,6 @@ module Query
       :into => collect_tasks_into(start_time, end_time, all_task),
       :beyond => collect_tasks_beyond(start_time, end_time, all_task)
     }
-
     return tasks
   end
 
@@ -39,7 +38,8 @@ module Query
   # @return [Hash] a hash containing all time values for the considered
   #   intervals
   def self.get_weekly_worktime(id, start_time, end_time)
-    get_interval_worktime(id, start_time, end_time, (7*24))
+    tasks = get_data(id, start_time, end_time)
+    TimeAccumulator.get_interval_worktime(tasks, start_time, end_time, (7*24))
   end
 
   # method to retrieve the worktime for a person for the given month
@@ -50,7 +50,9 @@ module Query
   #   intervals
   def self.get_monthly_worktime(id, start_time, end_time)
     days_in_month = Time.days_in_month(start_time.year,start_time.month)
-    get_interval_worktime(id, start_time, end_time, (days_in_month * 24))
+    tasks = get_data(id, start_time, end_time)
+    TimeAccumulator.get_interval_worktime(tasks, start_time, end_time,
+                                          (days_in_month * 24))
   end
 
   # method to retrieve the worktime for a person for the given time
@@ -61,34 +63,15 @@ module Query
   # @return [Hash] a hash containing all time values for the considered
   #   intervals
   def self.get_time_worktime(id, start_time, end_time)
-    get_interval_worktime(id, start_time, end_time,
-                          (end_time - start_time) / 60 / 60)
+    tasks = get_data(id, start_time, end_time)
+    TimeAccumulator.get_interval_worktime(tasks, start_time, end_time,
+                                         (end_time - start_time) / 60 / 60)
   end
 
   # singleton method to initialize the data repository with the provided data
   # @param [DataRepository] data the created database
   def self.initialize_repository(data)
     @data = data
-  end
-
-  private_class_method
-  # method to calculate the work time in the given time period
-  # @param [Integer] id the id of the person
-  # @param [Time] start_time the start time of the time interval
-  # @param [Time] end_time the end time of the time interval
-  # @param [Integer] time_frame the time of the interval in hours
-  # @return [Hash] a hash containing all time values for the considered
-  #   intervals
-  def self.get_interval_worktime(id, start_time, end_time, time_frame)
-    tasks = get_data(id, start_time, end_time)
-    times = {
-      :during => get_hours_during(tasks[:during]),
-      :over => (tasks[:over].size > 0 ? time_frame : 0),
-      :into => get_hours_into(tasks[:into], start_time),
-      :beyond => get_hours_beyond(tasks[:beyond], end_time)
-    }
-
-    return times
   end
 
   private_class_method
@@ -181,48 +164,6 @@ module Query
     task.end_time > date_value
   end
 
-  private_class_method
-  # method to calculate the working hours of tasks occurring during the
-  # requested time interval
-  # @param [Array] tasks the tasks occurring during the time interval
-  # @return [Float] the sum of the working hours
-  def self.get_hours_during(tasks)
-    total = 0.0
-    tasks.each { |task|
-      total += task.end_time - task.start_time
-    }
-
-    total = (total / 3600).round(2)
-  end
-
-  private_class_method
-  # method to calculate the working hours of tasks ending during the
-  # requested time interval, but starting before
-  # @param [Array] tasks the tasks ending during the time interval
-  # @param [Time] time_frame the start time of the interval
-  # @return [Float] the sum of the working hours
-  def self.get_hours_into(tasks, time_frame)
-    total = 0.0
-    tasks.each { |task|
-      total += task.end_time - time_frame
-    }
-
-    total = (total / 3600).round(2)
-  end
-
-  private_class_method
-  # method to calculate the working hours of tasks starting during the
-  # requested time interval, but ending after
-  # @param [Array] tasks the tasks starting during the time interval
-  # @param [Time] next_time_frame the end time of the interval
-  # @return [Float] the sum of the working hours
-  def self.get_hours_beyond(tasks, next_time_frame)
-    total = 0.0
-    tasks.each { |task|
-      total += next_time_frame - task.start_time
-    }
-
-    total = (total / 3600).round(2)
-  end
-
 end
+
+require_relative 'time_accumulator'
