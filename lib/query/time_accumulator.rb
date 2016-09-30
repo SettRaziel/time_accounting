@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-09-27 10:24:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-28 19:23:03
+# @Last Modified time: 2016-09-30 15:53:33
 
 module Query
 
@@ -9,7 +9,7 @@ module Query
   class TimeAccumulator
 
     # method to calculate the work time in the given time period
-    # @param [Integer] id the id of the person
+    # @param [Hash] tasks the collected tasks occuring in the time interval
     # @param [Time] start_time the start time of the time interval
     # @param [Time] end_time the end time of the time interval
     # @param [Integer] time_frame the time of the interval in hours

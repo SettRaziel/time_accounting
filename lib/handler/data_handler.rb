@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 11:42:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-25 20:03:46
+# @Last Modified time: 2016-09-30 15:54:30
 
 require_relative '../data/data_repository'
 require_relative '../entity/person/person'
@@ -32,7 +32,7 @@ class DataHandler
 
   # method to save the content of the repository to the file specified by
   # {#filename}
-  def save_repository()
+  def save_repository
     writer = FileWriter.new(filename)
     writer.write_all_persons(@repository.repository.keys)
     writer.write_all_tasks(@repository.repository)
