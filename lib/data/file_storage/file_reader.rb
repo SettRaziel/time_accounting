@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-23 14:40:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-06 16:58:37
+# @Last Modified time: 2016-10-02 16:49:20
 
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
@@ -34,7 +34,7 @@ class FileReader
   private_class_method
   # method to read all persons from the file and store them in the
   # {DataRepository}
-  # @param [Array] input the content of the file
+  # @param [File] input the content of the file
   # @param [DataRepository] repo the used {DataRepository}
   # @return [Integer] the highest person id
   def self.read_all_persons(input, repo)
@@ -56,7 +56,7 @@ class FileReader
   private_class_method
   # method to read all tasks from the file and store them in the
   # {DataRepository}
-  # @param [Array] input the content of the file
+  # @param [File] input the content of the file
   # @param [DataRepository] repo the used {DataRepository}
   # @return [Integer] the highest task id
   def self.read_all_tasks(input, repo)
