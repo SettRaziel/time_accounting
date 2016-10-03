@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-21 13:00:30
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-06 17:02:04
+# @Last Modified time: 2016-10-03 15:22:45
 
 # This module holds the classes that are use for creating a {Task}.
 module Task
@@ -85,11 +85,11 @@ module Task
   # singleton class to serve as an id generator for {Task}.
   class TaskIDGenerator
     # @return [Fixnum] the current id
-    @@id
+    @@id = 0
 
     # initialization
     # @param [Fixnum] id the start id
-    def initialize(id=0)
+    def initialize(id)
       @@id = id
     end
 

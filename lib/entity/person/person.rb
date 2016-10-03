@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:28:16
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-21 14:33:25
+# @Last Modified time: 2016-10-03 15:23:45
 
 # This module holds the classes describing a Person or a special form of
 # person with additional attributs to the basic name and id of a {Person}.
@@ -63,11 +63,11 @@ module Person
   # singleton class to serve as an id generator for {Person} and their children.
   class PersonIDGenerator
     # @return [Fixnum] the current id
-    @@id
+    @@id = 0
 
     # initialization
     # @param [Fixnum] id the start id
-    def initialize(id=0)
+    def initialize(id)
       @@id = id
     end
 
