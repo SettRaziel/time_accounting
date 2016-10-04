@@ -7,10 +7,12 @@ monthly, weekly working hours or self defined time intervals. A terminal menu
 guides trough the different options.
 
 ## Development steps
-* Reading and storing tasks and persons in a file (actual)
-* Terminal menu to read/write data and some queries for the data (actual)
-* Formatted terminal output for the queries (basic, but will be extended)
-* Formatted pdf output using latex, formatted csv output (basic csv output)
+* Reading and storing tasks and persons in a file (done with v0.1.0)
+* Terminal menu to read/write data and some queries for the data (mostly
+  done with v0.2.0)
+* Formatted terminal output for the queries (basic with v0.2.0, but will be extended)
+* Formatted pdf output using latex, formatted csv output (basic csv output
+  with v0.2.1)
 * Reading, storing and querying tasks and persons in a database (e.g. sqlite)
 * Deleting existing persons and tasks and freeing their blocked ids
 * Extension of query capabilities
@@ -42,6 +44,7 @@ Written with Ruby >= 2.2.2
 ## Requirements
 * Ruby with a version > 2.2
 * csv (all)
+* yard (optional for documentation)
 
 ## License
 see LICENSE
