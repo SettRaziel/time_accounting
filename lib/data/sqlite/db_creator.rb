@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-04 20:09:29
+# @Last Modified time: 2016-11-07 20:12:20
 
 module Database
 
@@ -31,7 +31,7 @@ module Database
                    P_Id INTEGER, Mat_Nr INTEGER,
                   FOREIGN KEY(P_Id) REFERENCES Persons(Id))")
       @db.execute("CREATE TABLE IF NOT EXISTS Tasks(Id INTEGER PRIMARY KEY,
-                   Start DATE, End DATE, Description TEXT)")
+                   Start TEXT, End TEXT, Description TEXT)")
       @db.execute("CREATE TABLE IF NOT EXISTS Matching(Id INTEGER PRIMARY KEY,
                    P_Id INTEGER, T_Id INTEGER,
                    FOREIGN KEY(P_Id) REFERENCES Persons(Id),
