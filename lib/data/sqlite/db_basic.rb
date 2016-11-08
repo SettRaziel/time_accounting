@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-07 20:12:20
+# @Last Modified time: 2016-11-08 19:55:03
 
 module Database
 
-  class DBCreator
+  class DBBasic
 
     attr_reader :db
 
@@ -22,14 +22,22 @@ module Database
       end
     end
 
+    def insert_person(name)
+      stmt = @db.prepare("INSERT INTO Persons(Name) VALUES (?)")
+      stmt.execute(name)
+    end
+
+    def insert_task(start_time, end_time, description)
+      stmt = @db.prepare("INSERT INTO Tasks(Start, End, Description) " \
+                         " VALUES (?, ?, ?)")
+      stmt.execute(start_time.iso8601, end_time.iso8601, description)
+    end
+
     private
 
     def create_tables
       @db.execute("CREATE TABLE IF NOT EXISTS Persons(Id INTEGER PRIMARY KEY,
                    Name TEXT)")
-      @db.execute("CREATE TABLE IF NOT EXISTS Students(Id INTEGER PRIMARY KEY,
-                   P_Id INTEGER, Mat_Nr INTEGER,
-                  FOREIGN KEY(P_Id) REFERENCES Persons(Id))")
       @db.execute("CREATE TABLE IF NOT EXISTS Tasks(Id INTEGER PRIMARY KEY,
                    Start TEXT, End TEXT, Description TEXT)")
       @db.execute("CREATE TABLE IF NOT EXISTS Matching(Id INTEGER PRIMARY KEY,
