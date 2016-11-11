@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-09 20:14:12
+# @Last Modified time: 2016-11-11 19:45:15
 
 module Database
 
@@ -31,6 +31,11 @@ module Database
       stmt = @db.prepare("INSERT INTO Tasks(Id, Start, End, Description) " \
                          "VALUES (?, ?, ?, ?)")
       stmt.execute(id, start_time.iso8601, end_time.iso8601, description)
+    end
+
+    def map_task_to_person(p_id, t_id)
+      stmt = @db.prepare("INSERT INTO Matching(P_Id, T_Id) VALUES (?, ?)")
+      stmt.execute(p_id, t_id)
     end
 
     def query_task(id)
