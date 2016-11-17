@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-15 21:36:26
+# @Last Modified time: 2016-11-17 20:13:41
 
 module Database
 
@@ -49,26 +49,26 @@ module Database
 
     # method to query a task by id
     # @param [Integer] id the requested id
+    # @return [Array] an array with the results
     def query_task(id)
       stmt = @db.prepare("SELECT * FROM Tasks WHERE Id = ?")
       stmt.execute(id)
-      nil
     end
 
     # method to query a person by id
     # @param [Integer] id the requested id
+    # @return [Array] an array with the results
     def query_person_by_id(id)
       stmt = @db.prepare("SELECT * FROM Persons WHERE Id = ?")
       stmt.execute(id)
-      nil
     end
 
     # method to query a person by name
     # @param [String] name the requested name
+    # @return [Array] an array with the results
     def query_person_by_name(name)
       stmt = @db.prepare("SELECT * FROM Persons WHERE Name = ?")
       stmt.execute(name)
-      nil
     end
 
     private
