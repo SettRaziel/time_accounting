@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-17 20:13:41
+# @Last Modified time: 2016-11-18 20:19:47
 
 module Database
 
@@ -100,3 +100,5 @@ module Database
   end
 
 end
+
+require_relative 'db_student'
