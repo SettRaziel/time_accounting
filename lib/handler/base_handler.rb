@@ -1,14 +1,14 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:59:49
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-19 16:11:05
+# @Last Modified time: 2016-11-20 18:25:40
 
 module DataHander
 
-  # This class serves as a handler between the repositories and the queries. It
-  # also takes care about the initialization of the repositories and the id
-  # generators. The handler also provides methods to save and load data from and
-  # to a repository.
+  # This class serves as a abstract parent class to take care about the
+  # initialization of the repositories and the id generator. This class also
+  # provides abstract methods to save and load data from and to a repository
+  # which are implemented by child classes.
   class BaseHandler
     # @return [DataRepository] the repository
     attr_reader :repository
