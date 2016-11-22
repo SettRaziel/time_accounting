@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:59:49
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-20 18:25:40
+# @Last Modified time: 2016-11-22 18:50:37
 
 module DataHander
 
@@ -18,7 +18,6 @@ module DataHander
     # initialization
     # @param [String] filename the filename from where the data should be loaded
     #   or to where the data should be saved
-    # @param [DataRepository] repository the repository for the data
     def initialize(filename)
       @repository=DataRepository.new()
       @filename = filename
@@ -27,7 +26,7 @@ module DataHander
     end
 
     # @abstract method to load the content into the repository from the path
-    # specified by {#filename} and based on the used adapter
+    # specified by the filename and based on the used adapter
     # @raise [NotImplementedError] if the subclass does not have this method
     def load_repository
       fail NotImplementedError, " Error: the subclass
@@ -36,7 +35,7 @@ module DataHander
     end
 
     # @abstract method to save the content of the repository to the path
-    # specified by {#filename} and based on the used adapter
+    # specified by the filename and based on the used adapter
     # @raise [NotImplementedError] if the subclass does not have this method
     def save_repository
       fail NotImplementedError, " Error: the subclass
