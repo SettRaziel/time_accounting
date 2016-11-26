@@ -1,10 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-18 20:19:47
+# @Last Modified time: 2016-11-26 17:05:10
 
 module Database
 
+  # Basic class to open and manage the usage of a sqlite3 database as a storage
+  # system. Child classes should use {#generate_additional_tables} to create
+  # required tables for use.
   class DBBasic
 
     attr_reader :db
@@ -12,7 +15,7 @@ module Database
     # initialization
     # @param [String] db_path the file path to the database
     def initialize(db_path)
-      create_database(db_path)
+      open_database(db_path)
     end
 
     # method to insert a {Person} into the database
@@ -71,17 +74,10 @@ module Database
       stmt.execute(name)
     end
 
-    private
-
-    # method to create a new database at the given path
-    # @ param [String] db_path the given file path
-    def create_database(db_path)
-      begin
-        @db = SQLite3::Database.open(db_path)
-        create_tables
-      rescue IOError || StandardError
-        raise ArgumentError, "Error [DBCreator]: invalid path to database."
-      end
+    # method to query all stored persons
+    def query_persons
+      stmt = @db.prepare("SELECT * FROM Persons")
+      stmt.execute
     end
 
     # method to create the required tables in the database
@@ -94,7 +90,27 @@ module Database
                    P_Id INTEGER, T_Id INTEGER,
                    FOREIGN KEY(P_Id) REFERENCES Persons(Id),
                    FOREIGN KEY(T_Id) REFERENCES Tasks(Id))")
+      generate_additional_tables
       nil
+    end
+
+    private
+
+    # method to create a new database at the given path
+    # @ param [String] db_path the given file path
+    def open_database(db_path)
+      begin
+        @db = SQLite3::Database.open(db_path)
+        @db.results_as_hash = true
+        create_tables
+      rescue IOError || StandardError
+        raise ArgumentError, "Error [DBCreator]: invalid path to database."
+      end
+    end
+
+    # method for child classes to specify the generation of additional tables
+    def generate_additional_tables
+      # no additional tables
     end
 
   end

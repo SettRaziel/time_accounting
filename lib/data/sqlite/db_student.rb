@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-18 20:23:14
+# @Last Modified time: 2016-11-26 17:03:23
 
 module Database
 
@@ -10,11 +10,7 @@ module Database
     # initialization
     # @param [String] db_path the file path to the database
     def initialize(db_path)
-      create_database(db_path)
-      @db.execute("CREATE TABLE IF NOT EXISTS
-                      Students(Id INTEGER PRIMARY KEY,
-                      P_Id INTEGER, Mat_Nr INTEGER,
-                      FOREIGN KEY(P_Id) REFERENCES Persons(Id))")
+      open_database(db_path)
     end
 
     # method to insert a {Student} into the database
@@ -57,6 +53,17 @@ module Database
                             "Students s LEFT JOIN Persons p on p.id=s.p_id " \
                             "WHERE s.Mat_Nr = ?")
       stmt.execute(id)
+    end
+
+    private
+
+    # overwritten method from the parent class to specify the creation of
+    # additional required tables
+    def generate_additional_tables
+      @db.execute("CREATE TABLE IF NOT EXISTS
+                      Students(Id INTEGER PRIMARY KEY,
+                      P_Id INTEGER, Mat_Nr INTEGER,
+                      FOREIGN KEY(P_Id) REFERENCES Persons(Id))")
     end
 
   end
