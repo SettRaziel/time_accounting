@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-27 15:40:53
+# @Last Modified time: 2016-11-29 19:45:20
 
 module Database
 
@@ -59,6 +59,13 @@ module Database
     def query_task(id)
       stmt = @db.prepare("SELECT * FROM Tasks WHERE Id = ?")
       stmt.execute(id)
+    end
+
+    # method to query all stored {Task::Task}
+    # @return [Array] an array with the results
+    def query_tasks
+      stmt = @db.prepare('SELECT * FROM Tasks')
+      stmt.execute
     end
 
     # method to query a {Person::Person} by id
