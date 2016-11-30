@@ -1,35 +1,37 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-25 19:47:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-25 20:41:39
+# @Last Modified time: 2016-11-30 20:58:56
 
 require_relative '../../entity/person/person'
+require_relative 'db_basic'
 
 module DBMapping
 
   class PersonMapper
 
-    attr_reader :persons
+    def initialize(filepath)
+      @db_base = Database::DBBasic.new(filepath)
+    end
 
-    def initialize(db)
-      generate_persons(query_persons(db))
+    def generate_persons
+      results = @db_base.query_persons
+      persons = Array.new()
+      results.each { |result|
+        persons << Person::Person.new(result['Name'], Integer(result['Id']))
+      }
+      return persons
+    end
+
+    def persist_persons(persons)
+      persons.each { |person|
+        @db_base.insert_person(person.id, person.name)
+      }
     end
 
     private
 
-    def query_persons(db)
-      stmt = db.prepare("SELECT * FROM Persons")
-      db.results_as_hash = true
-      stmt.execute
-    end
-
-    def generate_persons(results)
-      @persons = Array.new()
-      results.each { |result|
-        @persons << Person::Person.new(result['Name'], Integer(result['Id']))
-      }
-      nil
-    end
+    attr_reader :db_base
 
   end
 
