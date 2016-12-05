@@ -1,14 +1,14 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-25 19:47:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-04 18:27:07
+# @Last Modified time: 2016-12-05 19:54:54
 
 require_relative '../../entity/person/person'
 require_relative 'db_basic'
 
 module DBMapping
 
-  # Class to apply ER-mapping for {Person:Person} objects to a sqlite database
+  # Class to apply ER-mapping for {Person::Person} objects to a sqlite database
   class PersonMapper
 
     # initialization
@@ -17,8 +17,8 @@ module DBMapping
       @db_base = Database::DBBasic.new(filepath)
     end
 
-    # public method to transform database persons to entity {Person:Person}
-    # @return [Array] all transformed {Person:Person} entities
+    # public method to transform database persons to entity {Person::Person}
+    # @return [Array] all transformed {Person::Person} entities
     def generate_persons
       results = @db_base.query_persons
       persons = Array.new()
@@ -28,8 +28,8 @@ module DBMapping
       return persons
     end
 
-    # method to persist a list of {Person:Person}s to the database
-    # @param [Array] persons the {Person:Person} that should be be persisted
+    # method to persist a list of {Person::Person}s to the database
+    # @param [Array] persons the {Person::Person} that should be be persisted
     def persist_persons(persons)
       persons.each { |person|
         @db_base.insert_person(person.id, person.name)
