@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-28 19:30:17
+# @Last Modified time: 2016-12-06 19:50:33
 
-module Database
+module SqliteDatabase
 
   class DBStudent < DBBasic
 

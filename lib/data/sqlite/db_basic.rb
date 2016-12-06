@@ -1,9 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-29 19:45:20
+# @Last Modified time: 2016-12-06 19:50:25
 
-module Database
+# This module holds classes that specify the required sql queries that are
+# neccessary to use the application with an sqlite database storage
+module SqliteDatabase
 
   # Basic class to open and manage the usage of a sqlite3 database as a storage
   # system. Child classes should use {#generate_additional_tables} to create
