@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-06 19:50:25
+# @Last Modified time: 2016-12-08 06:36:26
 
 # This module holds classes that specify the required sql queries that are
 # neccessary to use the application with an sqlite database storage
@@ -89,6 +89,13 @@ module SqliteDatabase
     # method to query all stored {Person::Person}s
     def query_persons
       stmt = @db.prepare("SELECT * FROM Persons")
+      stmt.execute
+    end
+
+    # method to query the mapping of assigned tasks to persons
+    # @return [ResultSet] the query result
+    def query_assignments
+      stmt = @db.prepare('SELECT * FROM Matching')
       stmt.execute
     end
 
