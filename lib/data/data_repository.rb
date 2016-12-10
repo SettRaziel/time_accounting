@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-07-02 15:20:50
+# @Last Modified time: 2016-12-10 18:01:18
 
 require_relative '../entity/person/person'
 require_relative '../entity/task'
@@ -13,8 +13,6 @@ require_relative '../output/string'
 # Persons can be looked up with the object in the hash or by its person id.
 # The {Task} of a {Person} can be found by {#get_tasks_to_person} with an id.
 class DataRepository
-  # @return [Hash] the repository mapping ({Person} => {Task})
-  attr :repository
   # @return [Integer] the highest person id from {#set_max_ids}
   attr_reader :max_person_id
   # @return [Integer] the highest task id from {#set_max_ids}
@@ -22,7 +20,8 @@ class DataRepository
 
   # initialization
   def initialize
-    @repository = Hash.new()
+    @mapping = Hash.new()
+    @tasks = Array.new()
     @max_person_id = 0
     @max_task_id = 0
   end
@@ -32,7 +31,8 @@ class DataRepository
   # @raise [IndexError] if a person with this id already exists
   def add_person(person)
     if (check_for_unique_id(person))
-      repository[person] = Array.new()
+      @mapping[person] = Array.new()
+
     else
       raise IndexError, " Error: duplicated id found: #{person.id}, " \
                         " #{person.name} cannot be added.".red
@@ -46,7 +46,8 @@ class DataRepository
   def add_task_to_person(person_id, task)
     person = find_person_by_id(person_id)
     if (person != nil)
-      repository[person] << task
+      @mapping[person] << task.id
+      @tasks << task if(!check_for_existing_task(task))
     else
       raise ArgumentError, " Error: id #{person_id} was not found.".red
     end
@@ -56,17 +57,16 @@ class DataRepository
   # @param [Integer] person_id the id of the searched person
   # @return [Person | nil] the person if found or nil
   def find_person_by_id(person_id)
-    repository.each_key { |key|
+    @mapping.each_key { |key|
       return key if (key.id == person_id)
     }
-
     return nil
   end
 
   # query to return all persons stored in the repository
   # @return [Array] an array with all the persons of the repository
   def get_persons
-    @repository.keys
+    @mapping.keys
   end
 
   # query to find all tasks to a person specified by its id
@@ -76,7 +76,12 @@ class DataRepository
   def get_tasks_to_person(person_id)
     person = find_person_by_id(person_id)
     puts " Warning: person for id #{person_id} not found." if (person == nil)
-    repository[person]
+    ids = @mapping[person]
+    results = Array.new()
+    ids.each { |id|
+    results << find_task_to_id(id)
+    }
+    results
   end
 
   # sets the start values for the two id generators
@@ -95,13 +100,32 @@ class DataRepository
     end
   end
 
+  def find_task_to_id(id)
+    @tasks.each { |task|
+      return task if (id == task.id)
+    }
+    raise ArgumentError, "Error: Task with #{id} does not exist.".red
+  end
+
   private
+
+  # @return [Hash] the repository mapping ({Person} => task_ids)
+  attr :mapping
+  # @return [Array] the available tasks
+  attr :tasks
 
   # method to check if the person already exists
   # @param [Person] person the person that should be checked
   # @return [boolean] true, if not in the list, false, if in the list
   def check_for_unique_id(person)
     find_person_by_id(person.id) == nil
+  end
+
+  def check_for_existing_task(task)
+    @tasks.each { |element|
+      return true if(element.id == task.id)
+    }
+    false
   end
 
 end

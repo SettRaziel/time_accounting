@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-23 20:30:43
+# @Last Modified time: 2016-12-10 18:01:46
 
 module Menu
 
@@ -66,18 +66,8 @@ module Menu
     def query_task
       result = Hash.new()
       id = get_entry("Enter id: ").to_i
-      tasks = Menu.data_handler.repository.repository
-      tasks.each_pair { |key, task_list|
-        task_list.each { |task|
-          result[task] = key if (task.id == id)
-        }
-      }
-
-      puts "#{result.keys.size} tasks found.".yellow
-      result.each_pair { |key, value|
-        puts "  Found task: #{key.to_string} for\n  #{value.to_string}"
-      }
-      puts
+      task = Menu.data_handler.repository.find_task_to_id(id)
+      puts task.to_string
     end
 
     # method to query all tasks belonging to a specified person
