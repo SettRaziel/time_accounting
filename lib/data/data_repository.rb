@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-10 18:01:18
+# @Last Modified time: 2016-12-11 14:06:35
 
 require_relative '../entity/person/person'
 require_relative '../entity/task'
@@ -71,7 +71,7 @@ class DataRepository
 
   # query to find all tasks to a person specified by its id
   # @param [Integer] person_id the id of the searched person
-  # @return [Array | nil] the tasks of the person or nil if the person was not
+  # @return [Array] the tasks of the person or nil if the person was not
   #   found
   def get_tasks_to_person(person_id)
     person = find_person_by_id(person_id)
@@ -100,11 +100,15 @@ class DataRepository
     end
   end
 
-  def find_task_to_id(id)
+  # method to find a task specified by its id
+  # @param [Integer] task_id the id of the searched task
+  # @return [Task] the task with the given id
+  # @raise [ArgumentError] if no task can be found for the given id
+  def find_task_to_id(task_id)
     @tasks.each { |task|
-      return task if (id == task.id)
+      return task if (task_id == task.id)
     }
-    raise ArgumentError, "Error: Task with #{id} does not exist.".red
+    raise ArgumentError, "Error: Task with #{task_id} does not exist.".red
   end
 
   private
@@ -121,6 +125,9 @@ class DataRepository
     find_person_by_id(person.id) == nil
   end
 
+  # method to check if a given task already exists in the repository
+  # @param [Task] task the given task
+  # @return [Boolean] true, if a task with the same id is found, false if not
   def check_for_existing_task(task)
     @tasks.each { |element|
       return true if(element.id == task.id)
