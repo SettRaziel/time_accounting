@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-08 06:36:26
+# @Last Modified time: 2016-12-12 21:15:34
 
 # This module holds classes that specify the required sql queries that are
 # neccessary to use the application with an sqlite database storage
@@ -57,14 +57,14 @@ module SqliteDatabase
 
     # method to query a {Task::Task} by id
     # @param [Integer] id the requested id
-    # @return [Array] an array with the results
+    # @return [ResultSet] the results
     def query_task(id)
       stmt = @db.prepare("SELECT * FROM Tasks WHERE Id = ?")
       stmt.execute(id)
     end
 
     # method to query all stored {Task::Task}
-    # @return [Array] an array with the results
+    # @return [ResultSet] the results
     def query_tasks
       stmt = @db.prepare('SELECT * FROM Tasks')
       stmt.execute
@@ -72,7 +72,7 @@ module SqliteDatabase
 
     # method to query a {Person::Person} by id
     # @param [Integer] id the requested id
-    # @return [Array] an array with the results
+    # @return [ResultSet] the results
     def query_person_by_id(id)
       stmt = @db.prepare("SELECT * FROM Persons WHERE Id = ?")
       stmt.execute(id)
@@ -80,13 +80,14 @@ module SqliteDatabase
 
     # method to query a {Person::Person} by name
     # @param [String] name the requested name
-    # @return [Array] an array with the results
+    # @return [ResultSet] the results
     def query_person_by_name(name)
       stmt = @db.prepare("SELECT * FROM Persons WHERE Name = ?")
       stmt.execute(name)
     end
 
     # method to query all stored {Person::Person}s
+    # @return [ResultSet] the results
     def query_persons
       stmt = @db.prepare("SELECT * FROM Persons")
       stmt.execute
