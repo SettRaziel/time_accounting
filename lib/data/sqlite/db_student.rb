@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-06 19:50:33
+# @Last Modified time: 2016-12-14 18:25:05
 
 module SqliteDatabase
 
@@ -28,7 +28,7 @@ module SqliteDatabase
 
     # method to query a {Person::Student} by id
     # @param [Integer] id the requested id
-    # @return [Array] an array with the results
+    # @return [ResultSet] the results
     def query_student_by_id(id)
       stmt = @db.prepare("SELECT p.Id, p.Name, s.Mat_Nr FROM
                           Students s LEFT JOIN Persons p on p.id=s.p_id
@@ -38,7 +38,7 @@ module SqliteDatabase
 
     # method to query a {Person::Student} by id
     # @param [String] name the requested name
-    # @return [Array] an array with the results
+    # @return [ResultSet] the results
     def query_student_by_name(name)
       stmt = @db.prepare("SELECT p.Id, p.Name, s.Mat_Nr FROM
                           Students s LEFT JOIN Persons p on p.id=s.p_id
@@ -48,7 +48,7 @@ module SqliteDatabase
 
     # method to query a {Person::Student} by matriculation number
     # @param [Integer] mat_nr the requested matriculation number
-    # @return [Array] an array with the results
+    # @return [ResultSet] the results
     def query_student_by_matnr(mat_nr)
       stmt = @db.prepare("SELECT p.Id, p.Name, s.Mat_Nr FROM
                           Students s LEFT JOIN Persons p on p.id=s.p_id
