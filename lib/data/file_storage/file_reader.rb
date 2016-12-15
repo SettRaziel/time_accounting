@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-23 14:40:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-10-02 16:49:20
+# @Last Modified time: 2016-12-15 12:37:34
 
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
-require_relative '../data_repository'
+require_relative './data_repository'
 
 # This class reads {Person}s and {Task}s from a file specified by the provided
 # filename. For a successful reading process the file need to fit the format

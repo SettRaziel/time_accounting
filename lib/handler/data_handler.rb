@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 11:42:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-13 08:43:33
+# @Last Modified time: 2016-12-15 12:37:48
 
-require_relative '../data/data_repository'
+require_relative '../data/file_storage/data_repository'
 require_relative '../entity/person/person'
 require_relative '../entity/task'
 require_relative '../data/file_storage/file_reader'

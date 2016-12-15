@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-23 14:18:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-21 14:34:23
+# @Last Modified time: 2016-12-15 12:37:28
 
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
-require_relative '../data_repository'
+require_relative './data_repository'
 
 # This class stores the {Person}s and {Task}s of a {DataRepository} into a file
 # specified by {#filename}. The {FileWriter} stores the data in the following

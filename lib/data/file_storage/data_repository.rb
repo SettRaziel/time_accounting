@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-11 14:06:35
+# @Last Modified time: 2016-12-15 12:37:21
 
-require_relative '../entity/person/person'
-require_relative '../entity/task'
-require_relative '../output/string'
+require_relative '../../entity/person/person'
+require_relative '../../entity/task'
+require_relative '../../output/string'
 
 # This class serves as a data repository mapping ({Person} => {Task}). A
 # {Person} can be the parent class {Person} or any of its children. To ensure
