@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-15 12:37:21
+# @Last Modified time: 2016-12-16 20:34:01
 
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
@@ -51,6 +51,7 @@ class DataRepository
     else
       raise ArgumentError, " Error: id #{person_id} was not found.".red
     end
+    nil
   end
 
   # query to find a person by the given id
@@ -60,7 +61,7 @@ class DataRepository
     @mapping.each_key { |key|
       return key if (key.id == person_id)
     }
-    return nil
+    nil
   end
 
   # query to return all persons stored in the repository
@@ -98,6 +99,7 @@ class DataRepository
     else
       raise ArgumentError, "Error: given person id #{max_task_id} <= 0".red
     end
+    nil
   end
 
   # method to find a task specified by its id
@@ -109,6 +111,12 @@ class DataRepository
       return task if (task_id == task.id)
     }
     raise ArgumentError, "Error: Task with #{task_id} does not exist.".red
+  end
+
+  # query to return all tasks stored in the repository
+  # @return [Array] an array with all the tasks of the repository
+  def get_tasks
+    @tasks
   end
 
   private
@@ -127,7 +135,7 @@ class DataRepository
 
   # method to check if a given task already exists in the repository
   # @param [Task] task the given task
-  # @return [Boolean] true, if a task with the same id is found, false if not
+  # @return [boolean] true, if a task with the same id is found, false if not
   def check_for_existing_task(task)
     @tasks.each { |element|
       return true if(element.id == task.id)
