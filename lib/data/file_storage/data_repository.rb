@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-16 20:34:01
+# @Last Modified time: 2016-12-20 19:48:39
 
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
@@ -32,7 +32,6 @@ class DataRepository
   def add_person(person)
     if (check_for_unique_id(person))
       @mapping[person] = Array.new()
-
     else
       raise IndexError, " Error: duplicated id found: #{person.id}, " \
                         " #{person.name} cannot be added.".red
