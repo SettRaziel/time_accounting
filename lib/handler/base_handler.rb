@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:59:49
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-18 15:38:15
+# @Last Modified time: 2016-12-21 18:37:49
 
 module DataHander
 
@@ -108,6 +108,8 @@ module DataHander
     attr_reader :filename
 
     # method to initialize the required id generators
+    # @abstract subclasses need to implement this method
+    # @raise [NotImplementedError] if the subclass does not have this method
     def initialize_id_generators
       fail NotImplementedError, " Error: the subclass
         #{self.name.split('::').last} needs to implement the method:
