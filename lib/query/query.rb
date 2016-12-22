@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:53:57
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-29 16:48:11
+# @Last Modified time: 2016-12-22 17:23:59
 
 # This module holds the classes and methods for queries regarding the data
 module Query
@@ -10,7 +10,7 @@ module Query
 
   # dummy class to get access to the data from methods within the module
   class << self
-    # @return [DataRepository] the database with the {Task}s and {Person}s
+    # @return [BaseHandler] the database with the {Task}s and {Person}s
     attr :data
   end
 
