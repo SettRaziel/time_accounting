@@ -1,9 +1,9 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:59:49
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-21 18:37:49
+# @Last Modified time: 2016-12-23 22:00:48
 
-module DataHander
+module DataHandler
 
   # This class serves as a abstract parent class to take care about the
   # initialization of the repositories and the id generator. This class also
@@ -16,7 +16,6 @@ module DataHander
     #   or to where the data should be saved
     def initialize(filename)
       @filename = filename
-      initialize_id_generators
     end
 
     # method to load the content into the repository from the path specified
