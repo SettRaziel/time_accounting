@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-20 11:23:27
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-20 19:48:39
+# @Last Modified time: 2016-12-24 16:58:59
 
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
@@ -116,6 +116,16 @@ class DataRepository
   # @return [Array] an array with all the tasks of the repository
   def get_tasks
     @tasks
+  end
+
+  # method to return the stored data for the {FileWriter}
+  # @return [Hash] the mapping of persons to their tasks
+  def return_output_mapping
+    output = Hash.new()
+    @mapping.each_pair { |person, task_ids|
+      output[person] = get_tasks_to_person(person.id)
+    }
+    output
   end
 
   private
