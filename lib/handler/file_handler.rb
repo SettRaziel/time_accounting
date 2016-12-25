@@ -1,15 +1,15 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:14
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-19 19:31:19
+# @Last Modified time: 2016-12-25 17:49:00
 
-module DataHander
+module DataHandler
 
   # This class serves as a handler between the repositories and the queries. It
   # also takes care about the initialization of the repositories and the id
   # generators. The handler also provides methods to save and load data from and
   # to a repository.
-  class FileHandler
+  class FileHandler < BaseHandler
 
     # initialization
     # @param [String] filename the filename from where the data should be loaded
@@ -25,6 +25,7 @@ module DataHander
     def load_data
       begin
         @repository = FileReader.read_file(filename)
+        initialize_id_generators
         nil
       rescue StandardError => e
         raise IOError,
@@ -36,8 +37,8 @@ module DataHander
     # specified by the filename and based on the used adapter
     def persist_data
       writer = FileWriter.new(filename)
-      writer.write_all_persons(@repository.repository.keys)
-      writer.write_all_tasks(@repository.repository)
+      writer.write_all_persons(@repository.get_persons)
+      writer.write_all_tasks(@repository.return_output_mapping)
       nil
     end
 
@@ -66,7 +67,7 @@ module DataHander
     end
 
     # method to search for all tasks associated
-    # @return [Array] the taskss of the person with the given id
+    # @return [Array] the tasks of the person with the given id
     def get_tasks_to_person(id)
       @repository.get_tasks_to_person(id)
     end
