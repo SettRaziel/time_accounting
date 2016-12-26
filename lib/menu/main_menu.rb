@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-28 15:08:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-11-19 16:03:53
+# @Last Modified time: 2016-12-26 09:26:13
 
 module Menu
 
@@ -50,7 +50,7 @@ module Menu
     # provide a name for the database or file
     def create_database
       filename = get_database_name("Create a new database.")
-      Menu.initialize_datahandler(DataHandler::DataHandler.new(filename))
+      Menu.initialize_datahandler(DataHandler::FileHandler.new(filename))
       finish_database_initialization(filename)
     end
 
@@ -59,8 +59,9 @@ module Menu
     def load_database
       filename = get_database_name("Load an existing database.")
       begin
-        Menu.initialize_datahandler(DataHandler::DataHandler.new(filename,
-                                    FileReader.read_file(filename)))
+        handler = DataHandler::FileHandler.new(filename)
+        handler.load_data
+        Menu.initialize_datahandler(handler)
       rescue IOError => e
         puts e.message.red
         return
