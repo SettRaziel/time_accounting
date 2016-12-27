@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:59:49
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-23 22:00:48
+# @Last Modified time: 2016-12-27 08:33:35
 
 module DataHandler
 
@@ -118,3 +118,5 @@ module DataHandler
   end
 
 end
+
+require_relative 'file_handler'

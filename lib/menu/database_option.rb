@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:21:25
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-22 21:22:28
+# @Last Modified time: 2016-12-27 08:33:29
 
 module Menu
 
@@ -20,7 +20,7 @@ module Menu
     # main entry point, this method gets the {DataHandler} from the {MainMenu}
     # to work on the repository and to initiate the save operation
     def database_menu
-      Query.initialize_repository(Menu.data_handler.repository)
+      Query.initialize_repository(Menu.data_handler)
       print_menu
     end
 
@@ -55,7 +55,7 @@ module Menu
     # method to save the current repository and exit the script
     def save_and_exit
       begin
-        Menu.data_handler.save_repository
+        Menu.data_handler.persist_data
         Menu.exit_script
       rescue IOError => e
         raise IOError, 'Error while saving data: '.concat(e.message).red
