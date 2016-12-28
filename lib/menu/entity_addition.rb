@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-22 21:23:16
+# @Last Modified time: 2016-12-28 13:02:06
 
 module Menu
 
@@ -21,6 +21,7 @@ module Menu
       add_menu_item('Add person.', 1)
       add_menu_item('Add task.', 2)
       add_menu_item('Cancel and return to previous menu.', 3)
+      nil
     end
 
     # method to process the provided input
@@ -41,6 +42,7 @@ module Menu
     # method to start the addition of a person by the {PersonOption}
     def add_person
       PersonOption.new.add_person
+      nil
     end
 
     # method to add a new {Task} defined by the users console input
@@ -50,8 +52,9 @@ module Menu
       puts "Task with id #{t.id} created successfully.".green
       person_id =
           get_entry("Enter id of the person who should take the task: ").to_i
-      Menu.data_handler.repository.add_task_to_person(person_id, t)
+      Menu.data_handler.add_task_to_person(person_id, t)
       puts "Task with id #{t.id} added to person with id #{person_id}.".green
+      nil
     end
 
     # method to create a task from the provided input

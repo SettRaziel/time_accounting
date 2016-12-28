@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-17 12:13:58
+# @Last Modified time: 2016-12-28 13:06:13
 
 module Menu
 
@@ -50,7 +50,7 @@ module Menu
     def query_person
       begin
         id = get_entry("Enter id: ").to_i
-        p = Menu.data_handler.repository.find_person_by_id(id)
+        p = Menu.data_handler.find_person_by_id(id)
         puts "Result: #{p.to_string}\n\n"
       rescue NoMethodError
         puts "Could not found person with id #{id}.".red
@@ -60,13 +60,13 @@ module Menu
 
     # method to query all persons of the database
     def query_all_persons
-      output_results(Menu.data_handler.repository.get_persons)
+      output_results(Menu.data_handler.get_persons)
       nil
     end
 
     # method to query all tasks of the database
     def query_all_tasks
-      output_results(Menu.data_handler.repository.get_tasks)
+      output_results(Menu.data_handler.get_tasks)
       nil
     end
 
@@ -74,7 +74,7 @@ module Menu
     def query_task
       result = Hash.new()
       id = get_entry("Enter id: ").to_i
-      task = Menu.data_handler.repository.find_task_to_id(id)
+      task = Menu.data_handler.find_task_to_id(id)
       puts task.to_string
       nil
     end
@@ -83,7 +83,7 @@ module Menu
     def query_tasks_to_person
       begin
         id = get_entry("Enter id: ").to_i
-        t = Menu.data_handler.repository.get_tasks_to_person(id)
+        t = Menu.data_handler.get_tasks_to_person(id)
         puts "#{t.size} tasks found".yellow
         output_results(t)
         puts
