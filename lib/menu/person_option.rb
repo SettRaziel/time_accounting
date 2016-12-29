@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:48:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-22 21:23:01
+# @Last Modified time: 2016-12-29 17:26:20
 
 module Menu
 
@@ -48,7 +48,7 @@ module Menu
       name = get_entry('Enter name: ')
 
       p = Person::Person.new(name)
-      Menu.data_handler.repository.add_person(p)
+      Menu.data_handler.add_person(p)
       puts "Person with id #{p.id} added successfully.".green
     end
 
@@ -58,7 +58,7 @@ module Menu
       mat_nr = get_entry('Enter matriculation number: ').to_i
 
       s = Person::Student.new(name, mat_nr)
-      Menu.data_handler.repository.add_person(s)
+      Menu.data_handler.add_person(s)
       puts "Student with id #{s.id} added successfully.".green
     end
 
