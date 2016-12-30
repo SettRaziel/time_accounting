@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-20 19:32:18
+# @Last Modified time: 2016-12-30 09:59:03
 
 module Menu
 
@@ -164,7 +164,7 @@ module Menu
         if (@values[:result] != nil)
           @additions << calculate_worktime
           filename = get_entry("Specify output file: ")
-          p = Menu.data_handler.repository.find_person_by_id(@values[:id])
+          p = Menu.data_handler.find_person_by_id(@values[:id])
           CSVWriter.output(filename, p, @values[:result], @additions)
         else
           puts "Nothing to write right now."
