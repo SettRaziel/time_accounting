@@ -1,7 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:14
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-25 17:49:00
+# @Last Modified time: 2016-12-31 07:27:25
+
+require_relative '../data/file_storage/data_repository'
+require_relative '../data/file_storage/file_reader'
+require_relative '../data/file_storage/file_writer'
 
 module DataHandler
 
