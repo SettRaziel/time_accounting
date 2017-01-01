@@ -1,13 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2016-05-13 09:09:11
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-27 19:37:51
+# @Last Modified time: 2017-01-01 12:40:51
 
 module Menu
 
   module TimeMenu
 
-    # singleton class to serve as a parent class for interval based time menus
+    # menu class to serve as a parent class for interval based time menus
     class IntervaltimeMenu < TimeMenu
 
       private

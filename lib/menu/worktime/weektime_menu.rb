@@ -1,13 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:13:48
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-27 19:38:14
+# @Last Modified time: 2017-01-01 12:41:11
 
 module Menu
 
   module TimeMenu
 
-    # singleton class to present the available query options for a given week
+    # menu class to present the available query options for a given week
     # and for a given entity, identified by its id
     class WeektimeMenu < IntervaltimeMenu
 

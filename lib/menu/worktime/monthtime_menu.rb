@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-04-05 17:36:03
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-27 19:38:02
+# @Last Modified time: 2017-01-01 12:40:58
 
 module Menu
 
@@ -9,7 +9,7 @@ module Menu
   # queries based on the time interval that is presented
   module TimeMenu
 
-    # singleton class to present the available query options for a given month
+    # menu class to present the available query options for a given month
     # and for a given entity, identified by its id
     class MonthtimeMenu < IntervaltimeMenu
 

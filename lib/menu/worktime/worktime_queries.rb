@@ -1,13 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-23 19:31:41
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-22 21:23:31
+# @Last Modified time: 2017-01-01 12:41:18
 
 module Menu
 
   require_relative 'time_menu'
 
-  # singleton class to process the queries of different worktime intervals
+  # menu class to process the queries of different worktime intervals
   class WorktimeQueries < Base
 
     # initialization
