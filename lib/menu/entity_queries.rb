@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-28 13:06:13
+# @Last Modified time: 2017-01-02 19:00:40
 
 module Menu
 
-  # singleton class to process the queries of {Person}s and {Task}s
+  # menu class to process the queries of {Person}s and {Task}s
   class EntityQueries < Base
 
     # initialization

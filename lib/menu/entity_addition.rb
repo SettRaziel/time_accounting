@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-28 13:02:06
+# @Last Modified time: 2017-01-02 19:00:34
 
 module Menu
 
-  # singleton class to process the addition of {Person}s and {Task}s
+  # menu class to process the addition of {Person}s and {Task}s
   class EntityAddition < Base
 
     # initialization

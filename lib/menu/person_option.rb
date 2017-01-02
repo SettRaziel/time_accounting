@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-27 12:48:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-29 17:26:20
+# @Last Modified time: 2017-01-02 19:00:53
 
 module Menu
 
-  # singleton class to process the add option for persons
+  # menu class to process the add option for persons
   class PersonOption < Base
 
     # initialization
