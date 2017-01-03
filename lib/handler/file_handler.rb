@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:14
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-31 07:27:25
+# @Last Modified time: 2017-01-03 18:59:50
 
 require_relative '../data/file_storage/data_repository'
 require_relative '../data/file_storage/file_reader'
@@ -59,30 +59,36 @@ module DataHandler
     end
 
     # method to search for a person by its id
+    # @param [Integer] id the provided person id
     # @return [Person | nil] the person if found or nil
     def find_person_by_id(id)
       @repository.find_person_by_id(id)
     end
 
     # method to search for a person by its id
+    # @param [Integer] id the provided task id
     # @return [Task] the task with the given id
     def find_task_to_id(id)
       @repository.find_task_to_id(id)
     end
 
     # method to search for all tasks associated
+    # @param [Integer] id the provided person id
     # @return [Array] the tasks of the person with the given id
     def get_tasks_to_person(id)
       @repository.get_tasks_to_person(id)
     end
 
     # method to add a person to the transient storage
+    # @param [Person] person the person that be added
     def add_person(person)
       @repository.add_person(person)
       nil
     end
 
     # method to add a task for a person to the transient storage
+    # @param [Integer] person_id the provided person id
+    # @param [Task] task the task that should be added
     def add_task_to_person(person_id, task)
       @repository.add_task_to_person(person_id, task)
       nil
