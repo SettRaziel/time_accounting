@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-08-02 09:05:26
+# @Last Modified time: 2017-01-04 19:12:28
 
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window
@@ -10,7 +10,9 @@ module Menu
   require_relative '../handler/data_handler'
   require_relative '../output/string'
 
+  # dummy class to get access to the data handler within the module
   class << self
+    # @return [BaseHandler] the handler for the data storage
     attr_reader :data_handler
   end
 
