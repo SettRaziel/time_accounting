@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-29 19:43:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-06 19:51:28
+# @Last Modified time: 2017-01-06 23:09:07
 
 require_relative '../../entity/task'
 require_relative 'db_basic'
@@ -30,7 +30,7 @@ module DBMapping
     end
 
     # method to persist a list of {Task::Task}s to the database
-    # @param [Array] persons the {Task::Task} that should be be persisted
+    # @param [Array] tasks the {Task::Task} that should be be persisted
     def persist_tasks(tasks)
       tasks.each { |task|
         @db_base.insert_task(task.id, task.start_time, task.end_time,
