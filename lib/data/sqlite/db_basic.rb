@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-12 21:15:34
+# @Last Modified time: 2017-01-07 14:31:26
 
 # This module holds classes that specify the required sql queries that are
 # neccessary to use the application with an sqlite database storage
@@ -12,12 +12,11 @@ module SqliteDatabase
   # required tables for use.
   class DBBasic
 
-    attr_reader :db
-
     # initialization
-    # @param [String] db_path the file path to the database
-    def initialize(db_path)
-      open_database(db_path)
+    # @param [SQLite3::Database] database a reference of the database
+    def initialize(database)
+      @db = database
+      create_tables
     end
 
     # method to insert a {Person::Person} into the database
@@ -100,6 +99,11 @@ module SqliteDatabase
       stmt.execute
     end
 
+    private
+
+    # @return
+    attr_reader :db
+
     # method to create the required tables in the database
     def create_tables
       @db.execute("CREATE TABLE IF NOT EXISTS Persons(Id INTEGER PRIMARY KEY,
@@ -112,20 +116,6 @@ module SqliteDatabase
                    FOREIGN KEY(T_Id) REFERENCES Tasks(Id))")
       generate_additional_tables
       nil
-    end
-
-    private
-
-    # method to create a new database at the given path
-    # @ param [String] db_path the given file path
-    def open_database(db_path)
-      begin
-        @db = SQLite3::Database.open(db_path)
-        @db.results_as_hash = true
-        create_tables
-      rescue IOError || StandardError
-        raise ArgumentError, "Error [DBCreator]: invalid path to database."
-      end
     end
 
     # method for child classes to specify the generation of additional tables

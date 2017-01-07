@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-29 19:43:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-06 23:09:07
+# @Last Modified time: 2017-01-07 14:31:12
 
 require_relative '../../entity/task'
 require_relative 'db_basic'
@@ -12,9 +12,9 @@ module DBMapping
   class TaskMapper
 
     # initialization
-    # @param [String] filepath the path to the database
-    def initialize(filepath)
-      @db_base = SqliteDatabase::DBBasic.new(filepath)
+    # @param [SQLite3::Database] database a reference of the database
+    def initialize(database)
+      @db_base = SqliteDatabase::DBBasic.new(database)
     end
 
     # public method to transform database persons to entity {Task::Task}

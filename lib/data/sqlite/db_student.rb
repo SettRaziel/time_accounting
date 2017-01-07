@@ -1,16 +1,16 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-14 18:25:05
+# @Last Modified time: 2017-01-07 14:34:54
 
 module SqliteDatabase
 
   class DBStudent < DBBasic
 
     # initialization
-    # @param [String] db_path the file path to the database
-    def initialize(db_path)
-      open_database(db_path)
+    # @param [SQLite3::Database] database a reference of the database
+    def initialize(databse)
+      open_database(database)
     end
 
     # method to insert a {Person::Student} into the database
