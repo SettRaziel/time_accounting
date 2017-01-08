@@ -1,11 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-29 19:43:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-07 14:31:12
+# @Last Modified time: 2017-01-08 10:36:32
 
 require_relative '../../entity/task'
 require_relative 'db_basic'
 
+# This module holds the classes to realize an ER-Mapping from the application
+# entities to the corresponding Sqlite3 tables.
 module DBMapping
 
   # class to apply ER-mapping for {Task::Task} objects to a sqlite database

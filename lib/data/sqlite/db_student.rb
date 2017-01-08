@@ -1,10 +1,12 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-07 14:34:54
+# @Last Modified time: 2017-01-08 10:41:20
 
 module SqliteDatabase
 
+  # Child class of {SqliteDatabase::DBBasic} to add the capabilities to the
+  # database to handle {Person::Student} objects
   class DBStudent < DBBasic
 
     # initialization
