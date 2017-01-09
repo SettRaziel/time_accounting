@@ -1,10 +1,8 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-04 19:12:28
+# @Last Modified time: 2017-01-09 18:54:01
 
-# This module holds the classes for the terminal menu, which can be used to
-# run this program in a terminal window
 module Menu
 
   require_relative '../handler/data_handler'
