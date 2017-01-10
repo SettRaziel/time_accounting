@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-12-07 20:11:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-07 20:25:36
+# @Last Modified time: 2017-01-10 19:54:33
 
 require_relative 'db_basic'
 
@@ -11,19 +11,31 @@ module DBMapping
   class RelationsMapper
 
     # initialization
-    # @param [String] filepath the path to the database
-    def initialize(filepath)
-      @db_base = SqliteDatabase::DBBasic.new(filepath)
+    # @param [SQLite3::Database] database a reference of the database
+    def initialize(database)
+      @db_base = SqliteDatabase::DBBasic.new(database)
     end
 
     # public method to map available tasks the its corresponding persons
-    # @param [Hash] relations the mapping person_id => array of taks_ids
+    # @param [Hash] relations the mapping person_id => array of task_ids
     def generate_person_and_task_relations(relations)
       relations.each_pair { |person_id, values|
         values.each { |task_id|
-          @db.map_task_to_person(person_id, task_id)
+          @db_base.map_task_to_person(person_id, task_id)
         }
       }
+    end
+
+    # method to retrieve the task assignments to the persons identified by
+    # its corresponding ids
+    # @return [Hash] the mapping person_id => array of task_ids
+    def map_entity_relations
+      assignments = @db_base.query_assignments
+      results = Hash.new()
+      assignments.each { |result|
+        results[result['P_Id']] = result['T_Id']
+      }
+      return results
     end
 
     private
