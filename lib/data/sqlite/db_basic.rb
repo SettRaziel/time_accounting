@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-07 14:31:26
+# @Last Modified time: 2017-01-11 20:03:23
 
 # This module holds classes that specify the required sql queries that are
 # neccessary to use the application with an sqlite database storage
@@ -97,6 +97,14 @@ module SqliteDatabase
     def query_assignments
       stmt = @db.prepare('SELECT * FROM Matching')
       stmt.execute
+    end
+
+    # method to query the task ids for a Person represented by its id
+    # @param [Integer] p_id the person id
+    # @return [ResultSet] the query result
+    def query_assignments_for_person(p_id)
+      stmt = @db.prepare('SELECT T_id FROM Matching WHERE Id = ?')
+      stmt.execute(p_id)
     end
 
     private
