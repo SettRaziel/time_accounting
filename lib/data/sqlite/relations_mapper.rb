@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-12-07 20:11:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-10 19:54:33
+# @Last Modified time: 2017-01-12 21:06:20
 
 require_relative 'db_basic'
 
@@ -34,6 +34,18 @@ module DBMapping
       results = Hash.new()
       assignments.each { |result|
         results[result['P_Id']] = result['T_Id']
+      }
+      return results
+    end
+
+    # method to retrieve the task ids assigned to a person represented by its id
+    # @param [Integer] p_id the person id
+    # @return [Array] the task ids
+    def retrieve_tasks_for_person(p_id)
+      assignments = @db_base.query_assignments_for_person(p_id)
+      results = Array.new()
+      assignments.each { |result|
+        results << result['T_Id']
       }
       return results
     end
