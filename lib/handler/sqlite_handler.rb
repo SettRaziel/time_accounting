@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-14 10:02:34
+# @Last Modified time: 2017-01-15 13:09:18
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -24,7 +24,7 @@ module DataHandler
       super(filename)
     end
 
-    def load_data
+    def prepare_data
       # atm do nothing
     end
 
@@ -89,6 +89,7 @@ module DataHandler
 
     private
 
+    # @return [SQLite3::Database] a reference to the database
     attr_reader :database
 
     # method to initialize the required id generators

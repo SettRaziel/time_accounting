@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-28 15:08:12
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-26 09:26:13
+# @Last Modified time: 2017-01-15 12:59:50
 
 module Menu
 
@@ -60,7 +60,6 @@ module Menu
       filename = get_database_name("Load an existing database.")
       begin
         handler = DataHandler::FileHandler.new(filename)
-        handler.load_data
         Menu.initialize_datahandler(handler)
       rescue IOError => e
         puts e.message.red

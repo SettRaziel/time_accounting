@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:14
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-03 18:59:50
+# @Last Modified time: 2017-01-15 13:01:22
 
 require_relative '../data/file_storage/data_repository'
 require_relative '../data/file_storage/file_reader'
@@ -26,7 +26,7 @@ module DataHandler
     # method to load the content into the repository from the path
     # specified by the filename and based on the used adapter
     # @raise [IOError] if an error occurs during the loading process
-    def load_data
+    def prepare_data
       begin
         @repository = FileReader.read_file(filename)
         initialize_id_generators
