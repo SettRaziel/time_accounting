@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:59:49
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-15 13:01:04
+# @Last Modified time: 2017-01-16 17:36:17
 
 module DataHandler
 
@@ -17,16 +17,6 @@ module DataHandler
     def initialize(filename)
       @filename = filename
       prepare_data
-    end
-
-    # method to prepare the child class for work and load or initialize relevant
-    # data or objects
-    # @abstract subclasses need to implement this method
-    # @raise [NotImplementedError] if the subclass does not have this method
-    def prepare_data
-      fail NotImplementedError, " Error: the subclass
-        #{self.name.split('::').last} needs to implement the method:
-        load_repository from its base class".red
     end
 
     # method to save the content of the repository to the path specified by
@@ -106,6 +96,16 @@ module DataHandler
 
     # @return [String] the file name
     attr_reader :filename
+
+    # method to prepare the child class for work and load or initialize relevant
+    # data or objects
+    # @abstract subclasses need to implement this method
+    # @raise [NotImplementedError] if the subclass does not have this method
+    def prepare_data
+      fail NotImplementedError, " Error: the subclass
+        #{self.name.split('::').last} needs to implement the method:
+        load_repository from its base class".red
+    end
 
     # method to initialize the required id generators
     # @abstract subclasses need to implement this method

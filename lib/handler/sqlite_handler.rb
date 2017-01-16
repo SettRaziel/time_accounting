@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-15 13:09:18
+# @Last Modified time: 2017-01-16 17:38:49
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -22,10 +22,6 @@ module DataHandler
     def initialize(filename)
       open_database(filename)
       super(filename)
-    end
-
-    def prepare_data
-      # atm do nothing
     end
 
     # method to persis the newly created or updated data to the database
@@ -91,6 +87,16 @@ module DataHandler
 
     # @return [SQLite3::Database] a reference to the database
     attr_reader :database
+    # @return [Hash] the mapping Symbol => Mapper
+    attr_reader :mapper
+
+    # method to initialize the required data objects
+    def prepare_data
+      @mapper = { :person => DBMapping::PersonMapper.new(@database),
+                  :task => DBMapping::TaskMapper.new(@database),
+                  :relation => DBMapping::RelationsMapper.new(@database)}
+      nil
+    end
 
     # method to initialize the required id generators
     def initialize_id_generators

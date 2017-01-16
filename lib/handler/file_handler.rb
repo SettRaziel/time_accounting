@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:14
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-15 13:01:22
+# @Last Modified time: 2017-01-16 17:36:36
 
 require_relative '../data/file_storage/data_repository'
 require_relative '../data/file_storage/file_reader'
@@ -21,20 +21,6 @@ module DataHandler
     def initialize(filename)
       @repository=DataRepository.new()
       super(filename)
-    end
-
-    # method to load the content into the repository from the path
-    # specified by the filename and based on the used adapter
-    # @raise [IOError] if an error occurs during the loading process
-    def prepare_data
-      begin
-        @repository = FileReader.read_file(filename)
-        initialize_id_generators
-        nil
-      rescue StandardError => e
-        raise IOError,
-              " An Error occurred while loading the database: #{e.message}".red
-      end
     end
 
     # method to save the content of the repository to the path
@@ -98,6 +84,20 @@ module DataHandler
 
     # @return [DataRepository] the repository
     attr_reader :repository
+
+    # method to load the content into the repository from the path
+    # specified by the filename and based on the used adapter
+    # @raise [IOError] if an error occurs during the loading process
+    def prepare_data
+      begin
+        @repository = FileReader.read_file(filename)
+        initialize_id_generators
+        nil
+      rescue StandardError => e
+        raise IOError,
+              " An Error occurred while loading the database: #{e.message}".red
+      end
+    end
 
     # method to initialize the required id generators
     def initialize_id_generators
