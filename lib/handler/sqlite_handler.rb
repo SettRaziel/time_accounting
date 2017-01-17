@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-16 17:38:49
+# @Last Modified time: 2017-01-17 07:18:37
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -32,9 +32,7 @@ module DataHandler
     # method to return all stored persons
     # @return [Array] all stored persons
     def get_persons
-      fail NotImplementedError, " Error: the subclass
-        #{self.name.split('::').last} needs to implement the method:
-        get_persons from its base class".red
+      @mapper[:person].generate_persons
     end
 
     # method to return all stored tasks
