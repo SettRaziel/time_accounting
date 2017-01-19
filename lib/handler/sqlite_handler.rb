@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-18 07:26:25
+# @Last Modified time: 2017-01-19 21:49:33
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -44,9 +44,7 @@ module DataHandler
     # method to search for a person by its id
     # @return [Person | nil] the person if found or nil
     def find_person_by_id(id)
-      fail NotImplementedError, " Error: the subclass
-        #{self.name.split('::').last} needs to implement the method:
-        find_person_by_id from its base class".red
+      @mapper[:person].query_person(id)
     end
 
     # method to search for a person by its id

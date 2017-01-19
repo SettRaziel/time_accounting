@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-25 19:47:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-06 19:51:11
+# @Last Modified time: 2017-01-19 22:06:31
 
 require_relative '../../entity/person/person'
 require_relative 'db_basic'
@@ -35,6 +35,13 @@ module DBMapping
         @db_base.insert_person(person.id, person.name)
       }
       nil
+    end
+
+    # method to search for a person by its id
+    # @return [Person::Person | nil] the result, if found or nil
+    def query_person(id)
+      result = @db_base.query_person_by_id(id).next
+      Person::Person.new(result['Name'], Integer(result['Id']))
     end
 
     private
