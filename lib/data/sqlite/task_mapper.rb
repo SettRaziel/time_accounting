@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-29 19:43:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-08 10:36:32
+# @Last Modified time: 2017-01-20 21:04:28
 
 require_relative '../../entity/task'
 require_relative 'db_basic'
@@ -39,6 +39,14 @@ module DBMapping
                              task.description)
       }
       nil
+    end
+
+    # method to search for a task by its id
+    # @return [Task::Task | nil] the result, if found or nil
+    def query_task(id)
+      result = @db_base.query_task(id).next
+      Task::Task.new(result['Id'], result['Start'], result['End'],
+                     result['Description'])
     end
 
     private

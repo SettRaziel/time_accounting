@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-19 21:49:33
+# @Last Modified time: 2017-01-20 21:06:08
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -50,9 +50,7 @@ module DataHandler
     # method to search for a person by its id
     # @return [Task] the task with the given id
     def find_task_to_id(id)
-      fail NotImplementedError, " Error: the subclass
-        #{self.name.split('::').last} needs to implement the method:
-        find_task_to_id from its base class".red
+      @mapper[:task].query_task(id)
     end
 
     # method to search for all tasks associated
