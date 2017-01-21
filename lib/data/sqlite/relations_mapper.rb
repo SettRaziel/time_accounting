@@ -1,10 +1,10 @@
 # @Author: Benjamin Held
 # @Date:   2016-12-07 20:11:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-12 21:06:20
+# @Last Modified time: 2017-01-21 19:43:25
 
-require_relative 'db_basic'
-
+# This module holds the classes to realize an ER-Mapping from the application
+# entities to the corresponding Sqlite3 tables.
 module DBMapping
 
   # class to apply ER-mapping for person to tasks relations in a sqlite database

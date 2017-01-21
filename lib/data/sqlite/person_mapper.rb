@@ -1,10 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-25 19:47:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-19 22:06:31
-
-require_relative '../../entity/person/person'
-require_relative 'db_basic'
+# @Last Modified time: 2017-01-21 19:34:43
 
 module DBMapping
 
