@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-29 19:43:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-21 19:43:19
+# @Last Modified time: 2017-01-22 17:35:09
 
 module DBMapping
 
@@ -20,8 +20,7 @@ module DBMapping
       results = @db_base.query_tasks
       tasks = Array.new()
       results.each { |result|
-        tasks << Task::Task.new(result['Id'], result['Start'],
-                                result['End'], result['Description'])
+        tasks << create_task_from_result(result)
       }
       return tasks
     end
@@ -39,15 +38,21 @@ module DBMapping
     # method to search for a task by its id
     # @return [Task::Task | nil] the result, if found or nil
     def query_task(id)
-      result = @db_base.query_task(id).next
-      Task::Task.new(result['Id'], result['Start'], result['End'],
-                     result['Description'])
+      create_task_from_result(@db_base.query_task(id).next)
     end
 
     private
 
     # @return [DBBasic] the basic database adapter
     attr_reader :db_base
+
+    # method to create a {Task::Task} from a result entry
+    # @param [Hash] result an entry from the result set
+    def create_task_from_result(result)
+      Task::Task.new(result['Id'], Time.parse(result['Start']),
+                     Time.parse(result['End']),
+                     result['Description'])
+    end
 
   end
 
