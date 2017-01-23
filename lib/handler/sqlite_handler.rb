@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-20 21:06:08
+# @Last Modified time: 2017-01-23 19:16:59
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -9,6 +9,8 @@
 # * Plain files
 # * Sqlite3 database
 module DataHandler
+
+  require_relative '../data/sqlite/db_mapping'
 
   # This class serves as a handler between the repositories and the queries. It
   # also takes care about the initialization of the repositories and the id
@@ -54,11 +56,10 @@ module DataHandler
     end
 
     # method to search for all tasks associated
-    # @return [Array] the taskss of the person with the given id
+    # @param [Integer] id the id of the person
+    # @return [Array] the tasks of the person with the given id
     def get_tasks_to_person(id)
-      fail NotImplementedError, " Error: the subclass
-        #{self.name.split('::').last} needs to implement the method:
-        get_tasks_to_person from its base class".red
+      tasks = @mapper[:relation].retrieve_tasks_for_person(id)
     end
 
     # method to add a person to the transient storage
