@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-23 19:16:59
+# @Last Modified time: 2017-01-24 17:50:57
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -63,10 +63,9 @@ module DataHandler
     end
 
     # method to add a person to the transient storage
+    # @param [Person::Person] person the person that should be added
     def add_person(person)
-      fail NotImplementedError, " Error: the subclass
-        #{self.name.split('::').last} needs to implement the method:
-        add_person from its base class".red
+      @change_queue[:person] << person
     end
 
     # method to add a task for a person to the transient storage
@@ -82,12 +81,17 @@ module DataHandler
     attr_reader :database
     # @return [Hash] the mapping Symbol => Mapper
     attr_reader :mapper
+    # @return [Hash] a hash to map the change operations for the database
+    attr_reader :change_queue
 
     # method to initialize the required data objects
     def prepare_data
       @mapper = { :person => DBMapping::PersonMapper.new(@database),
                   :task => DBMapping::TaskMapper.new(@database),
                   :relation => DBMapping::RelationsMapper.new(@database)}
+      @change_queue = { :person => Array.new(),
+                        :task => Array.new(),
+                        :relation => Array.new()}
       nil
     end
 
