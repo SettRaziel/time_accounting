@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-25 08:09:58
+# @Last Modified time: 2017-01-26 19:18:39
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -28,7 +28,11 @@ module DataHandler
 
     # method to persis the newly created or updated data to the database
     def persist_data
-      # write all updates and additions to the database
+      @mapper[:person].persist_persons(@change_queue[:person])
+      @mapper[:task].persist_tasks(@change_queue[:task])
+      @mapper[:relation].
+             generate_person_and_task_relations(@change_queue[:relation])
+      nil
     end
 
     # method to return all stored persons
@@ -66,6 +70,7 @@ module DataHandler
     # @param [Person::Person] person the person that should be added
     def add_person(person)
       @change_queue[:person] << person
+      nil
     end
 
     # method to add a task for a person to the transient storage
@@ -75,6 +80,7 @@ module DataHandler
         @change_queue[:relation][person_id] = Array.new()
       end
       @change_queue[:relation][person_id] << task.id
+      nil
     end
 
     private
