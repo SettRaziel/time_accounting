@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-26 19:18:39
+# @Last Modified time: 2017-01-27 22:17:18
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -100,14 +100,13 @@ module DataHandler
       @change_queue = { :person => Array.new(),
                         :task => Array.new(),
                         :relation => Hash.new()}
+      initialize_id_generators
       nil
     end
 
     # method to initialize the required id generators
     def initialize_id_generators
-      fail NotImplementedError, " Error: the subclass
-        #{self.name.split('::').last} needs to implement the method:
-        initialize_id_generators from its base class".red
+      Person::PersonIDGenerator.new(@mapper[:person].query_max_person_id)
     end
 
     # method to create a new database at the given path

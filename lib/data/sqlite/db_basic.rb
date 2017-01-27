@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-11 20:03:23
+# @Last Modified time: 2017-01-27 22:18:06
 
 # This module holds classes that specify the required sql queries that are
 # neccessary to use the application with an sqlite database storage
@@ -105,6 +105,13 @@ module SqliteDatabase
     def query_assignments_for_person(p_id)
       stmt = @db.prepare('SELECT T_id FROM Matching WHERE Id = ?')
       stmt.execute(p_id)
+    end
+
+    # method to query the max id of the person table
+    # @return [ResultSet] the query result
+    def query_max_person_id
+      stmt = @db.prepare('SELECT Id FROM Persons ORDER BY Id DESC LIMIT 1')
+      stmt.execute
     end
 
     private
