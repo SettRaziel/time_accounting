@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-27 22:17:18
+# @Last Modified time: 2017-01-28 13:00:29
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -107,6 +107,8 @@ module DataHandler
     # method to initialize the required id generators
     def initialize_id_generators
       Person::PersonIDGenerator.new(@mapper[:person].query_max_person_id)
+      Task::TaskIDGenerator.new(@mapper[:task].query_max_task_id)
+      nil
     end
 
     # method to create a new database at the given path

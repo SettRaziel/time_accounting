@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-29 19:43:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-22 17:35:09
+# @Last Modified time: 2017-01-28 12:58:42
 
 module DBMapping
 
@@ -39,6 +39,13 @@ module DBMapping
     # @return [Task::Task | nil] the result, if found or nil
     def query_task(id)
       create_task_from_result(@db_base.query_task(id).next)
+    end
+
+    # method to query the max id of the task table
+    # @return [Integer] the maximal task id
+    def query_max_task_id
+      result = @db_base.query_max_task_id.next
+      Integer(result['Id'])
     end
 
     private

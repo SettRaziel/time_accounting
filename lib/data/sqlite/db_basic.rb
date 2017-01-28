@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-10-29 16:25:44
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-27 22:18:06
+# @Last Modified time: 2017-01-28 12:56:18
 
 # This module holds classes that specify the required sql queries that are
 # neccessary to use the application with an sqlite database storage
@@ -111,6 +111,13 @@ module SqliteDatabase
     # @return [ResultSet] the query result
     def query_max_person_id
       stmt = @db.prepare('SELECT Id FROM Persons ORDER BY Id DESC LIMIT 1')
+      stmt.execute
+    end
+
+    # method to query the max id of the person table
+    # @return [ResultSet] the query result
+    def query_max_task_id
+      stmt = @db.prepare('SELECT Id FROM Tasks ORDER BY Id DESC LIMIT 1')
       stmt.execute
     end
 
