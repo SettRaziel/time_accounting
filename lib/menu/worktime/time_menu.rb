@@ -1,13 +1,12 @@
 # @Author: Benjamin Held
 # @Date:   2016-03-25 12:22:05
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-30 09:59:03
+# @Last Modified time: 2017-01-29 09:28:53
 
 module Menu
 
   module TimeMenu
 
-    require_relative '../../query/query'
     require_relative '../../output/csv/csv_writer'
 
     # menu class that serves as a base class for menus used to query information
