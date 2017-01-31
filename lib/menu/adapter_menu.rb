@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-01-29 09:22:11
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-30 20:43:04
+# @Last Modified time: 2017-01-31 17:48:50
 
 module Menu
 
@@ -17,7 +17,7 @@ module Menu
 
     private
 
-    # the storage path
+    # @return [String] the storage path
     attr_reader :filename
 
     # method to define all printable menu items
@@ -37,7 +37,7 @@ module Menu
       else
         handle_wrong_option
       end
-      return true
+      false
     end
 
     # method to set the selected data handler
