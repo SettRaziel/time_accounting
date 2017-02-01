@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-28 13:00:29
+# @Last Modified time: 2017-02-01 21:05:46
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -10,6 +10,7 @@
 # * Sqlite3 database
 module DataHandler
 
+  require 'sqlite3'
   require_relative '../data/sqlite/db_mapping'
 
   # This class serves as a handler between the repositories and the queries. It
@@ -117,6 +118,7 @@ module DataHandler
       begin
         @database = SQLite3::Database.open(db_path)
         @database.results_as_hash = true
+        nil
       rescue IOError || StandardError
         raise ArgumentError, "Error [DBCreator]: invalid path to database."
       end
