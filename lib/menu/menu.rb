@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-29 09:28:27
+# @Last Modified time: 2017-02-01 17:27:28
 
 require_relative '../handler/data_handler'
 require_relative '../query/query'
@@ -36,6 +36,7 @@ module Menu
   end
 
   require_relative 'base_menu'
+  require_relative 'adapter_menu'
   require_relative 'database_option'
   require_relative 'main_menu'
   require_relative 'person_option'
