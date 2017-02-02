@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-01 21:05:46
+# @Last Modified time: 2017-02-02 21:38:50
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -64,7 +64,12 @@ module DataHandler
     # @param [Integer] id the id of the person
     # @return [Array] the tasks of the person with the given id
     def get_tasks_to_person(id)
-      tasks = @mapper[:relation].retrieve_tasks_for_person(id)
+      task_ids = @mapper[:relation].retrieve_tasks_for_person(id)
+      tasks = Array.new()
+      task_ids.each { |task_id|
+        tasks << find_task_to_id(task_id)
+      }
+      tasks
     end
 
     # method to add a person to the transient storage
