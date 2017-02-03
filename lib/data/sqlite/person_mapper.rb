@@ -1,17 +1,17 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-25 19:47:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-27 22:19:36
+# @Last Modified time: 2017-02-03 18:11:51
 
 module DBMapping
 
   # Class to apply ER-mapping for {Person::Person} objects to a sqlite database
-  class PersonMapper
+  class PersonMapper < Base
 
     # initialization
-    # @param [String] filepath the path to the database
-    def initialize(filepath)
-      @db_base = SqliteDatabase::DBBasic.new(filepath)
+    # @param [String] database the path to the database
+    def initialize(database)
+      super(database)
     end
 
     # public method to transform database persons to entity {Person::Person}
@@ -44,14 +44,8 @@ module DBMapping
     # method to query the max id of the person table
     # @return [Integer] the maximal person id
     def query_max_person_id
-      result = @db_base.query_max_person_id.next
-      Integer(result['Id'])
+      check_max_id(@db_base.query_max_person_id.next)
     end
-
-    private
-
-    # @return [DBBasic] the basic database adapter
-    attr_reader :db_base
 
   end
 
