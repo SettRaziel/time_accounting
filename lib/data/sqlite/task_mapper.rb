@@ -1,17 +1,17 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-29 19:43:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-28 12:58:42
+# @Last Modified time: 2017-02-04 15:44:25
 
 module DBMapping
 
   # class to apply ER-mapping for {Task::Task} objects to a sqlite database
-  class TaskMapper
+  class TaskMapper < Base
 
     # initialization
     # @param [SQLite3::Database] database a reference of the database
     def initialize(database)
-      @db_base = SqliteDatabase::DBBasic.new(database)
+      super(database)
     end
 
     # public method to transform database persons to entity {Task::Task}
@@ -44,14 +44,10 @@ module DBMapping
     # method to query the max id of the task table
     # @return [Integer] the maximal task id
     def query_max_task_id
-      result = @db_base.query_max_task_id.next
-      Integer(result['Id'])
+      check_max_id(@db_base.query_max_task_id.next)
     end
 
     private
-
-    # @return [DBBasic] the basic database adapter
-    attr_reader :db_base
 
     # method to create a {Task::Task} from a result entry
     # @param [Hash] result an entry from the result set
