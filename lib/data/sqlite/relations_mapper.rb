@@ -1,19 +1,19 @@
 # @Author: Benjamin Held
 # @Date:   2016-12-07 20:11:38
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-21 19:43:25
+# @Last Modified time: 2017-02-05 10:55:59
 
 # This module holds the classes to realize an ER-Mapping from the application
 # entities to the corresponding Sqlite3 tables.
 module DBMapping
 
   # class to apply ER-mapping for person to tasks relations in a sqlite database
-  class RelationsMapper
+  class RelationsMapper < Base
 
     # initialization
     # @param [SQLite3::Database] database a reference of the database
     def initialize(database)
-      @db_base = SqliteDatabase::DBBasic.new(database)
+      super(database)
     end
 
     # public method to map available tasks the its corresponding persons
@@ -49,11 +49,6 @@ module DBMapping
       }
       return results
     end
-
-    private
-
-    # @return [DBBasic] the basic database adapter
-    attr_reader :db_base
 
   end
 
