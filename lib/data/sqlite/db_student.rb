@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-08 10:41:20
+# @Last Modified time: 2017-02-06 19:12:02
 
 module SqliteDatabase
 
@@ -11,7 +11,7 @@ module SqliteDatabase
 
     # initialization
     # @param [SQLite3::Database] database a reference of the database
-    def initialize(databse)
+    def initialize(database)
       open_database(database)
     end
 
