@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-02-02 21:27:19
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-02 21:47:28
+# @Last Modified time: 2017-02-07 17:42:43
 
 module DBMapping
 
@@ -11,8 +11,8 @@ module DBMapping
 
     # initialization
     # @param [SQLite3::Database] database a reference of the database
-    def initialize(filepath)
-      @db_base = SqliteDatabase::DBBasic.new(filepath)
+    def initialize(database)
+      @db_base = SqliteDatabase::DBBasic.new(database)
     end
 
     private
