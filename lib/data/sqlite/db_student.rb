@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-06 19:12:02
+# @Last Modified time: 2017-02-08 18:54:50
 
 module SqliteDatabase
 
@@ -56,6 +56,14 @@ module SqliteDatabase
                           Students s LEFT JOIN Persons p on p.id=s.p_id
                           WHERE s.Mat_Nr = ?")
       stmt.execute(id)
+    end
+
+    # method to query all {Person::Student}s
+    # @return [ResultSet] the results
+    def query_students
+      stmt = @db.prepare("SELECT p.Id, p.Name, s.Mat_Nr FROM
+                          Students s LEFT JOIN Persons p on p.id=s.p_id")
+      stmt.execute
     end
 
     private
