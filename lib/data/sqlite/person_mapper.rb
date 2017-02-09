@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-25 19:47:28
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-03 18:11:51
+# @Last Modified time: 2017-02-09 19:09:16
 
 module DBMapping
 
@@ -38,7 +38,10 @@ module DBMapping
     # @return [Person::Person | nil] the result, if found or nil
     def query_person(id)
       result = @db_base.query_person_by_id(id).next
-      Person::Person.new(result['Name'], Integer(result['Id']))
+      if (result != nil)
+        return Person::Person.new(result['Name'], Integer(result['Id']))
+      end
+      nil
     end
 
     # method to query the max id of the person table
