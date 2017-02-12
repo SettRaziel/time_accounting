@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-04 19:35:56
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-08 18:54:50
+# @Last Modified time: 2017-02-12 14:03:09
 
 module SqliteDatabase
 
@@ -12,7 +12,7 @@ module SqliteDatabase
     # initialization
     # @param [SQLite3::Database] database a reference of the database
     def initialize(database)
-      open_database(database)
+      super(database)
     end
 
     # method to insert a {Person::Student} into the database
@@ -64,6 +64,14 @@ module SqliteDatabase
       stmt = @db.prepare("SELECT p.Id, p.Name, s.Mat_Nr FROM
                           Students s LEFT JOIN Persons p on p.id=s.p_id")
       stmt.execute
+    end
+
+    # method to query a metriculcation number for a given id
+    # @param [Integer] id the query id
+    # @return [ResultSet] the result
+    def query_matnr_for_student(id)
+      stmt = @db.prepare("SELECT s.Mat_Nr FROM Students s WHERE s.P_Id = ?")
+      stmt.execute(id)
     end
 
     private
