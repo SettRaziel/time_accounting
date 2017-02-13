@@ -1,12 +1,13 @@
 # @Author: Benjamin Held
 # @Date:   2017-02-08 18:32:01
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-11 17:29:31
+# @Last Modified time: 2017-02-13 18:21:29
 
 module DBMapping
 
-  # Class to apply ER-mapping for {Person::Student} objects to a sqlite database
-  class StudentMapper < Base
+  # Class to apply ER-mapping for {Person::Person} and {Person::Student} objects
+  # to a sqlite database
+  class StudentMapper < PersonMapper
 
     # initialization
     # @param [String] database the path to the database
@@ -14,34 +15,47 @@ module DBMapping
       @db_base = SqliteDatabase::DBStudent.new(database)
     end
 
-    # public method to transform database persons to entity {Person::Student}
-    # @return [Array] all transformed {Person::Student} entities
-    def generate_students
-      results = @db_base.query_students
-      students = Array.new()
+    # public method to transform database persons to entity {Person}
+    # @return [Array] all transformed {Person} entities
+    def generate_persons
+      results = @db_base.query_persons
+      persons = Array.new()
       results.each { |result|
-        students << Person::Student.new(result['Name'], Integer(result['Id']),
-                                        Integer(result['Mat_Nr']))
+        id = Integer(result['Id'])
+        mat_nr = @db_base.query_matnr_for_student(id).next
+        if (mat_nr != nil)
+          persons << Person::Student.new(result['Name'], id, mat_nr)
+        else
+          persons << Person::Person.new(result['Name'], id)
+        end
       }
       return persons
     end
 
-    # method to persist a list of {Person::Student}s to the database
-    # @param [Array] students the {Person::Student} that should be be persisted
-    def persist_students(students)
-      students.each { |student|
-        @db_base.insert_student(student.id, student.name, student.mat_nr)
+    # method to persist a list of {Person}s to the database
+    # @param [Array] persons the {Person}s that should be be persisted
+    def persist_persons(persons)
+      persons.each { |person|
+        case (person)
+        when Person::Student
+          @db_base.insert_student(person.id, person.name, person.mat_nr)
+        when Person::Person
+          @db_base.insert_person(person.id, person.name)
+        else
+          raise ArgumentError, 'Cannot persist object. Class not found.'
+        end
       }
       nil
     end
 
     # method to search for a person by its id
-    # @return [Person::Student | nil] the result, if found or nil
-    def query_student(id)
-      result = @db_base.query_student_by_id(id).next
+    # @return [Person::Person | nil] the result, if found or nil
+    def query_person(id)
+      result = query_student(id)
+      return result if (result != nil)
+      result = @db_base.query_person_by_id(id).next
       if (result != nil)
-        return Person::Student.new(result['Name'], Integer(result['Id']),
-                                   Integer(result['Mat_Nr']))
+        return Person::Person.new(result['Name'], Integer(result['Id']))
       end
       nil
     end
