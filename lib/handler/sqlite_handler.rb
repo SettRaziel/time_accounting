@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-11-19 15:50:59
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-02 21:38:50
+# @Last Modified time: 2017-02-14 07:12:15
 
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
@@ -100,7 +100,7 @@ module DataHandler
 
     # method to initialize the required data objects
     def prepare_data
-      @mapper = { :person => DBMapping::PersonMapper.new(@database),
+      @mapper = { :person => DBMapping::StudentMapper.new(@database),
                   :task => DBMapping::TaskMapper.new(@database),
                   :relation => DBMapping::RelationsMapper.new(@database)}
       @change_queue = { :person => Array.new(),

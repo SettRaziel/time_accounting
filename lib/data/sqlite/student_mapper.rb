@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-02-08 18:32:01
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-13 18:21:29
+# @Last Modified time: 2017-02-14 07:11:24
 
 module DBMapping
 
@@ -24,7 +24,7 @@ module DBMapping
         id = Integer(result['Id'])
         mat_nr = @db_base.query_matnr_for_student(id).next
         if (mat_nr != nil)
-          persons << Person::Student.new(result['Name'], id, mat_nr)
+          persons << Person::Student.new(result['Name'], id, mat_nr['Mat_Nr'])
         else
           persons << Person::Person.new(result['Name'], id)
         end
