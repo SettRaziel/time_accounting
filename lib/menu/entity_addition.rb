@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-18 18:18:17
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-02 19:00:34
+# @Last Modified time: 2017-02-14 22:17:11
 
 module Menu
 
@@ -20,7 +20,8 @@ module Menu
     def define_menu_items
       add_menu_item('Add person.', 1)
       add_menu_item('Add task.', 2)
-      add_menu_item('Cancel and return to previous menu.', 3)
+      add_menu_item('Persist data and return to previous menu.', 3)
+      add_menu_item('Cancel and return to previous menu.', 4)
       nil
     end
 
@@ -32,7 +33,10 @@ module Menu
       case (input.to_i)
         when 1 then add_person
         when 2 then add_task
-        when 3 then return false
+        when 3
+          Menu.data_handler.persist_data
+          return false
+        when 4 then return false
       else
         handle_wrong_option
       end
