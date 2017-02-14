@@ -13,7 +13,8 @@ guides trough the different options.
 * Formatted terminal output for the queries (basic with v0.2.0, but will be extended)
 * Formatted pdf output using latex, formatted csv output (basic csv output
   with v0.2.1)
-* Reading, storing and querying tasks and persons in a database (e.g. sqlite)
+* Reading, storing and querying tasks and persons in a database
+  * Storage in sqlite3 database as main feature of v0.3.0
 * Deleting existing persons and tasks and freeing their blocked ids
 * Extension of query capabilities
 
@@ -45,6 +46,7 @@ Written with Ruby >= 2.2.2
 ## Requirements
 * Ruby with a version > 2.2
 * csv (all)
+* sqlite3 (when using sqlite3 as database backend)
 * yard (optional for documentation)
 
 ## License
