@@ -35,7 +35,7 @@ WorkAccounting help:
 ## Documentation
 Documentation is written in yard and can be created by running the shell-script
 `create_yard.sh`. Yard needs to be installed on the system in order to do that.
-The documentation can also be found online [here](https://bheld.eu/doc/accounting_doc/frames.html).
+The documentation can also be found online [here](https://bheld.eu/doc/accounting_doc/index.html).
 
 ## Used version
 Written with Ruby >= 2.2.2
