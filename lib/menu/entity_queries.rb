@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2016-02-17 16:39:45
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-02 19:00:40
+# @Last Modified time: 2017-07-02 20:08:32
 
 module Menu
 
@@ -72,7 +72,6 @@ module Menu
 
     # method to query a task from the database by its id
     def query_task
-      result = Hash.new()
       id = get_entry("Enter id: ").to_i
       task = Menu.data_handler.find_task_to_id(id)
       puts task.to_string
