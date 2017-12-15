@@ -41,7 +41,7 @@ The documentation can also be found online [here](https://bheld.eu/doc/accountin
 Written with Ruby >= 2.2.2
 
 ## Tested
-* Linux: running with Ruby >= 2.2.2
+* Linux: running on ArchLinux with Ruby >= 2.2.2
 * Windows: not tested
 * MAC: not tested
 
