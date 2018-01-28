@@ -1,7 +1,7 @@
 # @Author: Benjamin Held
 # @Date:   2017-02-08 18:32:01
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-14 07:11:24
+# @Last Modified time: 2018-01-28 17:26:57
 
 module DBMapping
 
@@ -51,8 +51,10 @@ module DBMapping
     # method to search for a person by its id
     # @return [Person::Person | nil] the result, if found or nil
     def query_person(id)
-      result = query_student(id)
-      return result if (result != nil)
+      result = @db_base.query_student_by_id(id).next
+      if (result != nil)
+        return Person::Student.new(result['Name'], Integer(result['Id']), Integer(result['Mat_Nr']))
+      end
       result = @db_base.query_person_by_id(id).next
       if (result != nil)
         return Person::Person.new(result['Name'], Integer(result['Id']))
