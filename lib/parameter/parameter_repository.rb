@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2016-01-30 18:00:04
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-04-20 21:28:46
+# @Last Modified time: 2018-01-29 14:24:25
 
 module Parameter
 
-  require_relative '../output/string'
+  require_relative '../string/string'
 
   # Parameter repository storing the valid parameter of the script.
   # {#initialize} gets the provided parameters and fills a hash which

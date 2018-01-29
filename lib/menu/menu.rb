@@ -1,11 +1,11 @@
 # @Author: Benjamin Held
 # @Date:   2015-08-24 12:43:15
 # @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-01 17:27:28
+# @Last Modified time: 2018-01-29 14:23:54
 
 require_relative '../handler/data_handler'
 require_relative '../query/query'
-require_relative '../output/string'
+require_relative '../string/string'
 
 module Menu
 
