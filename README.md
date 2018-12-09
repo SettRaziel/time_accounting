@@ -54,4 +54,4 @@ Written with Ruby >= 2.2.2
 ## License
 see LICENSE
 
-created by: Benjamin Held
+created by: Benjamin Held, 2015
