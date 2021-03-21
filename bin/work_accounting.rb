@@ -1,7 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-01-30 17:36:19
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-04-20 21:28:37
 
 require_relative '../lib/menu/menu'
 require_relative '../lib/parameter/parameter_repository'
@@ -17,6 +13,7 @@ end
 # Work Accounting Script
 # Version 0.3.0
 # created by Benjamin Held, September 2015
+
 if (ARGV.size > 0)
   parameters = Parameter::ParameterRepository.new(ARGV)
   if (parameters.parameters[:help])
