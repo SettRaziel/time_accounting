@@ -1,11 +1,6 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-24 12:43:15
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2018-01-29 14:23:54
-
 require_relative '../handler/data_handler'
 require_relative '../query/query'
-require_relative '../string/string'
+require 'ruby_utils/string'
 
 module Menu
 

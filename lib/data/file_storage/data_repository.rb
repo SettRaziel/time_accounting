@@ -1,11 +1,6 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-20 11:23:27
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2018-01-29 14:23:24
-
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
-require_relative '../../string/string'
+require 'ruby_utils/string'
 
 # This class serves as a data repository mapping ({Person} => {Task}). A
 # {Person} can be the parent class {Person} or any of its children. To ensure
