@@ -3,3 +3,6 @@ dev/
 doc/
 .yardoc/
 .yardopts
+
+# Gemfiles
+Gemfile.lock

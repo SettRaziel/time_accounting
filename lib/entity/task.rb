@@ -1,12 +1,7 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-21 13:00:30
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2018-01-29 14:23:44
-
 # This module holds the classes that are use for creating a {Task}.
 module Task
 
-  require_relative '../string/string'
+  require 'ruby_utils/string'
   require 'time'
 
   # This class represents a work task. A task gets a unique id from its
