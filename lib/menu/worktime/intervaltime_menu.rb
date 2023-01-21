@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-05-13 09:09:11
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-09 18:51:21
-
 # This module holds the classes for the terminal menu, which can be used to
 # run this program in a terminal window.
 module Menu

@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-09-27 10:24:59
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-30 15:53:33
-
 module Query
 
   # singleton class to calculate time values for a given set of tasks

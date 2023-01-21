@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2017-01-29 09:24:31
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-29 09:26:23
-
 module Menu
 
   # This class provides the common methods of the different query menus

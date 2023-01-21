@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-11-19 15:50:59
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-14 07:12:15
-
 # This modules holds the classes and files that handle the communication
 # between the menu or user interface and the used data storage. Depending on
 # the settings the data can be stored in:

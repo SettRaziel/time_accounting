@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-02-28 15:08:12
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-01 17:27:59
-
 module Menu
 
   # This class creates the main menu for the script and holds methods to

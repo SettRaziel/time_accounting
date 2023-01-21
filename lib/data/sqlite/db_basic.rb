@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-10-29 16:25:44
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-28 12:56:18
-
 # This module holds classes that specify the required sql queries that are
 # neccessary to use the application with an sqlite database storage
 module SqliteDatabase

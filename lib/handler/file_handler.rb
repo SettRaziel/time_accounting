@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-11-19 15:50:14
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-16 17:36:36
-
 require_relative '../data/file_storage/data_repository'
 require_relative '../data/file_storage/file_reader'
 require_relative '../data/file_storage/file_writer'

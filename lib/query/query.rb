@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-24 12:53:57
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-22 17:23:59
-
 # This module holds the classes and methods for queries regarding the data
 module Query
 

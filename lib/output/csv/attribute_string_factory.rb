@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-05-02 14:28:45
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-05-02 15:01:28
-
 require_relative '../../entity/person/person'
 
 # singleton class to create a formatted {String} with the attribute names of

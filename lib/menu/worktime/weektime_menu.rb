@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-03-25 12:13:48
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-01 12:41:11
-
 module Menu
 
   module TimeMenu

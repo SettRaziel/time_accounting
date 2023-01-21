@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-02-23 19:31:41
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-01 12:41:18
-
 module Menu
 
   require_relative 'time_menu'

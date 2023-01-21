@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-02-17 16:39:45
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-07-02 20:08:32
-
 module Menu
 
   # menu class to process the queries of {Person}s and {Task}s

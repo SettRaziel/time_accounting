@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-04-18 15:41:13
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-09-06 17:03:38
-
 require 'csv'
 require_relative 'attribute_string_factory'
 

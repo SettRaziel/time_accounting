@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-11-29 19:43:45
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-04 15:44:25
-
 module DBMapping
 
   # class to apply ER-mapping for {Task::Task} objects to a sqlite database

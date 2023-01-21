@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-02-18 18:18:17
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-14 22:17:11
-
 module Menu
 
   # menu class to process the addition of {Person}s and {Task}s

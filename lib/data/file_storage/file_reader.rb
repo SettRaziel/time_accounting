@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-23 14:40:44
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-12-15 12:37:34
-
 require_relative '../../entity/person/person'
 require_relative '../../entity/task'
 require_relative './data_repository'

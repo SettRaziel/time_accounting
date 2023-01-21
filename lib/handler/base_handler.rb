@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-11-19 15:59:49
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-16 17:36:17
-
 module DataHandler
 
   # This class serves as a abstract parent class to take care about the

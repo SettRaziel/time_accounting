@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-27 12:21:25
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-29 09:28:47
-
 module Menu
 
   # This class holds the menu for query options regarding person and task query

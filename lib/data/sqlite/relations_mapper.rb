@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-12-07 20:11:38
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-05 10:55:59
-
 # This module holds the classes to realize an ER-Mapping from the application
 # entities to the corresponding Sqlite3 tables.
 module DBMapping

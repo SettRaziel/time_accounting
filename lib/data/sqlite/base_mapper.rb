@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2017-02-02 21:27:19
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-07 17:42:43
-
 module DBMapping
 
   # This class serves as a parent class for the mapper classes to store common

@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-04-05 17:36:03
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-01 12:40:58
-
 module Menu
 
   # This module holds the menu classes that are used to display the options for

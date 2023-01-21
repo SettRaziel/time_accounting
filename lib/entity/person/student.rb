@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-21 12:39:13
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2016-04-21 14:33:52
-
 module Person
 
   # child class from {Person} to represent a Student. The {Student} gains the

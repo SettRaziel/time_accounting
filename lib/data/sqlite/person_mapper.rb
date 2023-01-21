@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2016-11-25 19:47:28
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-02-09 19:09:16
-
 module DBMapping
 
   # Class to apply ER-mapping for {Person::Person} objects to a sqlite database

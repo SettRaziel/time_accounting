@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2017-01-29 09:22:11
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2017-01-31 17:48:50
-
 module Menu
 
   # menu class to select the storage adapter that should be used

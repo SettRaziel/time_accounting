@@ -1,8 +1,3 @@
-# @Author: Benjamin Held
-# @Date:   2015-08-24 13:32:00
-# @Last Modified by:   Benjamin Held
-# @Last Modified time: 2015-09-24 13:34:38
-
 require 'date'
 
 # Extension of the ruby Time class to provide necessary operations on a {Time}
