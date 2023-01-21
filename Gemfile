@@ -5,4 +5,4 @@ source "https://rubygems.org"
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}"}
 
 gem "sqlite3"
-gem 'ruby_utils', github: 'SettRaziel/ruby_utils'
+gem "ruby_utils", github: "SettRaziel/ruby_utils"
