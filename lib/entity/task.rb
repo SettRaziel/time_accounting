@@ -1,8 +1,8 @@
 # This module holds the classes that are use for creating a {Task}.
 module Task
 
-  require 'ruby_utils/string'
-  require 'time'
+  require "ruby_utils/string"
+  require "time"
 
   # This class represents a work task. A task gets a unique id from its
   # {TaskIDGenerator}. Similar to the {Person}, the task holds a method
@@ -71,7 +71,7 @@ module Task
     def self.check_list_size(list)
       if (list.size != 4)
         raise ArgumentError,
-        ' Error: list contains wrong number of arguments to create a task.'.red
+        " Error: list contains wrong number of arguments to create a task.".red
       end
     end
 

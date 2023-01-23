@@ -16,12 +16,12 @@ module DBMapping
       results = @db_base.query_persons
       persons = Array.new()
       results.each { |result|
-        id = Integer(result['Id'])
+        id = Integer(result["Id"])
         mat_nr = @db_base.query_matnr_for_student(id).next
         if (mat_nr != nil)
-          persons << Person::Student.new(result['Name'], id, mat_nr['Mat_Nr'])
+          persons << Person::Student.new(result["Name"], id, mat_nr["Mat_Nr"])
         else
-          persons << Person::Person.new(result['Name'], id)
+          persons << Person::Person.new(result["Name"], id)
         end
       }
       return persons
@@ -37,7 +37,7 @@ module DBMapping
         when Person::Person
           @db_base.insert_person(person.id, person.name)
         else
-          raise ArgumentError, 'Cannot persist object. Class not found.'
+          raise ArgumentError, "Cannot persist object. Class not found."
         end
       }
       nil
@@ -48,11 +48,11 @@ module DBMapping
     def query_person(id)
       result = @db_base.query_student_by_id(id).next
       if (result != nil)
-        return Person::Student.new(result['Name'], Integer(result['Id']), Integer(result['Mat_Nr']))
+        return Person::Student.new(result["Name"], Integer(result["Id"]), Integer(result["Mat_Nr"]))
       end
       result = @db_base.query_person_by_id(id).next
       if (result != nil)
-        return Person::Person.new(result['Name'], Integer(result['Id']))
+        return Person::Person.new(result["Name"], Integer(result["Id"]))
       end
       nil
     end

@@ -10,7 +10,7 @@ module Menu
 
       # initialization
       def initialize
-        super('month')
+        super("month")
       end
 
       private

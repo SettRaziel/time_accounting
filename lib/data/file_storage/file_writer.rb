@@ -1,6 +1,6 @@
-require_relative '../../entity/person/person'
-require_relative '../../entity/task'
-require_relative './data_repository'
+require_relative "../../entity/person/person"
+require_relative "../../entity/task"
+require_relative "./data_repository"
 
 # This class stores the {Person}s and {Task}s of a {DataRepository} into a file
 # specified by {#filename}. The {FileWriter} stores the data in the following
@@ -27,20 +27,20 @@ class FileWriter
 
   # initialization
   # @param [String] filename the filename of the output file
-  def initialize(filename='default_file')
+  def initialize(filename="default_file")
     @filename = filename
   end
 
   # method to store a list of {Person}s in the file
   # @param [Array] person_list the list of persons
   def write_all_persons(person_list)
-    output = File.new(filename, 'w')
+    output = File.new(filename, "w")
 
-    output.puts 'Persons <'
+    output.puts "Persons <"
     person_list.each { |person|
       output.puts "#{person.class} {"
       output.puts person.to_file
-      output.puts '}'
+      output.puts "}"
     }
     output.puts ">"
 
@@ -50,18 +50,18 @@ class FileWriter
   # method to store a the {Task}s in the file
   # @param [DataRepository] repository the used {DataRepository}
   def write_all_tasks(repository)
-    output = File.new(filename, 'a')
+    output = File.new(filename, "a")
 
-    output.puts 'Tasks <'
+    output.puts "Tasks <"
     repository.each_pair { |key, value|
       key_id = key.id
       value.each { |task|
         output.puts "#{key_id} {"
         output.puts task.to_file
-        output.puts '}'
+        output.puts "}"
       }
     }
-    output.print '>'
+    output.print ">"
 
     output.close
   end

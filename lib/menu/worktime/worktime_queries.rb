@@ -1,6 +1,6 @@
 module Menu
 
-  require_relative 'time_menu'
+  require_relative "time_menu"
 
   # menu class to process the queries of different worktime intervals
   class WorktimeQueries < Base
@@ -8,17 +8,17 @@ module Menu
     # initialization
     def initialize
       super
-      @menu_description = 'Queries for tasks done in a given time interval.'
+      @menu_description = "Queries for tasks done in a given time interval."
     end
 
     private
 
     # method to define all printable menu items
     def define_menu_items
-      add_menu_item('Weekly worktime.', 1)
-      add_menu_item('Monthly worktime.', 2)
-      add_menu_item('Custom worktime interval.', 3)
-      add_menu_item('Cancel and return to previous menu.', 4)
+      add_menu_item("Weekly worktime.", 1)
+      add_menu_item("Monthly worktime.", 2)
+      add_menu_item("Custom worktime interval.", 3)
+      add_menu_item("Cancel and return to previous menu.", 4)
     end
 
     # method to process the provided input

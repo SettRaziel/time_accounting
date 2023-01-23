@@ -5,8 +5,8 @@
 # * Sqlite3 database
 module DataHandler
 
-  require 'sqlite3'
-  require_relative '../data/sqlite/db_mapping'
+  require "sqlite3"
+  require_relative "../data/sqlite/db_mapping"
 
   # This class serves as a handler between the repositories and the queries. It
   # also takes care about the initialization of the repositories and the id

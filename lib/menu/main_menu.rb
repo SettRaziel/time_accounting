@@ -8,16 +8,16 @@ module Menu
     # initialization
     def initialize
       super
-      @menu_description = 'Work Accounting v0.2.0. What do you want to do?'
+      @menu_description = "Work Accounting v0.2.0. What do you want to do?"
     end
 
     private
 
     # method to define all printable menu items
     def define_menu_items
-      add_menu_item('Create a new database.', 1)
-      add_menu_item('Load an existing database.', 2)
-      add_menu_item('Exit.', 3)
+      add_menu_item("Create a new database.", 1)
+      add_menu_item("Load an existing database.", 2)
+      add_menu_item("Exit.", 3)
     end
 
     # method to print an error message

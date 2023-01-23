@@ -6,19 +6,19 @@ module Menu
     # initialization
     def initialize
       super
-      @menu_description = 'Person and Task Queries'
+      @menu_description = "Person and Task Queries"
     end
 
     private
 
     # method to define all printable menu items
     def define_menu_items
-      add_menu_item('Query person.', 1)
-      add_menu_item('Query task.', 2)
-      add_menu_item('Query tasks to person.', 3)
-      add_menu_item('Query persons.', 4)
-      add_menu_item('Query tasks.', 5)
-      add_menu_item('Cancel and return to previous menu.', 6)
+      add_menu_item("Query person.", 1)
+      add_menu_item("Query task.", 2)
+      add_menu_item("Query tasks to person.", 3)
+      add_menu_item("Query persons.", 4)
+      add_menu_item("Query tasks.", 5)
+      add_menu_item("Cancel and return to previous menu.", 6)
       nil
     end
 

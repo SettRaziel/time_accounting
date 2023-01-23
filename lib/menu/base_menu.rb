@@ -11,7 +11,7 @@ module Menu
     def initialize(description=nil)
       @menu_items = Hash.new()
       if (description == nil)
-        @menu_description = 'Default menu. Please add description: '
+        @menu_description = "Default menu. Please add description: "
       end
       define_menu_items
       @menu_items = Hash[@menu_items.sort]
@@ -26,7 +26,7 @@ module Menu
           puts "(#{key}) #{value}"
         }
 
-        isFinished = determine_action(get_entry('Select option: '))
+        isFinished = determine_action(get_entry("Select option: "))
       end
     end
 
@@ -41,7 +41,7 @@ module Menu
     # @raise [NotImplementedError] if the subclass does not have this method
     def define_menu_items
       fail NotImplementedError, " Error: the subclass " \
-        "#{self.name.split('::').last} needs to implement the method: " \
+        "#{self.name.split("::").last} needs to implement the method: " \
         "define_menu_items from its base class".red
     end
 
@@ -50,14 +50,14 @@ module Menu
     # @raise [NotImplementedError] if the subclass does not have this method
     def determine_action(input)
       fail NotImplementedError, " Error: the subclass " \
-        "#{self.name.split('::').last} needs to implement the method: " \
+        "#{self.name.split("::").last} needs to implement the method: " \
         "determine_action from its base class".red
     end
 
     # default behavior when a user provides not valid input
     def handle_wrong_option
-      print 'Option not available. '.red
-      determine_action(get_entry('Select option: '))
+      print "Option not available. ".red
+      determine_action(get_entry("Select option: "))
     end
 
     # method to add a given key/value pair to the menu hash

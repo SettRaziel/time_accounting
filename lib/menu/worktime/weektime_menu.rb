@@ -8,7 +8,7 @@ module Menu
 
       # initialization
       def initialize
-        super('week')
+        super("week")
       end
 
       private

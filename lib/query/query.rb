@@ -1,7 +1,7 @@
 # This module holds the classes and methods for queries regarding the data
 module Query
 
-  require_relative '../entity/time'
+  require_relative "../entity/time"
 
   # dummy class to get access to the data from methods within the module
   class << self
@@ -161,4 +161,4 @@ module Query
 
 end
 
-require_relative 'time_accumulator'
+require_relative "time_accumulator"

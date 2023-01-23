@@ -19,7 +19,7 @@ module DBMapping
     # @param [ResultSet | nil] result the query result with the given max id
     def check_max_id(result)
       if (result != nil)
-        Integer(result['Id'])
+        Integer(result["Id"])
       else
         0
       end

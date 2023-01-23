@@ -21,11 +21,11 @@ module Menu
 
     # method to define all printable menu items
     def define_menu_items
-      add_menu_item('Add entity.', 1)
-      add_menu_item('Query entities.', 2)
-      add_menu_item('Query worktime.', 3)
-      add_menu_item('Save and exit.', 4)
-      add_menu_item('Abort and exit.', 5)
+      add_menu_item("Add entity.", 1)
+      add_menu_item("Query entities.", 2)
+      add_menu_item("Query worktime.", 3)
+      add_menu_item("Save and exit.", 4)
+      add_menu_item("Abort and exit.", 5)
     end
 
     # method to process the provided input
@@ -51,7 +51,7 @@ module Menu
         Menu.data_handler.persist_data
         Menu.exit_script
       rescue IOError => e
-        raise IOError, 'Error while saving data: '.concat(e.message).red
+        raise IOError, "Error while saving data: ".concat(e.message).red
       end
     end
 

@@ -1,4 +1,4 @@
-require 'ruby_utils/string'
+require "ruby_utils/string"
 
 # Output class for help text
 class HelpOutput
@@ -9,7 +9,7 @@ class HelpOutput
   def self.print_help_for(parameter)
     initialize_output if (@parameters == nil)
     if (@parameters[parameter])
-      puts 'WorkAccounting help:'.light_yellow + "\n#{@parameters[parameter]}"
+      puts "WorkAccounting help:".light_yellow + "\n#{@parameters[parameter]}"
     elsif (parameter)
       print_help
     else
@@ -31,10 +31,10 @@ class HelpOutput
 
   # method to specify and add the help entries with help text only
   def self.add_single_help_entries
-    add_simple_text(:help, ' -h, --help     ', 'show help text')
+    add_simple_text(:help, " -h, --help     ", "show help text")
     add_simple_text(:version,
-                    ' -v, --version  ',
-                    'prints the current version of the project')
+                    " -v, --version  ",
+                    "prints the current version of the project")
   end
 
   # method to add a (key, value) pair to the parameter hash
@@ -54,8 +54,8 @@ class HelpOutput
 
   # method to print the default help text
   def self.print_help
-    puts 'script usage:'.red + " ruby <script> "
-    puts 'help usage :'.green + "  ruby <script> (-h | --help)"
+    puts "script usage:".red + " ruby <script> "
+    puts "help usage :".green + "  ruby <script> (-h | --help)"
     puts "\nWorkAccounting help:".light_yellow
 
     @parameters.each_value { |value|

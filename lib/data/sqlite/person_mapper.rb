@@ -15,7 +15,7 @@ module DBMapping
       results = @db_base.query_persons
       persons = Array.new()
       results.each { |result|
-        persons << Person::Person.new(result['Name'], Integer(result['Id']))
+        persons << Person::Person.new(result["Name"], Integer(result["Id"]))
       }
       return persons
     end
@@ -34,7 +34,7 @@ module DBMapping
     def query_person(id)
       result = @db_base.query_person_by_id(id).next
       if (result != nil)
-        return Person::Person.new(result['Name'], Integer(result['Id']))
+        return Person::Person.new(result["Name"], Integer(result["Id"]))
       end
       nil
     end

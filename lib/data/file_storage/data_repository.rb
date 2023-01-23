@@ -1,6 +1,6 @@
-require_relative '../../entity/person/person'
-require_relative '../../entity/task'
-require 'ruby_utils/string'
+require_relative "../../entity/person/person"
+require_relative "../../entity/task"
+require "ruby_utils/string"
 
 # This class serves as a data repository mapping ({Person} => {Task}). A
 # {Person} can be the parent class {Person} or any of its children. To ensure

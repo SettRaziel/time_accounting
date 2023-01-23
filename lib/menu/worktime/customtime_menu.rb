@@ -10,7 +10,7 @@ module Menu
 
       # initialization
       def initialize
-        super('custom interval')
+        super("custom interval")
       end
 
       private
@@ -18,7 +18,7 @@ module Menu
       # method to retrieve the required input values
       def get_input_values
         @values = Hash.new()
-        @values[:id] = get_entry('Worktime for which ID? ').to_i
+        @values[:id] = get_entry("Worktime for which ID? ").to_i
         @values[:start_time] = Menu.parse_date(
                 get_entry("Enter start date (format: YYYY-MM-DD-hh:mm): "))
         @values[:end_time] = Menu.parse_date(

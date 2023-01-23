@@ -17,8 +17,8 @@ module Menu
 
     # method to define all printable menu items
     def define_menu_items
-      add_menu_item('File storage.', 1)
-      add_menu_item('Sqlite3.', 2)
+      add_menu_item("File storage.", 1)
+      add_menu_item("Sqlite3.", 2)
     end
 
     # method to process the provided input

@@ -47,9 +47,9 @@ module DBMapping
     # method to create a {Task::Task} from a result entry
     # @param [Hash] result an entry from the result set
     def create_task_from_result(result)
-      Task::Task.new(result['Id'], Time.parse(result['Start']),
-                     Time.parse(result['End']),
-                     result['Description'])
+      Task::Task.new(result["Id"], Time.parse(result["Start"]),
+                     Time.parse(result["End"]),
+                     result["Description"])
     end
 
   end

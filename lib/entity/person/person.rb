@@ -2,7 +2,7 @@
 # person with additional attributs to the basic name and id of a {Person}.
 module Person
 
-  require 'ruby_utils/string'
+  require "ruby_utils/string"
 
   # This class provides the basis for describing a person entity. When providing
   # an {#id} it is uses as the identification number. If no value is provided
@@ -47,8 +47,8 @@ module Person
     def self.create_from_attribute_list(list)
       if (list.size != 2)
         raise ArgumentError,
-              ' Error: list contains wrong number of arguments to create' \
-              ' a person.'.red
+              " Error: list contains wrong number of arguments to create" \
+              " a person.".red
       end
       id = list[1].to_i
       self.new(list[0], id)
@@ -75,4 +75,4 @@ module Person
 
 end
 
-require_relative 'student'
+require_relative "student"

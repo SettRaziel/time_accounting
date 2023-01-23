@@ -6,17 +6,17 @@ module Menu
     # initialization
     def initialize
       super
-      @menu_description = 'Person and Task Addition'
+      @menu_description = "Person and Task Addition"
     end
 
     private
 
     # method to define all printable menu items
     def define_menu_items
-      add_menu_item('Add person.', 1)
-      add_menu_item('Add task.', 2)
-      add_menu_item('Persist data and return to previous menu.', 3)
-      add_menu_item('Cancel and return to previous menu.', 4)
+      add_menu_item("Add person.", 1)
+      add_menu_item("Add task.", 2)
+      add_menu_item("Persist data and return to previous menu.", 3)
+      add_menu_item("Cancel and return to previous menu.", 4)
       nil
     end
 

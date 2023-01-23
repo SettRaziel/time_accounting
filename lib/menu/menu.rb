@@ -1,6 +1,6 @@
-require_relative '../handler/data_handler'
-require_relative '../query/query'
-require 'ruby_utils/string'
+require_relative "../handler/data_handler"
+require_relative "../query/query"
+require "ruby_utils/string"
 
 module Menu
 
@@ -30,13 +30,13 @@ module Menu
     Time.new(time[0], time[1], time[2],time[3],time[4])
   end
 
-  require_relative 'base_menu'
-  require_relative 'adapter_menu'
-  require_relative 'database_option'
-  require_relative 'main_menu'
-  require_relative 'person_option'
-  require_relative 'entity_addition'
-  require_relative 'entity_queries'
-  require_relative './worktime/worktime_queries'
+  require_relative "base_menu"
+  require_relative "adapter_menu"
+  require_relative "database_option"
+  require_relative "main_menu"
+  require_relative "person_option"
+  require_relative "entity_addition"
+  require_relative "entity_queries"
+  require_relative "./worktime/worktime_queries"
 
 end

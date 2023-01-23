@@ -28,7 +28,7 @@ module DBMapping
       assignments = @db_base.query_assignments
       results = Hash.new()
       assignments.each { |result|
-        results[result['P_Id']] = result['T_Id']
+        results[result["P_Id"]] = result["T_Id"]
       }
       return results
     end
@@ -40,7 +40,7 @@ module DBMapping
       assignments = @db_base.query_assignments_for_person(p_id)
       results = Array.new()
       assignments.each { |result|
-        results << result['T_Id']
+        results << result["T_Id"]
       }
       return results
     end

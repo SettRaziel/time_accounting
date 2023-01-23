@@ -2,7 +2,7 @@ module Menu
 
   module TimeMenu
 
-    require_relative '../../output/csv/csv_writer'
+    require_relative "../../output/csv/csv_writer"
 
     # menu class that serves as a base class for menus used to query information
     # for a given time interval
@@ -31,7 +31,7 @@ module Menu
       #   time value
       def get_input_values(time_string)
         fail NotImplementedError, " Error: the subclass " \
-        "#{self.name.split('::').last} needs to implement the method: " \
+        "#{self.name.split("::").last} needs to implement the method: " \
         "get_input_values from its parent class".red
       end
 
@@ -41,9 +41,9 @@ module Menu
         @menu_description.concat("\n #{set_boundaries}")
         add_menu_item("All tasks to a person in the given #{time_string}.", 1)
         add_menu_item("Worktime of a person in that #{time_string}.", 2)
-        add_menu_item('All tasks running during the interval.', 3)
-        add_menu_item('Write Query result to csv-file.', 4)
-        add_menu_item('Cancel and return to previous menu.', 5)
+        add_menu_item("All tasks running during the interval.", 3)
+        add_menu_item("Write Query result to csv-file.", 4)
+        add_menu_item("Cancel and return to previous menu.", 5)
       end
 
       # method to process the provided input
@@ -85,7 +85,7 @@ module Menu
       # @raise [NotImplementedError] if the subclass does not have this method
       def retrieve_tasks
         fail NotImplementedError, " Error: the subclass " \
-        "#{self.name.split('::').last} needs to implement the method: " \
+        "#{self.name.split("::").last} needs to implement the method: " \
         "retrieve_tasks from its parent class".red
       end
 
@@ -94,7 +94,7 @@ module Menu
       # @raise [NotImplementedError] if the subclass does not have this method
       def retrieve_worktime
         fail NotImplementedError, " Error: the subclass " \
-        "#{self.name.split('::').last} needs to implement the method: " \
+        "#{self.name.split("::").last} needs to implement the method: " \
         "retrieve_worktime from its parent class".red
       end
 
@@ -104,7 +104,7 @@ module Menu
       # @raise [NotImplementedError] if the subclass does not have this method
       def set_boundaries
         fail NotImplementedError, " Error: the subclass " \
-        "#{Class.name.split('::').last} needs to implement the method: " \
+        "#{Class.name.split("::").last} needs to implement the method: " \
         "set_boundaries from its base class".red
       end
 
@@ -123,7 +123,7 @@ module Menu
       def check_time_string
         if @time_string.eql?(nil)
           fail NotImplementedError, " Error: the subclass " \
-          "#{self.name.split('::').last} does not present a string for " \
+          "#{self.name.split("::").last} does not present a string for " \
           "its attribute time_string".red
         end
       end
@@ -183,5 +183,5 @@ module Menu
 
 end
 
-require_relative 'intervaltime_menu'
-require_relative 'customtime_menu'
+require_relative "intervaltime_menu"
+require_relative "customtime_menu"

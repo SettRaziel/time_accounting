@@ -60,7 +60,7 @@ module SqliteDatabase
     # method to query all stored {Task::Task}
     # @return [ResultSet] the results
     def query_tasks
-      stmt = @db.prepare('SELECT * FROM Tasks')
+      stmt = @db.prepare("SELECT * FROM Tasks")
       stmt.execute
     end
 
@@ -90,7 +90,7 @@ module SqliteDatabase
     # method to query the mapping of assigned tasks to persons
     # @return [ResultSet] the query result
     def query_assignments
-      stmt = @db.prepare('SELECT * FROM Matching')
+      stmt = @db.prepare("SELECT * FROM Matching")
       stmt.execute
     end
 
@@ -98,21 +98,21 @@ module SqliteDatabase
     # @param [Integer] p_id the person id
     # @return [ResultSet] the query result
     def query_assignments_for_person(p_id)
-      stmt = @db.prepare('SELECT T_id FROM Matching WHERE Id = ?')
+      stmt = @db.prepare("SELECT T_id FROM Matching WHERE Id = ?")
       stmt.execute(p_id)
     end
 
     # method to query the max id of the person table
     # @return [ResultSet] the query result
     def query_max_person_id
-      stmt = @db.prepare('SELECT Id FROM Persons ORDER BY Id DESC LIMIT 1')
+      stmt = @db.prepare("SELECT Id FROM Persons ORDER BY Id DESC LIMIT 1")
       stmt.execute
     end
 
     # method to query the max id of the person table
     # @return [ResultSet] the query result
     def query_max_task_id
-      stmt = @db.prepare('SELECT Id FROM Tasks ORDER BY Id DESC LIMIT 1')
+      stmt = @db.prepare("SELECT Id FROM Tasks ORDER BY Id DESC LIMIT 1")
       stmt.execute
     end
 
@@ -144,4 +144,4 @@ module SqliteDatabase
 
 end
 
-require_relative 'db_student'
+require_relative "db_student"

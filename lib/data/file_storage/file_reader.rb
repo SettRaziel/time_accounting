@@ -1,6 +1,6 @@
-require_relative '../../entity/person/person'
-require_relative '../../entity/task'
-require_relative './data_repository'
+require_relative "../../entity/person/person"
+require_relative "../../entity/task"
+require_relative "./data_repository"
 
 # This class reads {Person}s and {Task}s from a file specified by the provided
 # filename. For a successful reading process the file need to fit the format
@@ -11,7 +11,7 @@ class FileReader
   # singleton method to read a file specified by filename
   # @param [String] filename the file name of the requested file
   def self.read_file(filename)
-    input = File.open(filename, 'r')
+    input = File.open(filename, "r")
     repo = DataRepository.new()
     ids = Array.new()
 

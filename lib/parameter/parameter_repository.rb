@@ -1,6 +1,6 @@
 module Parameter
 
-  require 'ruby_utils/parameter'
+  require "ruby_utils/parameter"
 
   # Parameter repository storing the valid parameter of the script.
   # {#initialize} gets the provided parameters and fills a hash which

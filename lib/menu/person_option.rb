@@ -6,7 +6,7 @@ module Menu
     # initialization
     def initialize
       super
-      @menu_description = 'Adds a new Person. Select Type: '
+      @menu_description = "Adds a new Person. Select Type: "
     end
 
     # public entry point to print the menu and execute to chosen option
@@ -18,9 +18,9 @@ module Menu
 
     # method to define all printable menu items
     def define_menu_items
-      add_menu_item('Person.', 1)
-      add_menu_item('Student.', 2)
-      add_menu_item('Cancel and return to previous menu.', 3)
+      add_menu_item("Person.", 1)
+      add_menu_item("Student.", 2)
+      add_menu_item("Cancel and return to previous menu.", 3)
     end
 
     # method to process the provided input
@@ -40,7 +40,7 @@ module Menu
 
     # method to create and add a simple person
     def add_simple_person
-      name = get_entry('Enter name: ')
+      name = get_entry("Enter name: ")
 
       p = Person::Person.new(name)
       Menu.data_handler.add_person(p)
@@ -49,8 +49,8 @@ module Menu
 
     # method to create and add a student
     def add_student
-      name = get_entry('Enter name: ')
-      mat_nr = get_entry('Enter matriculation number: ').to_i
+      name = get_entry("Enter name: ")
+      mat_nr = get_entry("Enter matriculation number: ").to_i
 
       s = Person::Student.new(name, mat_nr)
       Menu.data_handler.add_person(s)

@@ -1,5 +1,5 @@
-require 'csv'
-require_relative 'attribute_string_factory'
+require "csv"
+require_relative "attribute_string_factory"
 
 # Singleton class to write the provided output in a csv-formatted file
 class CSVWriter
@@ -37,7 +37,7 @@ class CSVWriter
   def self.write(filename, output)
     CSV.open(filename, "wb", {:col_sep => ";"}) { |csv|
       output.each { |entry|
-        csv << entry.split(';')
+        csv << entry.split(";")
       }
     }
   end

@@ -1,6 +1,6 @@
-require_relative '../data/file_storage/data_repository'
-require_relative '../data/file_storage/file_reader'
-require_relative '../data/file_storage/file_writer'
+require_relative "../data/file_storage/data_repository"
+require_relative "../data/file_storage/file_reader"
+require_relative "../data/file_storage/file_writer"
 
 module DataHandler
 
