@@ -6,7 +6,7 @@ device. The stored data shall be queried for different options such as
 monthly, weekly working hours or self defined time intervals. A terminal menu
 guides trough the different options.
 
-Current version: v0.3.0.
+Current version: v0.3.1.
 
 ## Development steps
 * Reading and storing tasks and persons in a file (done with v0.1.0)

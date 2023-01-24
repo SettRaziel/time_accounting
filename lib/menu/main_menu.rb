@@ -8,7 +8,7 @@ module Menu
     # initialization
     def initialize
       super
-      @menu_description = "Work Accounting v0.2.0. What do you want to do?"
+      @menu_description = "Work Accounting v0.3.1. What do you want to do?"
     end
 
     private
