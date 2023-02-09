@@ -1,3 +1,5 @@
+# Parent module which holdes the classes dealing with reading and validating
+# the provided input parameters
 module Parameter
 
   require "ruby_utils/parameter"
